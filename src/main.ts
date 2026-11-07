@@ -8,7 +8,7 @@ interface BacktestResult {
 
 // 模擬一個從 Python API 拎返嚟嘅回測結果
 const mockData: BacktestResult = {
-  strategy: "均線交叉 (MA Cross)",
+  strategy: "我成功識用 CI/CD 喇！",
   returnRate: 24.5,
   sharpeRatio: 1.8
 };
