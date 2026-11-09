@@ -62,8 +62,8 @@ body {
   transition: background 0.5s ease;
   
   /* 如果你想加圖片，取消下面註解並確保 public/hero-bg.jpg 存在 */
-  /* background-image: linear-gradient(rgba(15,23,42,0.6), rgba(15,23,42,0.6)), url('/hero-bg.jpg');
-  background-size: cover; background-position: center; */
+  background-image: linear-gradient(rgba(15,23,42,0.6), rgba(15,23,42,0.6)), url('/hero-bg.jpg');
+  background-size: cover; background-position: center; 
 }
 .hero-content h1 { font-size: 4.5rem; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -1px; }
 .hero-content p { font-size: 1.2rem; opacity: 0.7; margin-bottom: 3rem; padding: 0 1rem; }
@@ -206,4 +206,24 @@ body {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.logo-img {
+  height: 32px; /* 控制 Navbar 圖片大細 */
+  width: auto;
+}
+
+.logo-img-footer {
+  height: 24px; /* 控制 Footer 圖片大細 */
+  width: auto;
+  vertical-align: middle;
+  margin-right: 8px;
 }

@@ -84,8 +84,11 @@ app.innerHTML = `
   <footer class="site-footer fade-in">
     <div class="footer-content">
       <div class="footer-brand">
-        <h3>📈 MyQuant</h3>
-        <p>我哋係香港小型開發團隊，透過活用數據以解決交易痛點，令大家投資決策更方便。專注於量化回測與自動化交易系統開發。</p>
+        <h3>
+          <img src="/logo.png" alt="MyQuant Logo" class="logo-img-footer">
+          MyQuant
+        </h3>
+        <p>我哋係香港小型開發團隊...</p>
       </div>
       <div class="footer-links">
         <h4>快速連結</h4>
