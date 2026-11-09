@@ -83,32 +83,24 @@ body {
   display: flex; justify-content: space-between; align-items: center;
 }
 
-/* 新增：當向下滾動時，Navbar 嘅變化 */
-.navbar.scrolled {
-  background-color: var(--bg-color); /* 加底色，防穿透 */
-  backdrop-filter: blur(10px); /* 加模糊效果 */
-  border-bottom: 1px solid var(--border-color);
-  padding: 1rem 0; /* 稍微縮細高度 */
-}
 
-/* 文字變色 */
-.navbar.scrolled .logo-text {
-  color: var(--text-color);
-}
-
-/* 3點按鈕變色 */
-.navbar.scrolled .menu-btn {
-  border-color: var(--border-color);
-}
-.navbar.scrolled .menu-btn span {
-  background-color: var(--text-color);
-}
-.navbar.scrolled .menu-btn:hover {
-  background-color: var(--text-color);
-}
-.navbar.scrolled .menu-btn:hover span {
-  background-color: var(--bg-color);
-}
+ /* 修改：只轉字色同邊框色，唔加任何底色 (保持全透明) */
+ .navbar.scrolled .logo-text {
+   color: var(--text-color);
+ }
+ 
+ .navbar.scrolled .menu-btn {
+   border-color: var(--text-color);
+ }
+ .navbar.scrolled .menu-btn span {
+   background-color: var(--text-color);
+ }
+ .navbar.scrolled .menu-btn:hover {
+   background-color: var(--text-color);
+ }
+ .navbar.scrolled .menu-btn:hover span {
+   background-color: var(--bg-color);
+ }
 
 
 
