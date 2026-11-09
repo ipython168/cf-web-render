@@ -151,28 +151,30 @@ const handleScrollFade = () => {
   sections.forEach(section => {
     const rect = section.getBoundingClientRect();
     
-    // 計算元素頂部喺畫面嘅比例 (0 = 畫面頂, 1 = 畫面底)
-    const elementPosition = rect.top / windowHeight;
+    // 取得頂部同底部喺畫面嘅比例
+    const topRatio = rect.top / windowHeight;
+    const bottomRatio = rect.bottom / windowHeight;
     
     let opacity = 0;
     
-    if (elementPosition > 0.85) {
-      // 1. 未入畫面 (0.85 以下)：完全透明
+    if (topRatio > 0.85) {
+      // 1. 未入畫面：完全透明
       opacity = 0;
-    } else if (elementPosition > 0.5) {
-      // 2. 由底部升到中間 (0.85 -> 0.5)：由 0 變 1
-      opacity = (0.85 - elementPosition) / (0.85 - 0.5);
-    } else if (elementPosition > 0.15) {
-      // 3. 由中間升到頂部 (0.5 -> 0.15)：由 1 變 0
-      opacity = (elementPosition - 0.15) / (0.5 - 0.15);
+    } else if (topRatio > 0.5) {
+      // 2. 出現時 (睇 Top)：由底部升到中間 (0.85 -> 0.5)，由 0 變 1
+      opacity = (0.85 - topRatio) / (0.85 - 0.5);
+    } else if (bottomRatio > 0.15) {
+      // 3. 離開時 (睇 Bottom)：底部由中間升到頂部 (0.5 -> 0.15)，由 1 變 0
+      opacity = (bottomRatio - 0.15) / (0.5 - 0.15);
     } else {
-      // 4. 準備離開畫面 (0.15 以上)：完全透明
+      // 4. 完全離開畫面：透明
       opacity = 0;
     }
     
     opacity = Math.max(0, Math.min(1, opacity));
     (section as HTMLElement).style.opacity = opacity.toString();
     
+    // 位移效果：隨住透明度向上移
     const translateY = (1 - opacity) * 50;
     (section as HTMLElement).style.transform = `translateY(${translateY}px)`;
   });
