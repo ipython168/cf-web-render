@@ -1,59 +1,69 @@
 import './style.css';
 
-const themeToggleBtn = document.getElementById('theme-toggle')!;
+const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 const htmlElement = document.documentElement;
 
-// 1. 檢查系統主題並預設
-const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const savedTheme = localStorage.getItem('theme');
+// 1. 初始化主題邏輯
+const applyTheme = (theme: string) => {
+  if (theme === 'system') {
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    htmlElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  } else {
+    htmlElement.setAttribute('data-theme', theme);
+  }
+};
 
-if (savedTheme) {
-  htmlElement.setAttribute('data-theme', savedTheme);
-  themeToggleBtn.textContent = savedTheme === 'light' ? '🌙 轉夜間' : '☀️ 轉日間';
-} else if (systemPrefersDark) {
-  htmlElement.setAttribute('data-theme', 'dark');
-  themeToggleBtn.textContent = '☀️ 轉日間';
-} else {
-  htmlElement.setAttribute('data-theme', 'light');
-  themeToggleBtn.textContent = '🌙 轉夜間';
-}
+// 讀取用戶之前嘅設定，預設為 system
+const savedTheme = localStorage.getItem('theme') || 'system';
+themeSelect.value = savedTheme;
+applyTheme(savedTheme);
 
-// 2. 處理切換
-themeToggleBtn.addEventListener('click', () => {
-  const currentTheme = htmlElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  
-  htmlElement.setAttribute('data-theme', newTheme);
-  themeToggleBtn.textContent = newTheme === 'light' ? '🌙 轉夜間' : '☀️ 轉日間';
-  
-  // 記住用戶嘅選擇
+// 監聽選單變化
+themeSelect.addEventListener('change', (e) => {
+  const newTheme = (e.target as HTMLSelectElement).value;
   localStorage.setItem('theme', newTheme);
+  applyTheme(newTheme);
+});
+
+// 如果用戶揀咗 system，但系統設定變咗，都要跟住變
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+  if (themeSelect.value === 'system') {
+    applyTheme('system');
+  }
 });
 
 // 3. 加載首頁內容
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
-  <section class="hero">
+  <!-- 區塊 1：首頁大圖 -->
+  <section class="hero-section">
     <div class="hero-content">
-      <h1>用數據透視市場，用紀律執行交易</h1>
+      <h1>用數據透視市場<br>用紀律執行交易</h1>
       <p>歡迎來到我的量化交易基地。這裡紀錄了我的回測結果與交易心得。</p>
-      <a href="#features" class="cta-btn">查看最新回測</a>
+      <div class="hero-btns">
+        <a href="#features" class="btn-primary">開始了解</a>
+      </div>
     </div>
   </section>
 
-  <section id="features" class="features">
-    <div class="card">
-      <h3>📊 數據回測</h3>
-      <p>分享不同策略的歷史回測表現，尋找超額回報 (Alpha)。</p>
+  <!-- 區塊 2：類似 Datatone 嘅左右排版 -->
+  <section id="features" class="feature-section">
+    <div class="feature-text">
+      <h2>隨時掌握<br>市場最新動態</h2>
+      <p>支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。</p>
     </div>
-    <div class="card">
-      <h3>📝 交易心得</h3>
-      <p>紀錄實盤操作的心理狀態與市場觀察。</p>
+    <div class="feature-visual">
+      <!-- 呢度將來可以放一張大圖或者手機 Mockup -->
+      <div class="mockup-box">📊 回測圖表預覽</div>
     </div>
-    <div class="card">
-      <h3>🤖 自動化</h3>
-      <p>研究如何利用 Python 與 TypeScript 建立自動化交易系統。</p>
+  </section>
+
+  <!-- 區塊 3：文章列表 -->
+  <section id="latest-posts" class="posts-section">
+    <h2>最新交易心得與回測</h2>
+    <div class="posts-grid">
+      ${renderPosts()}
     </div>
   </section>
 `;
