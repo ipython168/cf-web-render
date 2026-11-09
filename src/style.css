@@ -23,7 +23,7 @@
   --sidebar-bg: #f0f9ff;
   
   /* 淺色背景漸層：中心為極淺的冰青色，向外自然過渡到網頁底色 */
-  --page-gradient: radial-gradient(circle at center, #cffafe 0%, #f8fafc 75%, #ffffff 100%);
+  --page-gradient: radial-gradient(circle at center, #cffafe 0%, #f8fafc 80%, #ffffff 100%);
 }
 
 :root[data-theme="dark"] {
@@ -46,7 +46,7 @@
   --sidebar-bg: #121214;
 
   /* 深色背景漸層：中心為質感中淺灰，向外圍過渡至全黑 */
-  --page-gradient: radial-gradient(circle at center, #3f3f46 0%, #27272c 60%, #000000 100%);
+  --page-gradient: radial-gradient(circle at center, #3f3f46 0%, #27272c 80%, #000000 100%);
 }
 
 
@@ -195,7 +195,9 @@ body {
    7. Footer
    ========================================= */
 .site-footer {
-  background-color: var(--nav-bg); border-top: 1px solid var(--border-color); padding: 4rem 0 2rem;
+  background-color: var(--card-bg); /* 改為 --card-bg 避免透明 */
+
+  border-top: 1px solid var(--border-color); padding: 4rem 0 2rem;
 }
 .footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
 .footer-brand h3 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
@@ -276,16 +278,11 @@ body {
   .footer-content { grid-template-columns: 1fr; gap: 2rem; }
 }
 
-/* 確保 fade-in 喺手機版都生效 */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+
+
+
+
+
 
 
 
