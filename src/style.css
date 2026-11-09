@@ -1,7 +1,10 @@
+/* =========================================
+   1. 變數定義 (Themes)
+   ========================================= */
 :root[data-theme="light"] {
   --bg-color: #f8f9fa;
   --text-color: #1e293b;
-  --nav-bg: rgba(255, 255, 255, 0.8);
+  --nav-bg: rgba(255, 255, 255, 0.9);
   --card-bg: #ffffff;
   --primary-color: #0ea5e9;
   --border-color: #e2e8f0;
@@ -11,21 +14,29 @@
 :root[data-theme="dark"] {
   --bg-color: #0f172a;
   --text-color: #e2e8f0;
-  --nav-bg: rgba(15, 23, 42, 0.8);
+  --nav-bg: rgba(15, 23, 42, 0.9);
   --card-bg: #1e293b;
   --primary-color: #38bdf8;
   --border-color: #334155;
   --gradient-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
+/* =========================================
+   2. 全局設定
+   ========================================= */
 html { scroll-behavior: smooth; }
 body {
-  margin: 0; font-family: system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-color); color: var(--text-color);
+  margin: 0; 
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color); 
+  color: var(--text-color);
   transition: background-color 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
 }
 
+/* =========================================
+   3. 導航列 Navbar
+   ========================================= */
 .navbar {
   position: sticky; top: 0; z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
@@ -42,13 +53,20 @@ body {
 }
 .theme-select option { background: var(--bg-color); color: var(--text-color); }
 
+/* =========================================
+   4. 區塊一：Hero
+   ========================================= */
 .hero-section {
   height: 100vh; display: flex; align-items: center; justify-content: center;
   text-align: center; background: var(--gradient-bg);
   transition: background 0.5s ease;
+  
+  /* 如果你想加圖片，取消下面註解並確保 public/hero-bg.jpg 存在 */
+  /* background-image: linear-gradient(rgba(15,23,42,0.6), rgba(15,23,42,0.6)), url('/hero-bg.jpg');
+  background-size: cover; background-position: center; */
 }
-.hero-content h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
-.hero-content p { font-size: 1.2rem; opacity: 0.7; margin-bottom: 3rem; }
+.hero-content h1 { font-size: 4.5rem; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -1px; }
+.hero-content p { font-size: 1.2rem; opacity: 0.7; margin-bottom: 3rem; padding: 0 1rem; }
 .btn-primary {
   display: inline-block; padding: 1rem 3rem; font-size: 1.1rem; font-weight: bold;
   background-color: var(--primary-color); color: white; text-decoration: none;
@@ -56,6 +74,9 @@ body {
 }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3); }
 
+/* =========================================
+   5. 區塊二：Features (左右排版)
+   ========================================= */
 .feature-section {
   display: flex; align-items: center; justify-content: space-between;
   padding: 6rem 10%; min-height: 80vh; background-color: var(--bg-color);
@@ -74,6 +95,9 @@ body {
 }
 .mockup-box:hover { transform: rotate(0deg) scale(1.02); }
 
+/* =========================================
+   6. 區塊三：文章列表
+   ========================================= */
 .posts-section { padding: 6rem 10%; max-width: 1200px; margin: 0 auto; }
 .posts-section h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; }
 .posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
@@ -83,7 +107,6 @@ body {
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 .post-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-
 .post-category {
   display: inline-block; font-size: 0.8rem; font-weight: bold;
   color: var(--primary-color); background-color: rgba(14, 165, 233, 0.1);
@@ -94,3 +117,93 @@ body {
 .post-excerpt { line-height: 1.6; margin-bottom: 1.5rem; opacity: 0.8; }
 .read-more { color: var(--primary-color); text-decoration: none; font-weight: bold; }
 .read-more:hover { text-decoration: underline; }
+
+/* =========================================
+   7. 區塊四：Footer
+   ========================================= */
+.site-footer {
+  background-color: var(--nav-bg); border-top: 1px solid var(--border-color);
+  padding: 4rem 10% 2rem; margin-top: 4rem;
+}
+.footer-content {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem;
+}
+.footer-brand h3 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
+.footer-brand p { line-height: 1.6; opacity: 0.7; font-size: 0.95rem; }
+.footer-links h4, .footer-contact h4 { font-size: 1.1rem; margin-bottom: 1.5rem; }
+.footer-links a {
+  display: block; color: var(--text-color); text-decoration: none;
+  margin-bottom: 0.8rem; opacity: 0.7; transition: opacity 0.3s, color 0.3s;
+}
+.footer-links a:hover { opacity: 1; color: var(--primary-color); }
+.footer-contact p { opacity: 0.7; margin-bottom: 0.8rem; font-size: 0.95rem; }
+.footer-bottom {
+  text-align: center; padding-top: 2rem;
+  border-top: 1px solid var(--border-color); opacity: 0.5; font-size: 0.85rem;
+}
+
+/* =========================================
+   8. 滾動動畫 (Fade-in)
+   ========================================= */
+.fade-in {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.visible {
+  opacity: 1; transform: translateY(0);
+}
+
+/* =========================================
+   9. 📱 手機版排版修正 (Media Query)
+   ========================================= */
+@media (max-width: 768px) {
+  /* 導航列 */
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .nav-links {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;
+  }
+
+  /* Hero 區塊：字體縮細 */
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  /* Features 區塊：由左右並排變成上下排列 */
+  .feature-section {
+    flex-direction: column;
+    padding: 4rem 5%;
+    text-align: center;
+  }
+  .feature-text {
+    margin-bottom: 3rem;
+  }
+  .feature-text h2 {
+    font-size: 2.2rem;
+  }
+  .feature-visual {
+    justify-content: center;
+    width: 100%;
+  }
+  .mockup-box {
+    width: 100%; max-width: 300px; height: 350px;
+    transform: rotate(0deg); /* 手機版取消傾斜 */
+  }
+
+  /* 文章區塊：縮細 padding */
+  .posts-section {
+    padding: 4rem 5%;
+  }
+
+  /* Footer：變成單欄 */
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
