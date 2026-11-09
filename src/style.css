@@ -381,5 +381,28 @@ body {
   display: block;
 }
 
+/* =========================================
+   文章內頁圖片與 Markdown 排版
+   ========================================= */
 
+/* 文章內頁大圖 */
+.single-post-img {
+  width: 100%;
+  max-width: 100%; /* 強制唔可以大過父容器 */
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 2rem 0;
+  display: block;
+}
 
+/* Markdown 轉出嚟嘅段落排版 */
+.post-body p {
+  margin-bottom: 1.5rem;
+}
+
+/* 將粗體字變做主題色 */
+.post-body strong {
+  color: var(--primary-color);
+  font-weight: 800;
+}

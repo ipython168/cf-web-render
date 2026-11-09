@@ -1,4 +1,5 @@
 import './style.css';
+import { marked } from 'marked';
 
 // === 1. 漢堡選單開關 ===
 const menuBtn = document.getElementById('menu-btn')!;
@@ -213,6 +214,7 @@ const renderApp = () => {
           <p class="post-date">${post.date}</p>
           ${post.image ? `<img src="${post.image}" alt="${post.title}" class="single-post-img">` : ''}
           <div class="post-body">${post.content}</div>
+          <div class="post-body">${marked.parse(post.content)}</div>
         </div>
       `;
       
