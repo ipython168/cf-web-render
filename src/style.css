@@ -23,7 +23,7 @@
   --sidebar-bg: #f0f9ff;
   
   /* 淺色背景漸層：中心為極淺的冰青色，向外自然過渡到網頁底色 */
-  --page-gradient: radial-gradient(circle at center, #67e8f9 0%, #a5f3fc 80%, #c2f8ff 100%);
+  --page-gradient: radial-gradient(circle at center, #cffafe 0%, #a5f3fc 80%, #ffffff 100%);
 }
 
 :root[data-theme="dark"] {
