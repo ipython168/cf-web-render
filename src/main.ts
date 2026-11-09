@@ -166,21 +166,26 @@ const handleScrollFade = () => {
     if (topRatio > 0.85) {
       // 1. 未入畫面：完全透明
       opacity = 0;
-    } else if (topRatio > 0.5) {
-      // 2. 出現時 (睇 Top)：由底部升到中間 (0.85 -> 0.5)，由 0 變 1
-      opacity = (0.85 - topRatio) / (0.85 - 0.5);
+    } else if (topRatio > 0.6) {
+      // 2. 出現時：由 0.85 升到 0.6，慢慢變實
+      opacity = (0.85 - topRatio) / (0.85 - 0.6);
+    } else if (bottomRatio > 0.4) {
+      // 3. 喺 0.6 至 0.4 之間：維持全清 (opacity = 1)
+      opacity = 1;
     } else if (bottomRatio > 0.15) {
-      // 3. 離開時 (睇 Bottom)：底部由中間升到頂部 (0.5 -> 0.15)，由 1 變 0
-      opacity = (bottomRatio - 0.15) / (0.5 - 0.15);
+      // 4. 離開時：底部由 0.4 升到 0.15，慢慢淡出
+      opacity = (bottomRatio - 0.15) / (0.4 - 0.15);
     } else {
-      // 4. 完全離開畫面：透明
+      // 5. 完全離開畫面：透明
       opacity = 0;
     }
     
+    // 限制數值喺 0 到 1 之間
     opacity = Math.max(0, Math.min(1, opacity));
+    
     (section as HTMLElement).style.opacity = opacity.toString();
     
-    // 位移效果：隨住透明度向上移
+    // 位移效果：越近頂部，向上移得越多
     const translateY = (1 - opacity) * 50;
     (section as HTMLElement).style.transform = `translateY(${translateY}px)`;
   });
