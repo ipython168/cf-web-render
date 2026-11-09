@@ -35,44 +35,93 @@ body {
 }
 
 /* =========================================
-   3. 導航列 Navbar
+   3. 導航列 Navbar & Sidebar
    ========================================= */
 .navbar {
-  position: sticky; top: 0; z-index: 100;
+  position: fixed; /* 改為 fixed 懸浮 */
+  top: 0; left: 0; right: 0;
+  z-index: 100;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 1rem 3rem; background-color: var(--nav-bg); backdrop-filter: blur(10px);
+  padding: 1.5rem 3rem; 
+  background-color: transparent; /* 預設透明 */
+  transition: all 0.3s ease;
+  color: #ffffff; /* 預設白色字 */
+}
+
+/* 當滾動時，Navbar 變色 */
+.navbar.scrolled {
+  background-color: var(--nav-bg);
+  backdrop-filter: blur(15px);
+  padding: 1rem 3rem;
+  color: var(--text-color);
   border-bottom: 1px solid var(--border-color);
 }
-.logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
-.nav-links a { margin: 0 1rem; text-decoration: none; color: var(--text-color); font-weight: 500; }
+.navbar.scrolled .logo { color: var(--primary-color); }
+.navbar.scrolled .nav-links a { color: var(--text-color); }
+
+.logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: bold; }
+.logo-img { height: 32px; width: auto; }
+
+.nav-links a { margin: 0 1rem; text-decoration: none; color: inherit; font-weight: 500; transition: color 0.3s; }
 .nav-links a:hover { color: var(--primary-color); }
 
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
 .theme-select {
-  background: transparent; border: 1px solid var(--border-color); color: var(--text-color);
-  padding: 0.5rem; border-radius: 8px; outline: none; cursor: pointer;
+  background: transparent; border: 1px solid currentColor; color: inherit;
+  padding: 0.4rem; border-radius: 8px; outline: none; cursor: pointer;
 }
 .theme-select option { background: var(--bg-color); color: var(--text-color); }
+
+.menu-btn {
+  background: none; border: none; font-size: 1.5rem; color: inherit; cursor: pointer;
+}
+
+/* 右側拉出選單 (Sidebar) */
+.sidebar {
+  position: fixed; top: 0; right: -350px; 
+  width: 300px; height: 100vh;
+  background-color: var(--card-bg); z-index: 200;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex; flex-direction: column;
+}
+.sidebar.open { right: 0; } 
+
+.close-btn {
+  align-self: flex-end; margin: 1.5rem; font-size: 1.5rem;
+  background: none; border: none; color: var(--text-color); cursor: pointer;
+}
+.sidebar-content {
+  display: flex; flex-direction: column; justify-content: space-between;
+  flex: 1; padding: 2rem;
+}
+.sidebar-links { display: flex; flex-direction: column; gap: 1.5rem; }
+.sidebar-links a { font-size: 1.2rem; color: var(--text-color); text-decoration: none; font-weight: bold; transition: color 0.3s; }
+.sidebar-links a:hover { color: var(--primary-color); }
+.sidebar-bottom { border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
+.lang-switch { margin-bottom: 1rem; color: var(--text-color); opacity: 0.7; }
+.social-link { color: var(--primary-color); text-decoration: none; font-weight: bold; }
 
 /* =========================================
    4. 區塊一：Hero
    ========================================= */
 .hero-section {
   height: 100vh; display: flex; align-items: center; justify-content: center;
-  text-align: center; background: var(--gradient-bg);
-  transition: background 0.5s ease;
+  text-align: center; 
   
-  /* 如果你想加圖片，取消下面註解並確保 public/hero-bg.jpg 存在 */
-  background-image: linear-gradient(rgba(15,23,42,0.6), rgba(15,23,42,0.6)), url('/hero-bg.jpg');
+  /* 放射狀漸變背景 (中間深，外圍淺) */
+  background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+  
+  /* 如果有圖，加圖同黑色遮罩 */
+  background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('/hero-bg.jpg');
   background-size: cover; background-position: center; 
+  
+  color: #ffffff; /* 強制白字，解決 Light mode 睇唔到 */
+  transition: background 0.5s ease;
+  position: relative; /* 確保 fixed navbar 喺上面 */
 }
 .hero-content h1 { font-size: 4.5rem; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -1px; }
-.hero-content p { font-size: 1.2rem; opacity: 0.7; margin-bottom: 3rem; padding: 0 1rem; }
-.btn-primary {
-  display: inline-block; padding: 1rem 3rem; font-size: 1.1rem; font-weight: bold;
-  background-color: var(--primary-color); color: white; text-decoration: none;
-  border-radius: 50px; transition: transform 0.3s, box-shadow 0.3s;
-}
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3); }
+.hero-content p { font-size: 1.2rem; opacity: 0.8; margin-bottom: 3rem; padding: 0 1rem; }
 
 /* =========================================
    5. 區塊二：Features (左右排版)

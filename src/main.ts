@@ -1,6 +1,25 @@
 import './style.css';
 
-// 1. 主題切換邏輯 (Light / Dark / System)
+// 1. 漢堡選單開關 ===
+const menuBtn = document.getElementById('menu-btn')!;
+const closeBtn = document.getElementById('close-btn')!;
+const sidebar = document.getElementById('sidebar')!;
+
+menuBtn.addEventListener('click', () => sidebar.classList.add('open'));
+closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+
+// 2. Navbar 滾動變色 ===
+const navbar = document.querySelector('.navbar')!;
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+
+// 3. 主題切換邏輯 (Light / Dark / System)
 const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 const htmlElement = document.documentElement;
 
@@ -31,7 +50,7 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () 
   }
 });
 
-// 2. 模擬文章資料
+// 4. 模擬文章資料
 const posts = [
   { id: 1, title: "均線交叉策略回測報告", date: "2026-11-01", category: "回測結果", excerpt: "測試了 10 年港股數據，發現 20/50 均線喺牛市表現最好..." },
   { id: 2, title: "交易心理學：如何克服 FOMO", date: "2026-10-28", category: "交易心得", excerpt: "當見到隻股票係咁升，散戶最易冲動入市。分享幾個控制情緒嘅方法..." },
@@ -50,7 +69,7 @@ const renderPosts = () => {
   `).join('');
 };
 
-// 3. 加載首頁內容
+// 5. 加載首頁內容
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
@@ -109,7 +128,7 @@ app.innerHTML = `
   </footer>
 `;
 
-// 4. 滾動動畫 (Intersection Observer)
+// 6. 滾動動畫 (Intersection Observer)
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {

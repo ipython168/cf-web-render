@@ -11,18 +11,44 @@
         <img src="/logo.png" alt="MyQuant Logo" class="logo-img">
         <span>MyQuant</span>
       </div>
+      
+      <!-- 桌面版選單 -->
       <nav class="nav-links">
         <a href="#about">關於我們</a>
         <a href="#latest-posts">回測結果</a>
         <a href="#">交易心得</a>
       </nav>
-      <!-- 改為下拉選單 -->
-      <select id="theme-select" class="theme-select">
-        <option value="system">🌓 跟隨系統</option>
-        <option value="light">☀️ 日間</option>
-        <option value="dark">🌙 夜間</option>
-      </select>
+
+      <div class="nav-actions">
+        <select id="theme-select" class="theme-select">
+          <option value="system">🌓 跟隨系統</option>
+          <option value="light">☀️ 日間</option>
+          <option value="dark">🌙 夜間</option>
+        </select>
+        <!-- 漢堡選單按鈕 (3點/橫線) -->
+        <button id="menu-btn" class="menu-btn">☰</button>
+      </div>
     </header>
+
+    <!-- 右側拉出選單 (Sidebar) -->
+    <div id="sidebar" class="sidebar">
+      <button id="close-btn" class="close-btn">✕</button>
+      <div class="sidebar-content">
+        <div class="sidebar-links">
+          <a href="#">關於我們</a>
+          <a href="#">最新消息</a>
+          <a href="#">幫助中心</a>
+          <a href="#">支持我們</a>
+        </div>
+        <div class="sidebar-bottom">
+          <div class="lang-switch">
+            <span>中文</span> | <span>EN</span>
+          </div>
+          <a href="https://facebook.com" target="_blank" class="social-link">Facebook</a>
+          <!-- 遲下加 IG, TG 等等 -->
+        </div>
+      </div>
+    </div>
 
     <main id="app"></main>
 
