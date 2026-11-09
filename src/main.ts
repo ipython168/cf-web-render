@@ -1,6 +1,6 @@
 import './style.css';
 
-// 1. 漢堡選單開關 ===
+// === 1. 漢堡選單開關 ===
 const menuBtn = document.getElementById('menu-btn')!;
 const closeBtn = document.getElementById('close-btn')!;
 const sidebar = document.getElementById('sidebar')!;
@@ -8,19 +8,8 @@ const sidebar = document.getElementById('sidebar')!;
 menuBtn.addEventListener('click', () => sidebar.classList.add('open'));
 closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
 
-// 2. Navbar 滾動變色 ===
-const navbar = document.querySelector('.navbar')!;
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
-
-
-// 3. 主題切換邏輯 (Light / Dark / System)
-const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
+// === 2. 主題切換邏輯 ===
+const themeSelect = document.getElementById('theme-select') as HTMLSelectElement | null;
 const htmlElement = document.documentElement;
 
 const applyTheme = (theme: string) => {
@@ -35,22 +24,15 @@ const applyTheme = (theme: string) => {
 const savedTheme = localStorage.getItem('theme') || 'system';
 if (themeSelect) {
   themeSelect.value = savedTheme;
-  applyTheme(savedTheme);
-
   themeSelect.addEventListener('change', (e) => {
     const newTheme = (e.target as HTMLSelectElement).value;
     localStorage.setItem('theme', newTheme);
     applyTheme(newTheme);
   });
 }
+applyTheme(savedTheme);
 
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (themeSelect && themeSelect.value === 'system') {
-    applyTheme('system');
-  }
-});
-
-// 4. 模擬文章資料
+// === 3. 模擬文章資料 ===
 const posts = [
   { id: 1, title: "均線交叉策略回測報告", date: "2026-11-01", category: "回測結果", excerpt: "測試了 10 年港股數據，發現 20/50 均線喺牛市表現最好..." },
   { id: 2, title: "交易心理學：如何克服 FOMO", date: "2026-10-28", category: "交易心得", excerpt: "當見到隻股票係咁升，散戶最易冲動入市。分享幾個控制情緒嘅方法..." },
@@ -59,7 +41,7 @@ const posts = [
 
 const renderPosts = () => {
   return posts.map(post => `
-    <article class="post-card">
+    <article class="post-card fade-in">
       <div class="post-category">${post.category}</div>
       <h3 class="post-title">${post.title}</h3>
       <p class="post-date">${post.date}</p>
@@ -69,12 +51,12 @@ const renderPosts = () => {
   `).join('');
 };
 
-// 5. 加載首頁內容
+// === 4. 加載首頁內容 ===
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
   <section class="hero-section fade-in">
-    <div class="hero-content">
+    <div class="hero-content" id="hero-content">
       <h1>用數據透視市場<br>用紀律執行交易</h1>
       <p>歡迎來到我的量化交易基地。這裡紀錄了我的回測結果與交易心得。</p>
       <div class="hero-btns">
@@ -128,7 +110,31 @@ app.innerHTML = `
   </footer>
 `;
 
-// 6. 滾動動畫 (Intersection Observer)
+// === 5. 視差效果與 Scroll 淡出 ===
+const heroSection = document.querySelector('.hero-section') as HTMLElement;
+const heroContent = document.getElementById('hero-content') as HTMLElement;
+
+// 滑鼠視差 (只限電腦版)
+if (window.innerWidth > 768) {
+  heroSection.addEventListener('mousemove', (e) => {
+    const x = (window.innerWidth / 2 - e.pageX) / 40;
+    const y = (window.innerHeight / 2 - e.pageY) / 40;
+    heroSection.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
+    heroContent.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+  });
+}
+
+// Scroll 淡出
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  if (scrollY < window.innerHeight) {
+    const opacity = Math.max(0, 1 - scrollY / 500); 
+    heroContent.style.opacity = opacity.toString();
+    heroContent.style.transform = `translateY(${scrollY * 0.4}px)`;
+  }
+});
+
+// === 6. 滾動淡入 (Intersection Observer) ===
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
