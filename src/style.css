@@ -1,17 +1,106 @@
+/* 定義 CSS 變數，方便切換主題 */
+:root[data-theme="light"] {
+  --bg-color: #f8f9fa;
+  --text-color: #333333;
+  --nav-bg: #ffffff;
+  --card-bg: #ffffff;
+  --primary-color: #0ea5e9;
+  --border-color: #e2e8f0;
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --text-color: #e2e8f0;
+  --nav-bg: #1e293b;
+  --card-bg: #1e293b;
+  --primary-color: #38bdf8;
+  --border-color: #334155;
+}
+
+/* 全局設定 */
 body {
+  margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
-  background-color: #0f172a;
-  color: #e2e8f0;
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s; /* 切換時有過渡動畫 */
 }
-h1 { color: #06b6d4; }
+
+/* 頂部導航 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.nav-links a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.theme-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* 主視覺區 Hero */
+.hero {
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.cta-btn {
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 卡片區塊 */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
 .card {
-  background: #1e293b;
-  padding: 20px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
   border-radius: 10px;
-  border: 1px solid #334155;
-  margin-top: 20px;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
-.positive { color: #10b981; }

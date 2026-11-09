@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="zh-HK" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quant Web - 回測系統</title>
+    <title>My Quant Web</title>
   </head>
   <body>
-    <div id="app"></div>
+    <!-- 頂部導航 -->
+    <header class="navbar">
+      <div class="logo">📈 MyQuant</div>
+      <nav class="nav-links">
+        <a href="#">關於我們</a>
+        <a href="#">回測結果</a>
+        <a href="#">交易心得</a>
+      </nav>
+      <button id="theme-toggle" class="theme-btn">🌙 轉夜間</button>
+    </header>
+
+    <!-- 主要內容區 -->
+    <main id="app"></main>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
