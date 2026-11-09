@@ -399,6 +399,7 @@ body {
 /* Markdown 轉出嚟嘅段落排版 */
 .post-body p {
   margin-bottom: 1.5rem;
+  line-height: 1.8;
 }
 
 /* 將粗體字變做主題色 */
@@ -406,3 +407,11 @@ body {
   color: var(--primary-color);
   font-weight: 800;
 }
+
+/* 如果你有加 H2/H3，都可以順便整靚佢 */
+.post-body h2 {
+  font-size: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+

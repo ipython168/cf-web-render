@@ -213,8 +213,7 @@ const renderApp = () => {
           <h1>${post.title}</h1>
           <p class="post-date">${post.date}</p>
           ${post.image ? `<img src="${post.image}" alt="${post.title}" class="single-post-img">` : ''}
-          <div class="post-body">${post.content}</div>
-          <div class="post-body">${marked.parse(post.content)}</div>
+          <div class="post-body">${marked.parse(post.content)}</div> 
         </div>
       `;
       
