@@ -2,27 +2,27 @@
    1. 變數定義 (Themes) + 放射狀漸變背景
    ========================================= */
 :root[data-theme="light"] {
-  --bg-color: #f8f9fa;
+  --bg-color: #ffffff;
   --text-color: #1e293b;
-  --nav-bg: rgba(255, 255, 255, 0.8);
   --card-bg: #ffffff;
   --primary-color: #0ea5e9;
   --border-color: #e2e8f0;
+  --sidebar-bg: #f8f9fa;
   
-  /* 淺色模式：外圍白，中間淺藍灰 */
-  --page-gradient: radial-gradient(circle at center, #e2e8f0 0%, #f8f9fa 80%);
+  /* 淺色主色：中間淺藍灰，外圍白 */
+  --page-gradient: radial-gradient(circle at center, #e2e8f0 0%, #ffffff 100%);
 }
 
 :root[data-theme="dark"] {
   --bg-color: #0f172a;
   --text-color: #e2e8f0;
-  --nav-bg: rgba(15, 23, 42, 0.8);
   --card-bg: #1e293b;
   --primary-color: #38bdf8;
   --border-color: #334155;
-  
-  /* 深色模式：外圍黑，中間深藍 */
-  --page-gradient: radial-gradient(circle at center, #1e293b 0%, #0f172a 80%);
+  --sidebar-bg: #0f172a;
+
+  /* 深色主色：中間深藍，外圍黑 */
+  --page-gradient: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
 }
 
 /* =========================================
@@ -39,7 +39,6 @@ body {
   overflow-x: hidden;
 }
 
-/* 共通置中容器 (限制寬度，左右留白) */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -47,39 +46,38 @@ body {
 }
 
 /* =========================================
-   3. 導航列 Navbar (置中 + 全透明)
+   3. 導航列 Navbar
    ========================================= */
 .navbar {
-  position: fixed; 
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex; 
-  justify-content: center; /* 將內容置中 */
-  padding: 1.5rem 0; 
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: center; padding: 1.5rem 0; 
   background-color: transparent;
 }
-
 .nav-inner {
-  width: 100%;
-  max-width: 1200px; /* 同 container 一樣寬度 */
-  padding: 0 5%;
+  width: 100%; max-width: 1200px; padding: 0 5%;
   display: flex; justify-content: space-between; align-items: center;
 }
 
-.logo-img { height: 40px; width: auto; }
+/* 標題 Logo */
+.logo {
+  display: flex; align-items: center; gap: 12px; text-decoration: none;
+}
+.logo-img { height: 36px; width: auto; }
+.logo-text {
+  color: #ffffff; font-weight: bold; font-size: 1.4rem; letter-spacing: 0.5px;
+}
 
-/* 3 點按鈕 */
+/* 3點按鈕 (縮細至 35x35) */
 .menu-btn {
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.4); 
-  border-radius: 12px; 
-  width: 45px; height: 45px;
-  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border: 1.5px solid rgba(255, 255, 255, 0.6); 
+  border-radius: 10px; 
+  width: 35px; height: 35px; /* 縮細 */
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px;
+  cursor: pointer; transition: all 0.3s ease;
 }
 .menu-btn span {
-  display: block; width: 6px; height: 6px;
+  display: block; width: 5px; height: 5px;
   background-color: #ffffff; border-radius: 50%;
   transition: all 0.3s ease;
 }
@@ -87,22 +85,16 @@ body {
 .menu-btn:hover span { background-color: #0f172a; }
 
 /* =========================================
-   4. 區塊一：Hero (視差背景)
+   4. 區塊一：Hero
    ========================================= */
 .hero-section {
-  height: 100vh; 
-  display: flex; align-items: center; justify-content: center;
+  height: 100vh; display: flex; align-items: center; justify-content: center;
   text-align: center; 
-  
-  background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('/hero-bg.jpg');
-  background-size: 110% 110%; /* 放大少少等佢有空間跟滑鼠郁 */
+  background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/hero-bg.jpg');
+  background-size: 110% 110%; 
   background-position: center;
-  
-  color: #ffffff; 
-  position: relative; 
-  overflow: hidden;
+  color: #ffffff; position: relative; overflow: hidden;
 }
-
 .hero-content h1 { font-size: 4.5rem; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -1px; }
 .hero-content p { font-size: 1.2rem; opacity: 0.8; margin-bottom: 3rem; padding: 0 1rem; }
 .btn-primary {
@@ -114,10 +106,7 @@ body {
 /* =========================================
    5. 區塊二：Features
    ========================================= */
-.feature-section {
-  padding: 8rem 0; 
-  min-height: 80vh; 
-}
+.feature-section { padding: 8rem 0; min-height: 80vh; }
 .feature-section .container {
   display: flex; align-items: center; justify-content: space-between;
 }
@@ -130,8 +119,7 @@ body {
   border: 1px solid var(--border-color); border-radius: 30px;
   display: flex; align-items: center; justify-content: center;
   font-size: 1.2rem; color: var(--primary-color); font-weight: bold;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-  transform: rotate(-5deg); transition: transform 0.5s;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1); transform: rotate(-5deg); transition: transform 0.5s;
 }
 
 /* =========================================
@@ -142,8 +130,7 @@ body {
 .posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 .post-card {
   background-color: var(--card-bg); border: 1px solid var(--border-color);
-  border-radius: 20px; padding: 2rem;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border-radius: 20px; padding: 2rem; transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 .post-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
 .post-category {
@@ -157,15 +144,12 @@ body {
 .read-more { color: var(--primary-color); text-decoration: none; font-weight: bold; }
 
 /* =========================================
-   7. 區塊四：Footer
+   7. Footer
    ========================================= */
 .site-footer {
-  background-color: var(--nav-bg); border-top: 1px solid var(--border-color);
-  padding: 4rem 0 2rem;
+  background-color: var(--nav-bg); border-top: 1px solid var(--border-color); padding: 4rem 0 2rem;
 }
-.footer-content {
-  display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem;
-}
+.footer-content { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
 .footer-brand h3 { color: var(--primary-color); font-size: 1.5rem; margin-bottom: 1rem; }
 .footer-brand p { line-height: 1.6; opacity: 0.7; font-size: 0.95rem; }
 .footer-links h4, .footer-contact h4 { font-size: 1.1rem; margin-bottom: 1.5rem; }
@@ -174,12 +158,12 @@ body {
 .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); opacity: 0.5; font-size: 0.85rem; }
 
 /* =========================================
-   8. 滾動動畫 (全區塊 Fade-in)
+   8. 滾動動畫 (加深咗位移同時間)
    ========================================= */
 .fade-in {
   opacity: 0; 
-  transform: translateY(60px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(80px); /* 加大位移 */
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .fade-in.visible { 
   opacity: 1; 
@@ -187,10 +171,51 @@ body {
 }
 
 /* =========================================
-   9. 📱 手機版排版修正
+   9. Sidebar & Overlay (遮罩)
+   ========================================= */
+.overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px);
+  z-index: 150; opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+.overlay.active { opacity: 1; pointer-events: auto; }
+
+.sidebar {
+  position: fixed; top: 0; right: -350px; width: 320px; height: 100vh;
+  background-color: var(--sidebar-bg); /* 加咗底色 */
+  z-index: 200; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex; flex-direction: column;
+}
+.sidebar.open { right: 0; } 
+.close-btn {
+  align-self: flex-end; margin: 1.5rem; font-size: 1.5rem;
+  background: none; border: none; color: var(--text-color); cursor: pointer;
+}
+.sidebar-content {
+  display: flex; flex-direction: column; 
+  flex: 1; padding: 0 2rem 2rem; 
+  /* 取消 justify-content: space-between，令內容靠上 */
+}
+.theme-section { margin-bottom: 2.5rem; }
+.theme-section h4 { margin-bottom: 0.8rem; font-size: 0.9rem; opacity: 0.7; }
+.theme-select {
+  width: 100%; padding: 0.8rem; background: var(--bg-color); 
+  border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color);
+  cursor: pointer; outline: none;
+}
+.sidebar-links { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
+.sidebar-links a { font-size: 1.2rem; color: var(--text-color); text-decoration: none; font-weight: bold; }
+.sidebar-bottom { margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
+.lang-switch { margin-bottom: 1rem; color: var(--text-color); opacity: 0.7; }
+.social-link { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+.logo-img-footer { height: 24px; width: auto; vertical-align: middle; margin-right: 8px; }
+
+/* =========================================
+   10. 📱 手機版排版修正
    ========================================= */
 @media (max-width: 768px) {
-  .nav-inner { padding: 0 1rem; }
+  .logo-text { display: none; } /* 手機隱藏字，淨係出 logo */
   .hero-content h1 { font-size: 2.8rem; }
   .hero-content p { font-size: 1rem; }
 
@@ -202,34 +227,3 @@ body {
 
   .footer-content { grid-template-columns: 1fr; gap: 2rem; }
 }
-
-/* Sidebar 樣式 */
-.sidebar {
-  position: fixed; top: 0; right: -350px; 
-  width: 300px; height: 100vh;
-  background-color: var(--card-bg); z-index: 200;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.2);
-  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex; flex-direction: column;
-}
-.sidebar.open { right: 0; } 
-.close-btn {
-  align-self: flex-end; margin: 1.5rem; font-size: 1.5rem;
-  background: none; border: none; color: var(--text-color); cursor: pointer;
-}
-.sidebar-content {
-  display: flex; flex-direction: column; justify-content: space-between;
-  flex: 1; padding: 2rem;
-}
-.theme-section { margin-bottom: 2rem; }
-.theme-section h4 { margin-bottom: 0.5rem; font-size: 0.9rem; opacity: 0.7; }
-.theme-select {
-  width: 100%; padding: 0.8rem; background: var(--bg-color); 
-  border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color);
-}
-.sidebar-links { display: flex; flex-direction: column; gap: 1.5rem; }
-.sidebar-links a { font-size: 1.2rem; color: var(--text-color); text-decoration: none; font-weight: bold; }
-.sidebar-bottom { border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
-.lang-switch { margin-bottom: 1rem; color: var(--text-color); opacity: 0.7; }
-.social-link { color: var(--primary-color); text-decoration: none; font-weight: bold; }
-.logo-img-footer { height: 24px; width: auto; vertical-align: middle; margin-right: 8px; }

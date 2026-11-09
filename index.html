@@ -6,25 +6,29 @@
     <title>My Quant Web</title>
   </head>
   <body>
-    <!-- Navbar 限制最大寬度並置中 -->
+    <!-- 全透明 Navbar -->
     <header class="navbar">
       <div class="nav-inner">
         <a href="/" class="logo">
-          <img src="/logo.png" alt="MyQuant Logo" class="logo-img">
+          <img src="/logo.png" alt="Logo" class="logo-img">
+          <span class="logo-text">MyQuant</span>
         </a>
         
+        <!-- 3點按鈕 (細少少) -->
         <button id="menu-btn" class="menu-btn">
           <span></span><span></span><span></span>
         </button>
       </div>
     </header>
 
-    <!-- 右側拉出選單 (Sidebar) -->
+    <!-- 遮罩層 (撳主畫面關閉 Sidebar) -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- 右側 Sidebar -->
     <div id="sidebar" class="sidebar">
       <button id="close-btn" class="close-btn">✕</button>
       <div class="sidebar-content">
         
-        <!-- Theme 切換移入嚟呢度 -->
         <div class="theme-section">
           <h4>主題設定</h4>
           <select id="theme-select" class="theme-select">
@@ -40,6 +44,7 @@
           <a href="#">幫助中心</a>
           <a href="#">支持我們</a>
         </div>
+        
         <div class="sidebar-bottom">
           <div class="lang-switch">
             <span>中文</span> | <span>EN</span>

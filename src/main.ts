@@ -1,12 +1,23 @@
 import './style.css';
 
-// === 1. 漢堡選單開關 ===
+// === 1. 選單開關與遮罩 ===
 const menuBtn = document.getElementById('menu-btn')!;
 const closeBtn = document.getElementById('close-btn')!;
 const sidebar = document.getElementById('sidebar')!;
+const overlay = document.getElementById('overlay')!;
 
-menuBtn.addEventListener('click', () => sidebar.classList.add('open'));
-closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+const openSidebar = () => {
+  sidebar.classList.add('open');
+  overlay.classList.add('active');
+};
+const closeSidebar = () => {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+};
+
+menuBtn.addEventListener('click', openSidebar);
+closeBtn.addEventListener('click', closeSidebar);
+overlay.addEventListener('click', closeSidebar); // 撳出面黑色遮罩都會關閉
 
 // === 2. 主題切換邏輯 ===
 const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
@@ -22,18 +33,16 @@ const applyTheme = (theme: string) => {
 };
 
 const savedTheme = localStorage.getItem('theme') || 'system';
-if (themeSelect) {
-  themeSelect.value = savedTheme;
-  applyTheme(savedTheme);
+themeSelect.value = savedTheme;
+applyTheme(savedTheme);
 
-  themeSelect.addEventListener('change', (e) => {
-    const newTheme = (e.target as HTMLSelectElement).value;
-    localStorage.setItem('theme', newTheme);
-    applyTheme(newTheme);
-  });
-}
+themeSelect.addEventListener('change', (e) => {
+  const newTheme = (e.target as HTMLSelectElement).value;
+  localStorage.setItem('theme', newTheme);
+  applyTheme(newTheme);
+});
 
-// === 3. 模擬文章資料 ===
+// === 3. 加載首頁內容 ===
 const posts = [
   { id: 1, title: "均線交叉策略回測報告", date: "2026-11-01", category: "回測結果", excerpt: "測試了 10 年港股數據，發現 20/50 均線喺牛市表現最好..." },
   { id: 2, title: "交易心理學：如何克服 FOMO", date: "2026-10-28", category: "交易心得", excerpt: "當見到隻股票係咁升，散戶最易冲動入市。分享幾個控制情緒嘅方法..." },
@@ -42,7 +51,7 @@ const posts = [
 
 const renderPosts = () => {
   return posts.map(post => `
-    <article class="post-card fade-in">
+    <article class="post-card">
       <div class="post-category">${post.category}</div>
       <h3 class="post-title">${post.title}</h3>
       <p class="post-date">${post.date}</p>
@@ -52,7 +61,6 @@ const renderPosts = () => {
   `).join('');
 };
 
-// === 4. 加載首頁內容 ===
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
@@ -66,7 +74,6 @@ app.innerHTML = `
     </div>
   </section>
 
-  <!-- 每個區塊都加咗 container class 嚟做左右留白 -->
   <section id="features" class="feature-section fade-in">
     <div class="container">
       <div class="feature-text">
@@ -93,7 +100,7 @@ app.innerHTML = `
       <div class="footer-content">
         <div class="footer-brand">
           <h3>
-            <img src="/logo.png" alt="MyQuant Logo" class="logo-img-footer">
+            <img src="/logo.png" alt="Logo" class="logo-img-footer">
             MyQuant
           </h3>
           <p>我哋係香港小型開發團隊...</p>
@@ -118,26 +125,24 @@ app.innerHTML = `
   </footer>
 `;
 
-// === 5. 視差效果 (滑鼠跟隨) ===
+// === 4. 視差效果 ===
 const heroSection = document.querySelector('.hero-section') as HTMLElement;
 if (window.innerWidth > 768) {
   heroSection.addEventListener('mousemove', (e) => {
     const x = (window.innerWidth / 2 - e.pageX) / 30;
     const y = (window.innerHeight / 2 - e.pageY) / 30;
-    // 郁 background-position
     heroSection.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
   });
 }
 
-// === 6. 滾動 Fade-in (Intersection Observer) ===
-// threshold: 0.15 代表個 block 出現 15% 先開始 fade
+// === 5. 滾動 Fade-in 監聽 ===
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.15 });
+}, { threshold: 0.15 }); // 出現 15% 就觸發
 
 document.querySelectorAll('.fade-in').forEach((el) => {
   observer.observe(el);
