@@ -145,25 +145,40 @@ if (window.innerWidth > 768 && heroSection) {
 
 // === 7. Scroll 滾動淡入淡出 (取代 IntersectionObserver) ===
 const handleScrollFade = () => {
-  const sections = document.querySelectorAll("#home-view .fade-in");
+  const sections = document.querySelectorAll('#home-view .fade-in');
   const windowHeight = window.innerHeight;
 
   sections.forEach(section => {
     const rect = section.getBoundingClientRect();
     
-    const startFade = windowHeight * 0.9;
-    const endFade = windowHeight * 0.3;
+    // 計算元素頂部喺畫面嘅比例 (0 = 畫面頂, 1 = 畫面底)
+    const elementPosition = rect.top / windowHeight;
     
-    let visibleRatio = (startFade - rect.top) / (startFade - endFade);
-    visibleRatio = Math.max(0, Math.min(1, visibleRatio));
+    let opacity = 0;
     
-    (section as HTMLElement).style.opacity = visibleRatio.toString();
-    const translateY = (1 - visibleRatio) * 60;
+    if (elementPosition > 0.85) {
+      // 1. 未入畫面 (0.85 以下)：完全透明
+      opacity = 0;
+    } else if (elementPosition > 0.5) {
+      // 2. 由底部升到中間 (0.85 -> 0.5)：由 0 變 1
+      opacity = (0.85 - elementPosition) / (0.85 - 0.5);
+    } else if (elementPosition > 0.15) {
+      // 3. 由中間升到頂部 (0.5 -> 0.15)：由 1 變 0
+      opacity = (elementPosition - 0.15) / (0.5 - 0.15);
+    } else {
+      // 4. 準備離開畫面 (0.15 以上)：完全透明
+      opacity = 0;
+    }
+    
+    opacity = Math.max(0, Math.min(1, opacity));
+    (section as HTMLElement).style.opacity = opacity.toString();
+    
+    const translateY = (1 - opacity) * 50;
     (section as HTMLElement).style.transform = `translateY(${translateY}px)`;
   });
 };
 
-window.addEventListener("scroll", handleScrollFade);
+window.addEventListener('scroll', handleScrollFade);
 
 // === 8. Router ===
 const renderApp = () => {
