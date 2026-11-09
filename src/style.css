@@ -1,54 +1,74 @@
 /* =========================================
-   1. 變數定義 (Themes)
+   1. 變數定義 (Themes) + 放射狀漸變背景
    ========================================= */
 :root[data-theme="light"] {
   --bg-color: #f8f9fa;
   --text-color: #1e293b;
-  --nav-bg: rgba(255, 255, 255, 0.9);
+  --nav-bg: rgba(255, 255, 255, 0.8);
   --card-bg: #ffffff;
   --primary-color: #0ea5e9;
   --border-color: #e2e8f0;
+  
+  /* 淺色模式：外圍白，中間淺藍灰 */
+  --page-gradient: radial-gradient(circle at center, #e2e8f0 0%, #f8f9fa 80%);
 }
 
 :root[data-theme="dark"] {
   --bg-color: #0f172a;
   --text-color: #e2e8f0;
-  --nav-bg: rgba(15, 23, 42, 0.9);
+  --nav-bg: rgba(15, 23, 42, 0.8);
   --card-bg: #1e293b;
   --primary-color: #38bdf8;
   --border-color: #334155;
+  
+  /* 深色模式：外圍黑，中間深藍 */
+  --page-gradient: radial-gradient(circle at center, #1e293b 0%, #0f172a 80%);
 }
 
 /* =========================================
-   2. 全局設定
+   2. 全局設定 (套用漸變背景)
    ========================================= */
 html { scroll-behavior: smooth; }
 body {
   margin: 0; 
   font-family: system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-color); 
+  background: var(--page-gradient); /* 全畫面放射狀漸變 */
+  background-attachment: fixed; /* 令背景唔跟住 scroll 走 */
   color: var(--text-color);
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition: background 0.5s ease, color 0.5s ease;
   overflow-x: hidden;
 }
 
+/* 共通置中容器 (限制寬度，左右留白) */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
 /* =========================================
-   3. 導航列 Navbar (全透明 + 3點按鈕)
+   3. 導航列 Navbar (置中 + 全透明)
    ========================================= */
 .navbar {
   position: fixed; 
   top: 0; left: 0; right: 0;
   z-index: 100;
+  display: flex; 
+  justify-content: center; /* 將內容置中 */
+  padding: 1.5rem 0; 
+  background-color: transparent;
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: 1200px; /* 同 container 一樣寬度 */
+  padding: 0 5%;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 1.5rem 4rem; 
-  background-color: transparent; /* 全透明 */
-  transition: all 0.3s ease;
-  color: #ffffff; 
 }
 
 .logo-img { height: 40px; width: auto; }
 
-/* 3 點選單按鈕 */
+/* 3 點按鈕 */
 .menu-btn {
   background: transparent;
   border: 2px solid rgba(255, 255, 255, 0.4); 
@@ -58,46 +78,13 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .menu-btn span {
-  display: block;
-  width: 6px; height: 6px;
-  background-color: #ffffff;
-  border-radius: 50%;
+  display: block; width: 6px; height: 6px;
+  background-color: #ffffff; border-radius: 50%;
   transition: all 0.3s ease;
 }
-
-.menu-btn:hover {
-  background-color: #ffffff;
-  border-color: #ffffff;
-}
-.menu-btn:hover span {
-  background-color: #0f172a;
-}
-
-/* Sidebar (保留) */
-.sidebar {
-  position: fixed; top: 0; right: -350px; 
-  width: 300px; height: 100vh;
-  background-color: var(--card-bg); z-index: 200;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.2);
-  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex; flex-direction: column;
-}
-.sidebar.open { right: 0; } 
-.close-btn {
-  align-self: flex-end; margin: 1.5rem; font-size: 1.5rem;
-  background: none; border: none; color: var(--text-color); cursor: pointer;
-}
-.sidebar-content {
-  display: flex; flex-direction: column; justify-content: space-between;
-  flex: 1; padding: 2rem;
-}
-.sidebar-links { display: flex; flex-direction: column; gap: 1.5rem; }
-.sidebar-links a { font-size: 1.2rem; color: var(--text-color); text-decoration: none; font-weight: bold; }
-.sidebar-bottom { border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
-.lang-switch { margin-bottom: 1rem; color: var(--text-color); opacity: 0.7; }
-.social-link { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+.menu-btn:hover { background-color: #ffffff; border-color: #ffffff; }
+.menu-btn:hover span { background-color: #0f172a; }
 
 /* =========================================
    4. 區塊一：Hero (視差背景)
@@ -107,13 +94,11 @@ body {
   display: flex; align-items: center; justify-content: center;
   text-align: center; 
   
-  /* 用背景圖 + 暗色遮罩 */
-  background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9)), url('/hero-bg.jpg');
-  background-size: 110% 110%; /* 放大少少，等滑鼠移動時唔會見到邊緣 */
+  background-image: linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.6)), url('/hero-bg.jpg');
+  background-size: 110% 110%; /* 放大少少等佢有空間跟滑鼠郁 */
   background-position: center;
   
   color: #ffffff; 
-  transition: background 0.5s ease;
   position: relative; 
   overflow: hidden;
 }
@@ -125,18 +110,16 @@ body {
   background-color: var(--primary-color); color: white; text-decoration: none;
   border-radius: 50px; transition: transform 0.3s, box-shadow 0.3s;
 }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3); }
 
 /* =========================================
-   5. 區塊二：Features (電腦版留白)
+   5. 區塊二：Features
    ========================================= */
 .feature-section {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 8rem 10%; 
+  padding: 8rem 0; 
   min-height: 80vh; 
-  background-color: var(--bg-color);
-  max-width: 1400px; /* 限制寬度 */
-  margin: 0 auto;
+}
+.feature-section .container {
+  display: flex; align-items: center; justify-content: space-between;
 }
 .feature-text { flex: 1; max-width: 500px; }
 .feature-text h2 { font-size: 3rem; line-height: 1.2; margin-bottom: 1.5rem; }
@@ -152,13 +135,9 @@ body {
 }
 
 /* =========================================
-   6. 區塊三：文章列表 (電腦版留白)
+   6. 區塊三：文章列表
    ========================================= */
-.posts-section { 
-  padding: 8rem 10%; 
-  max-width: 1200px; 
-  margin: 0 auto; 
-}
+.posts-section { padding: 8rem 0; }
 .posts-section h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; }
 .posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 .post-card {
@@ -182,7 +161,7 @@ body {
    ========================================= */
 .site-footer {
   background-color: var(--nav-bg); border-top: 1px solid var(--border-color);
-  padding: 4rem 10% 2rem; margin-top: 4rem;
+  padding: 4rem 0 2rem;
 }
 .footer-content {
   display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem;
@@ -195,34 +174,62 @@ body {
 .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-color); opacity: 0.5; font-size: 0.85rem; }
 
 /* =========================================
-   8. 滾動動畫 (Fade-in)
+   8. 滾動動畫 (全區塊 Fade-in)
    ========================================= */
 .fade-in {
-  opacity: 0; transform: translateY(40px);
+  opacity: 0; 
+  transform: translateY(60px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in.visible { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
 
 /* =========================================
    9. 📱 手機版排版修正
    ========================================= */
 @media (max-width: 768px) {
-  .navbar { padding: 1rem 1.5rem; flex-direction: row; }
-  .nav-links { display: none; }
-  
+  .nav-inner { padding: 0 1rem; }
   .hero-content h1 { font-size: 2.8rem; }
   .hero-content p { font-size: 1rem; }
 
-  .feature-section { flex-direction: column; padding: 4rem 5%; text-align: center; }
+  .feature-section .container { flex-direction: column; text-align: center; }
   .feature-text { margin-bottom: 3rem; }
   .feature-text h2 { font-size: 2.2rem; }
   .feature-visual { justify-content: center; width: 100%; }
   .mockup-box { width: 100%; max-width: 300px; height: 350px; transform: rotate(0deg); }
 
-  .posts-section { padding: 4rem 5%; }
   .footer-content { grid-template-columns: 1fr; gap: 2rem; }
 }
 
-.logo-img-footer {
-  height: 24px; width: auto; vertical-align: middle; margin-right: 8px;
+/* Sidebar 樣式 */
+.sidebar {
+  position: fixed; top: 0; right: -350px; 
+  width: 300px; height: 100vh;
+  background-color: var(--card-bg); z-index: 200;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex; flex-direction: column;
 }
+.sidebar.open { right: 0; } 
+.close-btn {
+  align-self: flex-end; margin: 1.5rem; font-size: 1.5rem;
+  background: none; border: none; color: var(--text-color); cursor: pointer;
+}
+.sidebar-content {
+  display: flex; flex-direction: column; justify-content: space-between;
+  flex: 1; padding: 2rem;
+}
+.theme-section { margin-bottom: 2rem; }
+.theme-section h4 { margin-bottom: 0.5rem; font-size: 0.9rem; opacity: 0.7; }
+.theme-select {
+  width: 100%; padding: 0.8rem; background: var(--bg-color); 
+  border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color);
+}
+.sidebar-links { display: flex; flex-direction: column; gap: 1.5rem; }
+.sidebar-links a { font-size: 1.2rem; color: var(--text-color); text-decoration: none; font-weight: bold; }
+.sidebar-bottom { border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
+.lang-switch { margin-bottom: 1rem; color: var(--text-color); opacity: 0.7; }
+.social-link { color: var(--primary-color); text-decoration: none; font-weight: bold; }
+.logo-img-footer { height: 24px; width: auto; vertical-align: middle; margin-right: 8px; }

@@ -9,7 +9,7 @@ menuBtn.addEventListener('click', () => sidebar.classList.add('open'));
 closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
 
 // === 2. 主題切換邏輯 ===
-const themeSelect = document.getElementById('theme-select') as HTMLSelectElement | null;
+const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 const htmlElement = document.documentElement;
 
 const applyTheme = (theme: string) => {
@@ -24,13 +24,14 @@ const applyTheme = (theme: string) => {
 const savedTheme = localStorage.getItem('theme') || 'system';
 if (themeSelect) {
   themeSelect.value = savedTheme;
+  applyTheme(savedTheme);
+
   themeSelect.addEventListener('change', (e) => {
     const newTheme = (e.target as HTMLSelectElement).value;
     localStorage.setItem('theme', newTheme);
     applyTheme(newTheme);
   });
 }
-applyTheme(savedTheme);
 
 // === 3. 模擬文章資料 ===
 const posts = [
@@ -55,8 +56,8 @@ const renderPosts = () => {
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
-  <section class="hero-section fade-in">
-    <div class="hero-content" id="hero-content">
+  <section class="hero-section">
+    <div class="hero-content fade-in" id="hero-content">
       <h1>用數據透視市場<br>用紀律執行交易</h1>
       <p>歡迎來到我的量化交易基地。這裡紀錄了我的回測結果與交易心得。</p>
       <div class="hero-btns">
@@ -65,83 +66,78 @@ app.innerHTML = `
     </div>
   </section>
 
+  <!-- 每個區塊都加咗 container class 嚟做左右留白 -->
   <section id="features" class="feature-section fade-in">
-    <div class="feature-text">
-      <h2>隨時掌握<br>市場最新動態</h2>
-      <p>支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。</p>
-    </div>
-    <div class="feature-visual">
-      <div class="mockup-box">📊 回測圖表預覽</div>
+    <div class="container">
+      <div class="feature-text">
+        <h2>隨時掌握<br>市場最新動態</h2>
+        <p>支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。</p>
+      </div>
+      <div class="feature-visual">
+        <div class="mockup-box">📊 回測圖表預覽</div>
+      </div>
     </div>
   </section>
 
   <section id="latest-posts" class="posts-section fade-in">
-    <h2>最新交易心得與回測</h2>
-    <div class="posts-grid">
-      ${renderPosts()}
+    <div class="container">
+      <h2>最新交易心得與回測</h2>
+      <div class="posts-grid">
+        ${renderPosts()}
+      </div>
     </div>
   </section>
 
   <footer class="site-footer fade-in">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <h3>
-          <img src="/logo.png" alt="MyQuant Logo" class="logo-img-footer">
-          MyQuant
-        </h3>
-        <p>我哋係香港小型開發團隊...</p>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>
+            <img src="/logo.png" alt="MyQuant Logo" class="logo-img-footer">
+            MyQuant
+          </h3>
+          <p>我哋係香港小型開發團隊...</p>
+        </div>
+        <div class="footer-links">
+          <h4>快速連結</h4>
+          <a href="#">關於我們</a>
+          <a href="#">回測結果</a>
+          <a href="#">交易心得</a>
+          <a href="#">私隱條例</a>
+        </div>
+        <div class="footer-contact">
+          <h4>聯絡我們</h4>
+          <p>info@myquant.hk</p>
+          <p>WhatsApp 技術支援</p>
+        </div>
       </div>
-      <div class="footer-links">
-        <h4>快速連結</h4>
-        <a href="#">關於我們</a>
-        <a href="#">回測結果</a>
-        <a href="#">交易心得</a>
-        <a href="#">私隱條例</a>
+      <div class="footer-bottom">
+        <p>© ${new Date().getFullYear()} MyQuant. All rights reserved.</p>
       </div>
-      <div class="footer-contact">
-        <h4>聯絡我們</h4>
-        <p>info@myquant.hk</p>
-        <p>WhatsApp 技術支援</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© ${new Date().getFullYear()} MyQuant. All rights reserved.</p>
     </div>
   </footer>
 `;
 
-// === 5. 視差效果與 Scroll 淡出 ===
+// === 5. 視差效果 (滑鼠跟隨) ===
 const heroSection = document.querySelector('.hero-section') as HTMLElement;
-const heroContent = document.getElementById('hero-content') as HTMLElement;
-
-// 滑鼠視差 (只限電腦版)
 if (window.innerWidth > 768) {
   heroSection.addEventListener('mousemove', (e) => {
-    const x = (window.innerWidth / 2 - e.pageX) / 40;
-    const y = (window.innerHeight / 2 - e.pageY) / 40;
+    const x = (window.innerWidth / 2 - e.pageX) / 30;
+    const y = (window.innerHeight / 2 - e.pageY) / 30;
+    // 郁 background-position
     heroSection.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
-    heroContent.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
   });
 }
 
-// Scroll 淡出
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  if (scrollY < window.innerHeight) {
-    const opacity = Math.max(0, 1 - scrollY / 500); 
-    heroContent.style.opacity = opacity.toString();
-    heroContent.style.transform = `translateY(${scrollY * 0.4}px)`;
-  }
-});
-
-// === 6. 滾動淡入 (Intersection Observer) ===
+// === 6. 滾動 Fade-in (Intersection Observer) ===
+// threshold: 0.15 代表個 block 出現 15% 先開始 fade
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.15 });
 
 document.querySelectorAll('.fade-in').forEach((el) => {
   observer.observe(el);

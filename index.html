@@ -6,22 +6,34 @@
     <title>My Quant Web</title>
   </head>
   <body>
+    <!-- Navbar 限制最大寬度並置中 -->
     <header class="navbar">
-      <!-- 左邊：只有 Logo 圖 -->
-      <a href="/" class="logo">
-        <img src="/logo.png" alt="MyQuant Logo" class="logo-img">
-      </a>
-      
-      <!-- 右邊：3 點選單 (包喺圓角方框內) -->
-      <button id="menu-btn" class="menu-btn">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-inner">
+        <a href="/" class="logo">
+          <img src="/logo.png" alt="MyQuant Logo" class="logo-img">
+        </a>
+        
+        <button id="menu-btn" class="menu-btn">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </header>
 
     <!-- 右側拉出選單 (Sidebar) -->
     <div id="sidebar" class="sidebar">
       <button id="close-btn" class="close-btn">✕</button>
       <div class="sidebar-content">
+        
+        <!-- Theme 切換移入嚟呢度 -->
+        <div class="theme-section">
+          <h4>主題設定</h4>
+          <select id="theme-select" class="theme-select">
+            <option value="system">🌓 跟隨系統</option>
+            <option value="light">☀️ 日間</option>
+            <option value="dark">🌙 夜間</option>
+          </select>
+        </div>
+
         <div class="sidebar-links">
           <a href="#">關於我們</a>
           <a href="#">最新消息</a>
