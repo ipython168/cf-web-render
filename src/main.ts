@@ -1,9 +1,9 @@
 import './style.css';
 
+// 1. 主題切換邏輯
 const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
 const htmlElement = document.documentElement;
 
-// 1. 初始化主題邏輯
 const applyTheme = (theme: string) => {
   if (theme === 'system') {
     const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -13,30 +13,48 @@ const applyTheme = (theme: string) => {
   }
 };
 
-// 讀取用戶之前嘅設定，預設為 system
 const savedTheme = localStorage.getItem('theme') || 'system';
-themeSelect.value = savedTheme;
-applyTheme(savedTheme);
+if (themeSelect) {
+  themeSelect.value = savedTheme;
+  applyTheme(savedTheme);
 
-// 監聽選單變化
-themeSelect.addEventListener('change', (e) => {
-  const newTheme = (e.target as HTMLSelectElement).value;
-  localStorage.setItem('theme', newTheme);
-  applyTheme(newTheme);
-});
+  themeSelect.addEventListener('change', (e) => {
+    const newTheme = (e.target as HTMLSelectElement).value;
+    localStorage.setItem('theme', newTheme);
+    applyTheme(newTheme);
+  });
+}
 
-// 如果用戶揀咗 system，但系統設定變咗，都要跟住變
 window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-  if (themeSelect.value === 'system') {
+  if (themeSelect && themeSelect.value === 'system') {
     applyTheme('system');
   }
 });
 
-// 3. 加載首頁內容
+// 2. 模擬文章資料
+const posts = [
+  { id: 1, title: "均線交叉策略回測報告", date: "2026-11-01", category: "回測結果", excerpt: "測試了 10 年港股數據，發現 20/50 均線喺牛市表現最好..." },
+  { id: 2, title: "交易心理學：如何克服 FOMO", date: "2026-10-28", category: "交易心得", excerpt: "當見到隻股票係咁升，散戶最易冲動入市。分享幾個控制情緒嘅方法..." },
+  { id: 3, title: "用 Python 打造自動化交易系統", date: "2026-10-15", category: "技術教學", excerpt: "由零開始建立 FastAPI 後端，配合 TypeScript 前端顯示即時數據..." }
+];
+
+// 3. 將資料轉化為 HTML 卡片
+const renderPosts = () => {
+  return posts.map(post => `
+    <article class="post-card">
+      <div class="post-category">${post.category}</div>
+      <h3 class="post-title">${post.title}</h3>
+      <p class="post-date">${post.date}</p>
+      <p class="post-excerpt">${post.excerpt}</p>
+      <a href="#" class="read-more">閱讀更多 →</a>
+    </article>
+  `).join('');
+};
+
+// 4. 加載首頁內容
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
-  <!-- 區塊 1：首頁大圖 -->
   <section class="hero-section">
     <div class="hero-content">
       <h1>用數據透視市場<br>用紀律執行交易</h1>
@@ -47,19 +65,16 @@ app.innerHTML = `
     </div>
   </section>
 
-  <!-- 區塊 2：類似 Datatone 嘅左右排版 -->
   <section id="features" class="feature-section">
     <div class="feature-text">
       <h2>隨時掌握<br>市場最新動態</h2>
       <p>支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。</p>
     </div>
     <div class="feature-visual">
-      <!-- 呢度將來可以放一張大圖或者手機 Mockup -->
       <div class="mockup-box">📊 回測圖表預覽</div>
     </div>
   </section>
 
-  <!-- 區塊 3：文章列表 -->
   <section id="latest-posts" class="posts-section">
     <h2>最新交易心得與回測</h2>
     <div class="posts-grid">
