@@ -1,106 +1,93 @@
-/* 定義 CSS 變數，方便切換主題 */
 :root[data-theme="light"] {
   --bg-color: #f8f9fa;
   --text-color: #333333;
-  --nav-bg: #ffffff;
+  --nav-bg: rgba(255, 255, 255, 0.9);
   --card-bg: #ffffff;
   --primary-color: #0ea5e9;
   --border-color: #e2e8f0;
+  --hero-text: #ffffff;
 }
 
 :root[data-theme="dark"] {
   --bg-color: #0f172a;
   --text-color: #e2e8f0;
-  --nav-bg: #1e293b;
+  --nav-bg: rgba(15, 23, 42, 0.9);
   --card-bg: #1e293b;
   --primary-color: #38bdf8;
   --border-color: #334155;
+  --hero-text: #ffffff;
 }
 
-/* 全局設定 */
+/* 平滑滾動（當撳「查看最新回測」跳去下面） */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s; /* 切換時有過渡動畫 */
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* 頂部導航 */
+/* 導航列（加咗半透明背景同模糊效果） */
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem;
   background-color: var(--nav-bg);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-color);
 }
 
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--primary-color);
-}
-
-.nav-links a {
-  margin: 0 1rem;
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-}
+.logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
+.nav-links a { margin: 0 1rem; text-decoration: none; color: var(--text-color); font-weight: 500; cursor: pointer;}
+.nav-links a:hover { color: var(--primary-color); }
 
 .theme-btn {
-  background: transparent;
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.3s;
+  background: transparent; border: 1px solid var(--border-color); color: var(--text-color);
+  padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; transition: all 0.3s;
 }
 
-/* 主視覺區 Hero */
+/* Hero 區塊（加入背景圖） */
 .hero {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 6rem 2rem;
+  /* 下面呢個 url 就係指向 public 資料夾入面嘅圖 */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: var(--hero-text);
 }
 
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  opacity: 0.8;
-  margin-bottom: 2rem;
-}
+.hero h1 { font-size: 4rem; margin-bottom: 1rem; }
+.hero p { font-size: 1.2rem; margin-bottom: 2rem; }
 
 .cta-btn {
-  padding: 1rem 2.5rem;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  display: inline-block;
+  padding: 1rem 2.5rem; font-size: 1rem; font-weight: bold;
+  background-color: var(--primary-color); color: white; text-decoration: none;
+  border-radius: 30px; transition: transform 0.2s;
 }
+.cta-btn:hover { transform: scale(1.05); }
 
 /* 卡片區塊 */
 .features {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  padding: 2rem;
-  flex-wrap: wrap;
+  display: flex; justify-content: center; gap: 2rem; padding: 5rem 2rem; flex-wrap: wrap;
 }
 
 .card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
-  padding: 2rem;
-  border-radius: 10px;
-  width: 300px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  background-color: var(--card-bg); border: 1px solid var(--border-color);
+  padding: 2rem; border-radius: 15px; width: 300px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;
 }
+.card:hover { transform: translateY(-5px); }
