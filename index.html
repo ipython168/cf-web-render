@@ -7,26 +7,27 @@
   </head>
   <body>
     <header class="navbar">
-      <div class="logo">
+      <!-- 左邊：Logo -->
+      <a href="/" class="logo">
         <img src="/logo.png" alt="MyQuant Logo" class="logo-img">
         <span>MyQuant</span>
-      </div>
+      </a>
       
-      <!-- 桌面版選單 -->
+      <!-- 中間：桌面版選單 (手機版會隱藏) -->
       <nav class="nav-links">
         <a href="#about">關於我們</a>
         <a href="#latest-posts">回測結果</a>
         <a href="#">交易心得</a>
       </nav>
 
+      <!-- 右邊：主題切換 + 3點選單 -->
       <div class="nav-actions">
         <select id="theme-select" class="theme-select">
           <option value="system">🌓 跟隨系統</option>
           <option value="light">☀️ 日間</option>
           <option value="dark">🌙 夜間</option>
         </select>
-        <!-- 漢堡選單按鈕 (3點/橫線) -->
-        <button id="menu-btn" class="menu-btn">☰</button>
+        <button id="menu-btn" class="menu-btn">⋮</button> <!-- 轉用直向3點 -->
       </div>
     </header>
 

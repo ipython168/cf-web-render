@@ -44,7 +44,8 @@ body {
   display: flex; justify-content: space-between; align-items: center;
   padding: 1.5rem 3rem; 
   background-color: transparent; /* 預設透明 */
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, color 0.3s ease, padding 0.3s ease;
+
   color: #ffffff; /* 預設白色字 */
 }
 
@@ -119,6 +120,9 @@ body {
   color: #ffffff; /* 強制白字，解決 Light mode 睇唔到 */
   transition: background 0.5s ease;
   position: relative; /* 確保 fixed navbar 喺上面 */
+
+  padding-top: 80px; /* 新增：預留空間俾 Navbar */
+
 }
 .hero-content h1 { font-size: 4.5rem; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -1px; }
 .hero-content p { font-size: 1.2rem; opacity: 0.8; margin-bottom: 3rem; padding: 0 1rem; }
@@ -206,15 +210,29 @@ body {
    9. 📱 手機版排版修正 (Media Query)
    ========================================= */
 @media (max-width: 768px) {
-  /* 導航列 */
+  /* 手機版 Navbar：唔好換行，保持單行 */
   .navbar {
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
+    padding: 1rem 1.5rem; /* 縮細左右留白 */
+    flex-direction: row;  /* 強制橫向排列 */
   }
+  
+  .logo span {
+    display: none; /* 手機版隱藏 "MyQuant" 字，淨係顯示 Logo 圖 */
+  }
+
   .nav-links {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;
+    display: none; /* 手機版隱藏中間嗰堆選單 */
   }
+
+  .nav-actions {
+    gap: 0.5rem;
+  }
+
+  .menu-btn {
+    font-size: 1.8rem;
+    padding: 0 0.5rem;
+  }
+
 
   /* Hero 區塊：字體縮細 */
   .hero-content h1 {
