@@ -78,6 +78,8 @@ const renderPosts = () => {
       <a href="#post/${post.id}" class="read-more">閱讀更多 →</a>
     </article>
   `).join('');
+  
+  handleScrollFade();
 };
 
 // === 5. HTML 結構 ===
@@ -96,23 +98,23 @@ app.innerHTML = `
     <section id="features" class="feature-section fade-in">
       <div class="container">
         <div class="feature-text">
-          <h2>隨時掌握<br>市場最新動態</h2>
-          <p>支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。</p>
+          <h2 class="fade-in">隨時掌握<br>市場最新動態</h2>
+          <p class="fade-in">支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。</p>
         </div>
-        <div class="feature-visual"><div class="mockup-box">📊 回測圖表預覽</div></div>
+        <div class="feature-visual fade-in"><div class="mockup-box">📊 回測圖表預覽</div></div>
       </div>
     </section>
 
     <section id="latest-posts" class="posts-section fade-in">
       <div class="container">
-        <h2>最新交易心得與回測</h2>
+        <h2 class="fade-in">最新交易心得與回測</h2>
         <div class="posts-grid" id="posts-grid"></div>
       </div>
     </section>
 
     <footer class="site-footer fade-in">
       <div class="container">
-        <div class="footer-content">
+        <div class="footer-content fade-in">
           <div class="footer-brand">
             <h3><img src="/logo.png" alt="Logo" class="logo-img-footer"> MyQuant</h3>
             <p>我哋係香港小型開發團隊...</p>

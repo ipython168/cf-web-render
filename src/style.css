@@ -213,6 +213,7 @@ body {
 .fade-in {
   opacity: 0; 
   will-change: opacity, transform;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 } 
 /* =========================================
    9. Sidebar & Overlay (遮罩)
