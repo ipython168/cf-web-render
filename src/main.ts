@@ -145,39 +145,25 @@ if (window.innerWidth > 768 && heroSection) {
 
 // === 7. Scroll 滾動淡入淡出 (取代 IntersectionObserver) ===
 const handleScrollFade = () => {
-  const sections = document.querySelectorAll('#home-view .fade-in');
+  const sections = document.querySelectorAll("#home-view .fade-in");
   const windowHeight = window.innerHeight;
 
   sections.forEach(section => {
     const rect = section.getBoundingClientRect();
     
-    // 當 section 進入畫面可見範圍
-    if (rect.top < windowHeight * 0.9 && rect.bottom > windowHeight * 0.1) {
-      
-      // 計算佢喺畫面嘅位置比例 (0 = 剛喺底部, 1 = 升到頂部)
-      // 我哋將除數設為 0.35 * windowHeight，令佢升到 1/3 左右就全清
-      const visibleRatio = Math.min(
-        (windowHeight - rect.top) / (windowHeight * 0.35), 
-        rect.bottom / (windowHeight * 0.35)
-      );
+    const startFade = windowHeight * 0.9;
+    const endFade = windowHeight * 0.3;
     
-      // 將最低透明度設為 0.2 (即係 1/5)，最高為 1
-      const opacity = Math.max(0.2, Math.min(1, visibleRatio));
-     
-      
-      
-      (section as HTMLElement).style.opacity = opacity.toString();
-      // 位移效果：由 60px 慢慢升上 0px
-      const translateY = (1 - opacity) * 60;
-      (section as HTMLElement).style.transform = `translateY(${translateY}px)`;
-    } else {
-      // 離開畫面時，跌返落 0.2
-      (section as HTMLElement).style.opacity = '0.2';
-    }
+    let visibleRatio = (startFade - rect.top) / (startFade - endFade);
+    visibleRatio = Math.max(0, Math.min(1, visibleRatio));
+    
+    (section as HTMLElement).style.opacity = visibleRatio.toString();
+    const translateY = (1 - visibleRatio) * 60;
+    (section as HTMLElement).style.transform = `translateY(${translateY}px)`;
   });
 };
 
-window.addEventListener('scroll', handleScrollFade);
+window.addEventListener("scroll", handleScrollFade);
 
 // === 8. Router ===
 const renderApp = () => {
