@@ -75,6 +75,7 @@ const renderPosts = () => {
   
   grid.innerHTML = posts.map(post => `
     <article class="post-card fade-in">
+      ${post.image ? `<img src="${post.image}" alt="${post.title}" class="post-cover-img">` : ''}
       <div class="post-category">${post.category}</div>
       <h3 class="post-title">${post.title}</h3>
       <p class="post-date">${post.date}</p>
@@ -210,6 +211,7 @@ const renderApp = () => {
           <div class="post-category">${post.category}</div>
           <h1>${post.title}</h1>
           <p class="post-date">${post.date}</p>
+          ${post.image ? `<img src="${post.image}" alt="${post.title}" class="single-post-img">` : ''}
           <div class="post-body">${post.content}</div>
         </div>
       `;
