@@ -153,17 +153,26 @@ const handleScrollFade = () => {
     
     // 當 section 進入畫面可見範圍
     if (rect.top < windowHeight * 0.9 && rect.bottom > windowHeight * 0.1) {
+      
+      // 計算佢喺畫面嘅位置比例 (0 = 剛喺底部, 1 = 升到頂部)
+      // 我哋將除數設為 0.35 * windowHeight，令佢升到 1/3 左右就全清
       const visibleRatio = Math.min(
-        (windowHeight - rect.top) / (windowHeight * 0.4), 
-        rect.bottom / (windowHeight * 0.4)
+        (windowHeight - rect.top) / (windowHeight * 0.35), 
+        rect.bottom / (windowHeight * 0.35)
       );
-      const opacity = Math.max(0, Math.min(1, visibleRatio));
+    
+      // 將最低透明度設為 0.2 (即係 1/5)，最高為 1
+      const opacity = Math.max(0.2, Math.min(1, visibleRatio));
+     
+      
       
       (section as HTMLElement).style.opacity = opacity.toString();
-      const translateY = (1 - opacity) * 40;
+      // 位移效果：由 60px 慢慢升上 0px
+      const translateY = (1 - opacity) * 60;
       (section as HTMLElement).style.transform = `translateY(${translateY}px)`;
     } else {
-      (section as HTMLElement).style.opacity = '0';
+      // 離開畫面時，跌返落 0.2
+      (section as HTMLElement).style.opacity = '0.2';
     }
   });
 };
