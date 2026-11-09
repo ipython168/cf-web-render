@@ -43,9 +43,13 @@ themeSelect.addEventListener('change', (e) => {
 });
 
 // === 3. Navbar Scroll ===
+// === 3. Navbar 轉色 ===
 const navbar = document.querySelector('.navbar') as HTMLElement;
 window.addEventListener('scroll', () => {
-  if (window.scrollY > window.innerHeight - 150) {
+  const isPostPage = window.location.hash.startsWith('#post/');
+  
+  // 如果喺文章內頁，或者喺首頁 Roll 過咗 Hero 區塊 (0至0.9高度)
+  if (isPostPage || window.scrollY > window.innerHeight * 0.9) {
     navbar.classList.add('scrolled');
   } else {
     navbar.classList.remove('scrolled');
@@ -229,6 +233,7 @@ const renderApp = () => {
     homeView.style.display = 'block';
     // 返回首頁時重新計算 opacity
     handleScrollFade();
+    window.dispatchEvent(new Event('scroll'));
   }
 };
 
@@ -236,6 +241,7 @@ const renderApp = () => {
 loadPosts().then(() => {
   renderApp();
   handleScrollFade();
+  window.dispatchEvent(new Event('scroll'));
 });
 
 window.addEventListener('hashchange', renderApp);
