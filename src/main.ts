@@ -42,6 +42,18 @@ themeSelect.addEventListener('change', (e) => {
   applyTheme(newTheme);
 });
 
+ // === 新增：Navbar Scroll 變色 ===
+ const navbar = document.querySelector('.navbar') as HTMLElement;
+ window.addEventListener('scroll', () => {
+   // 當向下滾動超過 50px 就變色
+   if (window.scrollY > 50) {
+     navbar.classList.add('scrolled');
+   } else {
+     navbar.classList.remove('scrolled');
+   }
+ });
+ // ===============================
+
 // === 3. 加載首頁內容 ===
 const posts = [
   { id: 1, title: "均線交叉策略回測報告", date: "2026-11-01", category: "回測結果", excerpt: "測試了 10 年港股數據，發現 20/50 均線喺牛市表現最好..." },
