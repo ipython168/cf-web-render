@@ -42,7 +42,7 @@ themeSelect.addEventListener('change', (e) => {
   applyTheme(newTheme);
 });
 
-// === 3. Navbar Scroll 變色 ===
+// === 3. Navbar Scroll ===
 const navbar = document.querySelector('.navbar') as HTMLElement;
 window.addEventListener('scroll', () => {
   if (window.scrollY > window.innerHeight - 150) {
@@ -52,7 +52,7 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// === 4. 非同步讀取文章資料 ===
+// === 4. 資料與渲染 ===
 let posts: any[] = [];
 
 const loadPosts = async () => {
@@ -78,26 +78,18 @@ const renderPosts = () => {
       <a href="#post/${post.id}" class="read-more">閱讀更多 →</a>
     </article>
   `).join('');
-  
-  // 重新綁定 Fade-in
-  document.querySelectorAll('#posts-grid .fade-in').forEach((el) => {
-    observer.observe(el);
-  });
 };
 
-// === 5. 加載首頁 HTML 結構 ===
+// === 5. HTML 結構 ===
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
-  <!-- 首頁內容 -->
   <div id="home-view">
     <section class="hero-section">
       <div class="hero-content fade-in" id="hero-content">
         <h1>用數據透視市場<br>用紀律執行交易</h1>
         <p>歡迎來到我的量化交易基地。這裡紀錄了我的回測結果與交易心得。</p>
-        <div class="hero-btns">
-          <a href="#features" class="btn-primary">開始了解</a>
-        </div>
+        <div class="hero-btns"><a href="#features" class="btn-primary">開始了解</a></div>
       </div>
     </section>
 
@@ -107,18 +99,14 @@ app.innerHTML = `
           <h2>隨時掌握<br>市場最新動態</h2>
           <p>支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。</p>
         </div>
-        <div class="feature-visual">
-          <div class="mockup-box">📊 回測圖表預覽</div>
-        </div>
+        <div class="feature-visual"><div class="mockup-box">📊 回測圖表預覽</div></div>
       </div>
     </section>
 
     <section id="latest-posts" class="posts-section fade-in">
       <div class="container">
         <h2>最新交易心得與回測</h2>
-        <div class="posts-grid" id="posts-grid">
-          <!-- 內容由 JS 動態載入 -->
-        </div>
+        <div class="posts-grid" id="posts-grid"></div>
       </div>
     </section>
 
@@ -126,37 +114,26 @@ app.innerHTML = `
       <div class="container">
         <div class="footer-content">
           <div class="footer-brand">
-            <h3>
-              <img src="/logo.png" alt="Logo" class="logo-img-footer">
-              MyQuant
-            </h3>
+            <h3><img src="/logo.png" alt="Logo" class="logo-img-footer"> MyQuant</h3>
             <p>我哋係香港小型開發團隊...</p>
           </div>
           <div class="footer-links">
             <h4>快速連結</h4>
-            <a href="#">關於我們</a>
-            <a href="#">回測結果</a>
-            <a href="#">交易心得</a>
-            <a href="#">私隱條例</a>
+            <a href="#">關於我們</a><a href="#">回測結果</a><a href="#">交易心得</a><a href="#">私隱條例</a>
           </div>
           <div class="footer-contact">
             <h4>聯絡我們</h4>
-            <p>info@myquant.hk</p>
-            <p>WhatsApp 技術支援</p>
+            <p>info@myquant.hk</p><p>WhatsApp 技術支援</p>
           </div>
         </div>
-        <div class="footer-bottom">
-          <p>© ${new Date().getFullYear()} MyQuant. All rights reserved.</p>
-        </div>
+        <div class="footer-bottom"><p>© ${new Date().getFullYear()} MyQuant. All rights reserved.</p></div>
       </div>
     </footer>
   </div>
-
-  <!-- 文章內頁容器 -->
   <div id="post-content" style="display: none;"></div>
 `;
 
-// === 6. 視差效果 (Hero) ===
+// === 6. 視差效果 ===
 const heroSection = document.querySelector('.hero-section') as HTMLElement;
 if (window.innerWidth > 768 && heroSection) {
   heroSection.addEventListener('mousemove', (e) => {
@@ -166,22 +143,38 @@ if (window.innerWidth > 768 && heroSection) {
   });
 }
 
-// === 7. 滾動 Fade-in 監聽 ===
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+// === 7. Scroll 滾動淡入淡出 (取代 IntersectionObserver) ===
+const handleScrollFade = () => {
+  const sections = document.querySelectorAll('#home-view .fade-in');
+  const windowHeight = window.innerHeight;
+
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    
+    // 當 section 進入畫面可見範圍
+    if (rect.top < windowHeight * 0.9 && rect.bottom > windowHeight * 0.1) {
+      const visibleRatio = Math.min(
+        (windowHeight - rect.top) / (windowHeight * 0.4), 
+        rect.bottom / (windowHeight * 0.4)
+      );
+      const opacity = Math.max(0, Math.min(1, visibleRatio));
+      
+      (section as HTMLElement).style.opacity = opacity.toString();
+      const translateY = (1 - opacity) * 40;
+      (section as HTMLElement).style.transform = `translateY(${translateY}px)`;
+    } else {
+      (section as HTMLElement).style.opacity = '0';
     }
   });
-}, { threshold: 0.15 });
+};
 
-// === 8. Router (處理文章內頁) ===
+window.addEventListener('scroll', handleScrollFade);
+
+// === 8. Router ===
 const renderApp = () => {
   const hash = window.location.hash;
-  const postContainer = document.getElementById('post-content');
-  const homeView = document.getElementById('home-view');
-
-  if (!postContainer || !homeView) return;
+  const postContainer = document.getElementById('post-content')!;
+  const homeView = document.getElementById('home-view')!;
 
   if (hash.startsWith('#post/')) {
     const id = hash.replace('#post/', '');
@@ -189,35 +182,46 @@ const renderApp = () => {
     
     if (post) {
       postContainer.innerHTML = `
-        <div class="container single-post fade-in">
-          <a href="#" class="back-link">← 返回首頁</a>
+        <div class="container single-post">
+          <a href="#" class="back-link" id="back-btn">← 返回首頁</a>
           <div class="post-category">${post.category}</div>
           <h1>${post.title}</h1>
           <p class="post-date">${post.date}</p>
           <div class="post-body">${post.content}</div>
         </div>
       `;
+      
       homeView.style.display = 'none';
       postContainer.style.display = 'block';
-      window.scrollTo(0, 0); // 切換時彈返上頂
-      
-      // 觸發文章內頁嘅 Fade-in
-      const singlePost = postContainer.querySelector('.single-post');
-      if (singlePost) observer.observe(singlePost);
+      window.scrollTo(0, 0);
+
+      // 強制顯示文章內頁，避免 Fade 隱形
+      const singlePost = postContainer.querySelector('.single-post') as HTMLElement;
+      if (singlePost) {
+        setTimeout(() => {
+          singlePost.style.opacity = '1';
+          singlePost.style.transform = 'translateY(0)';
+        }, 50);
+      }
+
+      // 綁定返回按鈕
+      document.getElementById('back-btn')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.hash = '';
+      });
     }
   } else {
     postContainer.style.display = 'none';
     homeView.style.display = 'block';
+    // 返回首頁時重新計算 opacity
+    handleScrollFade();
   }
 };
 
 // === 9. 初始化 ===
 loadPosts().then(() => {
   renderApp();
-  document.querySelectorAll('.fade-in').forEach((el) => {
-    observer.observe(el);
-  });
+  handleScrollFade();
 });
 
-// 監聽網址變化
 window.addEventListener('hashchange', renderApp);
