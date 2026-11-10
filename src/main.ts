@@ -35,7 +35,8 @@ initAnimations();
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
-  <div id="home-view">
+  <div id="home-view" class="active">
+
     <section class="hero-section">
       <div class="hero-content fade-in" id="hero-content">
         <h1>用數據透視市場<br>用紀律執行交易</h1>
