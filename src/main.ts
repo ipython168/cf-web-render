@@ -3,6 +3,10 @@ import { initTheme } from './utils/theme';
 import { initAnimations, handleScrollFade } from './utils/animations';
 import { loadPosts } from './views/home';
 import { renderApp } from './views/post';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+ 
+gsap.registerPlugin(ScrollTrigger);
 
 // === 1. 漢堡選單開關 ===
 const menuBtn = document.getElementById('menu-btn')!;
@@ -50,6 +54,32 @@ app.innerHTML = `
       </div>
     </section>
 
+    <!-- 新增：GSAP 數字跳動區塊 -->
+    <section id="stats" class="stats-section fade-in">
+      <div class="container">
+        <h2 class="fade-in" id="stats-title">實戰數據</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="0" id="stat-win">0</h3>
+            <p id="label-win">勝率</p>
+          </div>
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="0" id="stat-trades">0</h3>
+            <p id="label-trades">總交易次數</p>
+          </div>
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="0" id="stat-dd">0</h3>
+            <p id="label-dd">最大回撤</p>
+          </div>
+          <div class="stat-card">
+            <h3 class="stat-number" data-target="0" id="stat-return">0</h3>
+            <p id="label-return">總回報</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
     <section id="latest-posts" class="posts-section fade-in">
       <div class="container">
         <h2 class="fade-in">最新交易心得與回測</h2>
@@ -87,6 +117,50 @@ loadPosts().then(() => {
   handleScrollFade();
   window.dispatchEvent(new Event('scroll'));
 });
+
+    // 載入數據同語言
+    const [statsRes, langRes] = await Promise.all([
+      fetch('/stats.json'),
+      fetch('/lang.json')
+    ]);
+    const stats = await statsRes.json();
+    const lang = await langRes.json();
+    const t = lang['zh']; // 預設中文
+
+    // 更新文字
+    document.getElementById('stats-title')!.textContent = t.stats_title;
+    document.getElementById('label-win')!.textContent = t.win_rate;
+    document.getElementById('label-trades')!.textContent = t.total_trades;
+    document.getElementById('label-dd')!.textContent = t.max_drawdown;
+    document.getElementById('label-return')!.textContent = t.total_return;
+
+    // GSAP 數字跳動動畫
+    const statData = [
+      { id: 'stat-win', target: stats.win_rate, suffix: '%' },
+      { id: 'stat-trades', target: stats.total_trades, suffix: '' },
+      { id: 'stat-dd', target: stats.max_drawdown, suffix: '%' },
+      { id: 'stat-return', target: stats.total_return, suffix: '%' }
+    ];
+
+    statData.forEach(item => {
+      const el = document.getElementById(item.id)!;
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: item.target,
+        duration: 2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#stats",
+          start: "top 80%", // 當 stats 區塊升到畫面 80% 位置時觸發
+          toggleActions: "play none none reverse"
+        },
+        onUpdate: () => {
+          el.textContent = Math.round(obj.val).toString() + item.suffix;
+       }
+      });
+    });
+  });
+
 
 // 監聽網址變化同 Scroll
 window.addEventListener('hashchange', renderApp);
