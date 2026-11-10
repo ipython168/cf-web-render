@@ -386,29 +386,7 @@
 }
 
 
-/* 解決切換頁面時，首頁隱藏但撐大畫面嘅問題 */
-#app {
-  position: relative;
-}
 
-#home-view, #post-content {
-  width: 100%;
-  /* 唔用 display: none，用絕對定位令佢哋重疊 */
-  position: absolute;
-  top: 0;
-  left: 0;
-  /* 預設隱藏 */
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-/* 當有 .active class 嗰陣，先顯示出嚟 */
-#home-view.active, #post-content.active {
-  position: relative; /* 變返佔用空間 */
-  visibility: visible;
-  opacity: 1;
-}
 
 
 
