@@ -377,3 +377,19 @@
   color: white;
   border-color: var(--primary-color);
 }
+
+/* 修正切換頁面時，隱藏嘅首頁依然佔用空間嘅問題 */
+#home-view.hidden-view {
+  display: none !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+
+
+
+
+
+
+
+

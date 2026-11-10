@@ -23,7 +23,8 @@ export const renderApp = () => {
         </div>
       `;
       
-      homeView.style.display = 'none';
+      // 用 Class 嚟隱藏，順便清走高度
+      homeView.classList.add('hidden-view');
       postContainer.style.display = 'block';
       window.scrollTo(0, 0);
 
@@ -42,7 +43,8 @@ export const renderApp = () => {
     }
   } else {
     postContainer.style.display = 'none';
-    homeView.style.display = 'block';
+    // 移除 Class，還原首頁
+    homeView.classList.remove('hidden-view');
     handleScrollFade();
     window.dispatchEvent(new Event('scroll'));
   }
