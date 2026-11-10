@@ -3,9 +3,6 @@ import { marked } from 'marked';
 import { initTheme } from './utils/theme';
 import { initAnimations, handleScrollFade } from './utils/animations';
 
-import './style.css';
-import { marked } from 'marked';
-
 // === 1. 漢堡選單開關 ===
 const menuBtn = document.getElementById('menu-btn')!;
 const closeBtn = document.getElementById('close-btn')!;
@@ -25,25 +22,11 @@ menuBtn.addEventListener('click', openSidebar);
 closeBtn.addEventListener('click', closeSidebar);
 overlay.addEventListener('click', closeSidebar);
 
-// === 2. 初始化 ===
- Scroll ===
-// === 3. Navbar 轉色 ===
-const navbar = document.querySelector('.navbar') as HTMLElement;
-window.addEventListener('scroll', () => {
-  const isPostPage = window.location.hash.startsWith('#post/');
-  
-  // 如果喺文章內頁，或者喺首頁 Roll 過咗 Hero 區塊 (0至0.9高度)
-  if (isPostPage || window.scrollY > window.innerHeight * 0.9) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
-  }
-});
-
+// === 2. 初始化 Theme 與 視差動畫 ===
 initTheme();
 initAnimations();
 
-// === 4. 資料與渲染 ===
+// === 3. 資料與渲染 ===
 let posts: any[] = [];
 
 const loadPosts = async () => {
@@ -74,7 +57,7 @@ const renderPosts = () => {
   handleScrollFade();
 };
 
-// === 5. HTML 結構 ===
+// === 4. HTML 結構 ===
 const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
@@ -117,7 +100,8 @@ app.innerHTML = `
           </div>
           <div class="footer-contact">
             <h4>聯絡我們</h4>
-            <p>info@myquant.hk</p><p>WhatsApp 技術支援</p>
+            <p>info@myquant.hk</p>
+            <p>WhatsApp 技術支援</p>
           </div>
         </div>
         <div class="footer-bottom"><p>© ${new Date().getFullYear()} MyQuant. All rights reserved.</p></div>
@@ -127,52 +111,7 @@ app.innerHTML = `
   <div id="post-content" style="display: none;"></div>
 `;
 
-// === 3. Router 與資料 ===
- (取代 IntersectionObserver) ===
-const handleScrollFade = () => {
-  const sections = document.querySelectorAll('#home-view .fade-in');
-  const windowHeight = window.innerHeight;
-
-  sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    
-    // 取得頂部同底部喺畫面嘅比例
-    const topRatio = rect.top / windowHeight;
-    const bottomRatio = rect.bottom / windowHeight;
-    
-    let opacity = 0;
-    
-    if (topRatio > 0.85) {
-      // 1. 未入畫面：完全透明
-      opacity = 0;
-    } else if (topRatio > 0.6) {
-      // 2. 出現時：由 0.85 升到 0.6，慢慢變實
-      opacity = (0.85 - topRatio) / (0.85 - 0.6);
-    } else if (bottomRatio > 0.4) {
-      // 3. 喺 0.6 至 0.4 之間：維持全清 (opacity = 1)
-      opacity = 1;
-    } else if (bottomRatio > 0.15) {
-      // 4. 離開時：底部由 0.4 升到 0.15，慢慢淡出
-      opacity = (bottomRatio - 0.15) / (0.4 - 0.15);
-    } else {
-      // 5. 完全離開畫面：透明
-      opacity = 0;
-    }
-    
-    // 限制數值喺 0 到 1 之間
-    opacity = Math.max(0, Math.min(1, opacity));
-    
-    (section as HTMLElement).style.opacity = opacity.toString();
-    
-    // 位移效果：越近頂部，向上移得越多
-    const translateY = (1 - opacity) * 50;
-    (section as HTMLElement).style.transform = `translateY(${translateY}px)`;
-  });
-};
-
-window.addEventListener('scroll', handleScrollFade);
-
-// === 8. Router ===
+// === 5. Router ===
 const renderApp = () => {
   const hash = window.location.hash;
   const postContainer = document.getElementById('post-content')!;
@@ -198,7 +137,7 @@ const renderApp = () => {
       postContainer.style.display = 'block';
       window.scrollTo(0, 0);
 
-      // 強制顯示文章內頁，避免 Fade 隱形
+      // 強制顯示文章內頁
       const singlePost = postContainer.querySelector('.single-post') as HTMLElement;
       if (singlePost) {
         setTimeout(() => {
@@ -216,18 +155,18 @@ const renderApp = () => {
   } else {
     postContainer.style.display = 'none';
     homeView.style.display = 'block';
-    // 返回首頁時重新計算 opacity
     handleScrollFade();
     window.dispatchEvent(new Event('scroll'));
   }
 };
 
-// === 9. 初始化 ===
+// === 6. 初始化 ===
 loadPosts().then(() => {
   renderApp();
   handleScrollFade();
   window.dispatchEvent(new Event('scroll'));
 });
 
+// 監聽網址變化同 Scroll
 window.addEventListener('hashchange', renderApp);
 window.addEventListener('scroll', handleScrollFade);
