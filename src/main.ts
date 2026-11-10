@@ -1,5 +1,10 @@
 import './style.css';
 import { marked } from 'marked';
+import { initTheme } from './utils/theme';
+import { initAnimations, handleScrollFade } from './utils/animations';
+
+import './style.css';
+import { marked } from 'marked';
 
 // === 1. 漢堡選單開關 ===
 const menuBtn = document.getElementById('menu-btn')!;
@@ -20,30 +25,8 @@ menuBtn.addEventListener('click', openSidebar);
 closeBtn.addEventListener('click', closeSidebar);
 overlay.addEventListener('click', closeSidebar);
 
-// === 2. 主題切換 ===
-const themeSelect = document.getElementById('theme-select') as HTMLSelectElement;
-const htmlElement = document.documentElement;
-
-const applyTheme = (theme: string) => {
-  if (theme === 'system') {
-    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    htmlElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  } else {
-    htmlElement.setAttribute('data-theme', theme);
-  }
-};
-
-const savedTheme = localStorage.getItem('theme') || 'system';
-themeSelect.value = savedTheme;
-applyTheme(savedTheme);
-
-themeSelect.addEventListener('change', (e) => {
-  const newTheme = (e.target as HTMLSelectElement).value;
-  localStorage.setItem('theme', newTheme);
-  applyTheme(newTheme);
-});
-
-// === 3. Navbar Scroll ===
+// === 2. 初始化 ===
+ Scroll ===
 // === 3. Navbar 轉色 ===
 const navbar = document.querySelector('.navbar') as HTMLElement;
 window.addEventListener('scroll', () => {
@@ -56,6 +39,9 @@ window.addEventListener('scroll', () => {
     navbar.classList.remove('scrolled');
   }
 });
+
+initTheme();
+initAnimations();
 
 // === 4. 資料與渲染 ===
 let posts: any[] = [];
@@ -141,17 +127,8 @@ app.innerHTML = `
   <div id="post-content" style="display: none;"></div>
 `;
 
-// === 6. 視差效果 ===
-const heroSection = document.querySelector('.hero-section') as HTMLElement;
-if (window.innerWidth > 768 && heroSection) {
-  heroSection.addEventListener('mousemove', (e) => {
-    const x = (window.innerWidth / 2 - e.pageX) / 30;
-    const y = (window.innerHeight / 2 - e.pageY) / 30;
-    heroSection.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
-  });
-}
-
-// === 7. Scroll 滾動淡入淡出 (取代 IntersectionObserver) ===
+// === 3. Router 與資料 ===
+ (取代 IntersectionObserver) ===
 const handleScrollFade = () => {
   const sections = document.querySelectorAll('#home-view .fade-in');
   const windowHeight = window.innerHeight;
@@ -253,3 +230,4 @@ loadPosts().then(() => {
 });
 
 window.addEventListener('hashchange', renderApp);
+window.addEventListener('scroll', handleScrollFade);
