@@ -1,0 +1,30 @@
+{
+  "zh": {
+    "stats_title": "實戰數據",
+    "win_rate": "勝率",
+    "total_trades": "總交易次數",
+    "max_drawdown": "最大回撤",
+    "total_return": "總回報",
+    "hero_words": [
+      "用",
+      "數",
+      "據",
+      "透",
+      "視",
+      "市",
+      "場"
+    ]
+  },
+  "en": {
+    "stats_title": "Live Performance",
+    "win_rate": "Win Rate",
+    "total_trades": "Total Trades",
+    "max_drawdown": "Max Drawdown",
+    "total_return": "Total Return",
+    "hero_words": [
+      "Data",
+      "Driven",
+      "Trading"
+    ]
+  }
+}
