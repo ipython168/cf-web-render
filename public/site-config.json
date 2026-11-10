@@ -1,0 +1,33 @@
+{
+  "siteName": "QuantBase",
+  "siteTitle": "QuantBase | 量化交易基地",
+  "logoImage": "/logo.png",
+  "hero": {
+    "title": "用數據透視市場<br>用紀律執行交易",
+    "subtitle": "歡迎來到我的量化交易基地。這裡紀錄了我的回測結果與交易心得。",
+    "buttonText": "開始了解",
+    "buttonLink": "#features"
+  },
+  "navLinks": [
+    { "name": "關於我們", "url": "#" },
+    { "name": "最新消息", "url": "#" },
+    { "name": "幫助中心", "url": "#" },
+    { "name": "支持我們", "url": "#" }
+  ],
+  "footer": {
+    "brandDesc": "我哋係香港小型開發團隊...",
+    "quickLinks": [
+      { "name": "關於我們", "url": "#" },
+      { "name": "回測結果", "url": "#" },
+      { "name": "交易心得", "url": "#" },
+      { "name": "私隱條例", "url": "#" }
+    ],
+    "contact": {
+      "email": "info@myquant.hk",
+      "support": "WhatsApp 技術支援"
+    }
+  },
+  "social": {
+    "facebook": "https://facebook.com"
+  }
+}
