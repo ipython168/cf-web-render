@@ -143,3 +143,21 @@
   margin-top: 3rem;
   margin-bottom: 1rem;
 }
+
+
+/* Markdown 粗體專屬顏色 */
+:root[data-theme="light"] .post-body strong {
+  color: #0284c7; /* Light Mode 用深少少嘅藍 */
+}
+:root[data-theme="dark"] .post-body strong {
+  color: #38bdf8; /* Dark Mode 用亮少少嘅青 */
+}
+
+/* 修正文章內頁頂部太貼近 Navbar 嘅問題 */
+.single-post {
+  padding-top: 150px; /* 加大頂部留白 */
+  padding-bottom: 8rem;
+}
+.single-post .back-link {
+  margin-bottom: 3rem; /* 返回掣同標題之間加空位 */
+}
