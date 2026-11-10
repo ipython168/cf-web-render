@@ -5,7 +5,7 @@ import { loadPosts } from './views/home';
 import { renderApp } from './views/post';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
- 
+
 gsap.registerPlugin(ScrollTrigger);
 
 // === 1. 漢堡選單開關 ===
@@ -60,25 +60,24 @@ app.innerHTML = `
         <h2 class="fade-in" id="stats-title">實戰數據</h2>
         <div class="stats-grid">
           <div class="stat-card">
-            <h3 class="stat-number" data-target="0" id="stat-win">0</h3>
+            <h3 class="stat-number" id="stat-win">0</h3>
             <p id="label-win">勝率</p>
           </div>
           <div class="stat-card">
-            <h3 class="stat-number" data-target="0" id="stat-trades">0</h3>
+            <h3 class="stat-number" id="stat-trades">0</h3>
             <p id="label-trades">總交易次數</p>
           </div>
           <div class="stat-card">
-            <h3 class="stat-number" data-target="0" id="stat-dd">0</h3>
+            <h3 class="stat-number" id="stat-dd">0</h3>
             <p id="label-dd">最大回撤</p>
           </div>
           <div class="stat-card">
-            <h3 class="stat-number" data-target="0" id="stat-return">0</h3>
+            <h3 class="stat-number" id="stat-return">0</h3>
             <p id="label-return">總回報</p>
           </div>
         </div>
       </div>
     </section>
-
 
     <section id="latest-posts" class="posts-section fade-in">
       <div class="container">
@@ -111,13 +110,13 @@ app.innerHTML = `
   <div id="post-content" style="display: none;"></div>
 `;
 
-// === 4. 初始化 ===
-loadPosts().then(() => {
+// === 4. 初始化與 GSAP 數據載入 ===
+loadPosts().then(async () => {
   renderApp();
   handleScrollFade();
   window.dispatchEvent(new Event('scroll'));
-});
 
+  try {
     // 載入數據同語言
     const [statsRes, langRes] = await Promise.all([
       fetch('/stats.json'),
@@ -156,11 +155,13 @@ loadPosts().then(() => {
         },
         onUpdate: () => {
           el.textContent = Math.round(obj.val).toString() + item.suffix;
-       }
+        }
       });
     });
-  });
-
+  } catch (err) {
+    console.error("載入數據失敗", err);
+  }
+});
 
 // 監聽網址變化同 Scroll
 window.addEventListener('hashchange', renderApp);
