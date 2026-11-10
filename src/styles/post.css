@@ -1,27 +1,57 @@
 /* =========================================
-   6. 區塊三：文章列表
+   1. 首頁文章列表卡片
    ========================================= */
-.posts-section { padding: 8rem 0; }
-.posts-section h2 { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; }
-.posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.post-card {
-  background-color: var(--card-bg); border: 1px solid var(--border-color);
-  border-radius: 20px; padding: 2rem; transition: transform 0.4s ease, box-shadow 0.4s ease;
+.posts-section { 
+  padding: 8rem 0; 
 }
-.post-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+.posts-section h2 { 
+  font-size: 2.5rem; 
+  text-align: center; 
+  margin-bottom: 3rem; 
+}
+.posts-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+  gap: 2rem; 
+}
+.post-card {
+  background-color: var(--card-bg); 
+  border: 1px solid var(--border-color);
+  border-radius: 20px; 
+  padding: 2rem; 
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.post-card:hover { 
+  transform: translateY(-10px); 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
+}
 .post-category {
-  display: inline-block; font-size: 0.8rem; font-weight: bold;
-  color: var(--primary-color); background-color: rgba(14, 165, 233, 0.1);
-  padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1rem;
+  display: inline-block; 
+  font-size: 0.8rem; 
+  font-weight: bold;
+  color: var(--primary-color); 
+  background-color: rgba(14, 165, 233, 0.1);
+  padding: 0.3rem 0.8rem; 
+  border-radius: 20px; 
+  margin-bottom: 1rem;
 }
 .post-title { font-size: 1.3rem; margin: 0 0 0.5rem 0; }
 .post-date { font-size: 0.9rem; opacity: 0.6; margin-bottom: 1rem; }
 .post-excerpt { line-height: 1.6; margin-bottom: 1.5rem; opacity: 0.8; }
 .read-more { color: var(--primary-color); text-decoration: none; font-weight: bold; }
 
+/* 首頁卡片封面圖 */
+.post-cover-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  display: block;
+}
 
 /* =========================================
-   8. 滾動動畫 (加深咗位移同時間)
+   2. 滾動動畫 (首頁用)
    ========================================= */
 .fade-in {
   opacity: 0; 
@@ -29,28 +59,36 @@
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-
 /* =========================================
-   11. 文章內頁排版與返回按鈕
+   3. 文章內頁排版 (點擊進入後)
    ========================================= */
 .single-post {
-  padding-top: 10rem;
+  /* 用 100px 確保一定避開頂部 Navbar，唔會再頂住 */
+  padding-top: 100px; 
   padding-bottom: 8rem;
   max-width: 800px;
   margin: 0 auto;
+  
+  /* 進場動畫初始狀態 */
   opacity: 0; 
   transform: translateY(20px); 
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.single-post.visible { opacity: 1; transform: translateY(0); }
+/* JS 觸發後顯示 */
+.single-post.visible { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
 
+/* 內頁 Tag */
 .single-post .post-category {
   font-size: 0.9rem;
   padding: 0.4rem 1rem;
   margin-bottom: 1.5rem;
 }
 
+/* 內頁大標題 */
 .single-post h1 {
   font-size: 2.5rem;
   font-weight: 800;
@@ -59,6 +97,7 @@
   color: var(--text-color);
 }
 
+/* 內頁日期 */
 .single-post .post-date {
   font-size: 1rem;
   opacity: 0.6;
@@ -66,21 +105,56 @@
   display: block;
 }
 
+/* 內頁大圖 */
+.single-post-img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 2rem 0;
+  display: block;
+}
+
+/* 內文排版 */
 .post-body {
-  font-size: 1.25rem;
-  line-height: 2;
+  font-size: 1.15rem;
+  line-height: 1.9;
   color: var(--text-color);
   opacity: 0.85;
   white-space: pre-wrap;
   letter-spacing: 0.5px;
 }
+.post-body p {
+  margin-bottom: 1.5rem;
+}
 
+/* Markdown 粗體顏色 (分開 Light/Dark) */
+:root[data-theme="light"] .post-body strong {
+  color: #0284c7; 
+  font-weight: 800;
+}
+:root[data-theme="dark"] .post-body strong {
+  color: #38bdf8; 
+  font-weight: 800;
+}
+
+/* H2 標題 */
+.post-body h2 {
+  font-size: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* =========================================
+   4. 返回首頁按鈕
+   ========================================= */
 .back-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 0.6rem 1.2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem; /* 同標題之間嘅空位 */
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -91,73 +165,9 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
-
 .back-link:hover {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
   color: #ffffff;
   transform: translateX(-5px);
-}
-
-
-/* 首頁卡片封面圖 */
-.post-cover-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover; /* 確保張圖唔會變形 */
-  border-radius: 12px;
-  margin-bottom: 1.5rem;
-  display: block;
-}
-
-/* =========================================
-   文章內頁圖片與 Markdown 排版
-   ========================================= */
-
-/* 文章內頁大圖 */
-.single-post-img {
-  width: 100%;
-  max-width: 100%; /* 強制唔可以大過父容器 */
-  max-height: 450px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin: 2rem 0;
-  display: block;
-}
-
-/* Markdown 轉出嚟嘅段落排版 */
-.post-body p {
-  margin-bottom: 1.5rem;
-  line-height: 1.8;
-}
-
-/* 將粗體字變做主題色 */
-.post-body strong {
-  color: var(--primary-color);
-  font-weight: 800;
-}
-
-/* 如果你有加 H2/H3，都可以順便整靚佢 */
-.post-body h2 {
-  font-size: 2rem;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-}
-
-
-/* Markdown 粗體專屬顏色 */
-:root[data-theme="light"] .post-body strong {
-  color: #0284c7; /* Light Mode 用深少少嘅藍 */
-}
-:root[data-theme="dark"] .post-body strong {
-  color: #38bdf8; /* Dark Mode 用亮少少嘅青 */
-}
-
-/* 修正文章內頁頂部太貼近 Navbar 嘅問題 */
-.single-post {
-  padding-top: 150px; /* 加大頂部留白 */
-  padding-bottom: 8rem;
-}
-.single-post .back-link {
-  margin-bottom: 3rem; /* 返回掣同標題之間加空位 */
 }
