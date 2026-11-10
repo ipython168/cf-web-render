@@ -15,11 +15,11 @@ export const renderApp = () => {
       postContainer.innerHTML = `
         <div class="container single-post">
           <a href="#" class="back-link" id="back-btn">← 返回首頁</a>
-          <div class="post-category">\${post.category}</div>
-          <h1>\${post.title}</h1>
-          <p class="post-date">\${post.date}</p>
-          \${post.image ? `<img src="\${post.image}" alt="\${post.title}" class="single-post-img">` : ''}
-          <div class="post-body">\${marked.parse(post.content.replace(/\\\\n/g, '\\n'))}</div>
+          <div class="post-category">${post.category}</div>
+          <h1>${post.title}</h1>
+          <p class="post-date">${post.date}</p>
+          ${post.image ? `<img src="${post.image}" alt="${post.title}" class="single-post-img">` : ''}
+          <div class="post-body">${marked.parse(post.content.replace(/\\n/g, '\n'))}</div>
         </div>
       `;
       
