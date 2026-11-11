@@ -1,0 +1,68 @@
+/* =========================================
+   Archive 頁面排版 (所有文章)
+   ========================================= */
+
+/* 1. 預留頂部空間避開 Navbar */
+.archive-header {
+  padding-top: 120px; 
+  padding-bottom: 8rem;
+}
+
+/* 2. 標題樣式 */
+.archive-header h1 {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  color: var(--text-color);
+}
+
+/* 3. 返回掣同標題之間嘅距離 */
+.archive-header .back-link {
+  margin-bottom: 1.5rem;
+}
+
+/* 4. 搜尋與排序框排版 (左右並排) */
+.archive-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+/* 5. 搜尋框樣式 */
+.search-input {
+  flex: 1; /* 佔據剩餘空間 */
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  outline: none;
+}
+.search-input:focus {
+  border-color: var(--primary-color);
+}
+
+/* 6. 排序下拉選單樣式 */
+.sort-select {
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  outline: none;
+  cursor: pointer;
+}
+
+/* 7. 手機版排版修正 */
+@media (max-width: 768px) {
+  .archive-header h1 {
+    font-size: 2.2rem;
+  }
+  
+  .archive-controls {
+    flex-direction: column; /* 變上下排 */
+  }
+}

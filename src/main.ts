@@ -3,6 +3,11 @@ import { initTheme } from './utils/theme';
 import { initAnimations, handleScrollFade } from './utils/animations';
 import { loadPosts } from './views/home';
 import { renderApp } from './views/post';
+import { renderArchive } from './views/archive';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // === 1. 漢堡選單開關 ===
 const menuBtn = document.getElementById('menu-btn')!;
@@ -17,106 +22,198 @@ menuBtn.addEventListener('click', openSidebar);
 closeBtn.addEventListener('click', closeSidebar);
 overlay.addEventListener('click', closeSidebar);
 
-// === 2. 初始化 Theme 與 視差動畫 ===
+// === 2. 初始化 Theme ===
 initTheme();
 initAnimations();
 
-// === 3. 動態加載網站設定並渲染 ===
-const initSite = async () => {
-  try {
-    const res = await fetch('/site-config.json');
-    const config = await res.json();
+// === 3. 全局變數 ===
+let currentLang = localStorage.getItem('lang') || 'zh';
+let siteConfig: any = null;
+let langData: any = null;
 
-    // 更新標題同 Logo
-    document.title = config.siteTitle;
-
-   
-    // 動態更新 Favicon (Browser Tab 圖標)
-    const favicon = document.createElement('link');
-    favicon.rel = 'icon';
-    favicon.type = 'image/png';
-    favicon.href = config.BrandmarkImage || config.logoImage;
-    document.head.appendChild(favicon);
-
-    const logoImg = document.querySelector('.logo-img') as HTMLImageElement;
-    if (logoImg) logoImg.src = config.logoImage;
-
-
-    // 更新 Sidebar 選單
-    const sidebarLinks = document.querySelector('.sidebar-links')!;
-    sidebarLinks.innerHTML = config.navLinks.map((link: any) => 
-      `<a href="${link.url}">${link.name}</a>`
-    ).join('');
-
-    // 生成首頁 HTML
-    const app = document.querySelector<HTMLDivElement>('#app')!;
-    app.innerHTML = `
-      <div id="home-view">
-        <section class="hero-section">
-          <div class="hero-content fade-in" id="hero-content">
-            <h1>${config.hero.title}</h1>
-            <p>${config.hero.subtitle}</p>
-            <div class="hero-btns"><a href="${config.hero.buttonLink}" class="btn-primary">${config.hero.buttonText}</a></div>
-          </div>
-        </section>
-
-        <section id="features" class="feature-section fade-in">
-          <div class="container">
-            <div class="feature-text">
-              <h2 class="fade-in">${config.sections.featuresTitle}</h2>
-              <p class="fade-in">${config.sections.featuresDesc}</p>
-            </div>
-            <div class="feature-visual fade-in">
-              <img src="${config.sections.featureImage}" alt="Feature Preview" class="feature-img">
-            </div>
-          </div>
-        </section>
-
-        <section id="latest-posts" class="posts-section fade-in">
-          <div class="container">
-            <h2 class="fade-in">${config.sections.postsTitle}</h2>
-            <div class="posts-grid" id="posts-grid"></div>
-          </div>
-        </section>
-
-        <footer class="site-footer fade-in">
-          <div class="container">
-            <div class="footer-content fade-in">
-              <div class="footer-brand">
-                <h3>
-                  <img src="${config.logoImage}" alt="Logo" class="logo-img-footer"> 
-                </h3>
-                <p>${config.footer.brandDesc}</p>
-              </div>
-              <div class="footer-links">
-                <h4>快速連結</h4>
-                ${config.footer.quickLinks.map((link: any) => `<a href="${link.url}">${link.name}</a>`).join('')}
-              </div>
-              <div class="footer-contact">
-                <h4>聯絡我們</h4>
-                <p>${config.footer.contact.email}</p>
-                <p>${config.footer.contact.support}</p>
-              </div>
-            </div>
-            <div class="footer-bottom"><p>© ${new Date().getFullYear()} ${config.siteName}. All rights reserved.</p></div>
-          </div>
-        </footer>
-      </div>
+// === 4. 渲染首頁 ===
+// === 新增：更新 Sidebar 文字 ===
+const updateSidebar = (t: any) => {
+  // 更新主題設定同語言標籤
+  document.getElementById('theme-title')!.textContent = t.sidebar?.themeTitle || "主題設定";
+  document.getElementById('lang-label')!.textContent = t.sidebar?.langLabel || "語言";
+  
+  // 更新選單連結：直接由 siteConfig 讀取，保證 F5 都一定有
+  const sidebarLinks = document.querySelector('.sidebar-links')!;
+  if (t.nav) {
+    sidebarLinks.innerHTML = `
+      <a href="#">${t.nav.about}</a>
+      <a href="#">${t.nav.news}</a>
+      <a href="#">${t.nav.help}</a>
+      <a href="#">${t.nav.support}</a>
     `;
+  }
+};
+const renderHome = () => {
+  const t = langData[currentLang];
+  const app = document.getElementById('app')!;
+  
+ 
+  app.innerHTML = `
+    <div id="home-view">
+      <section class="hero-section">
+        <div class="hero-content fade-in" id="hero-content">
+          <h1>${t.hero.title}</h1>
+          <p>${t.hero.subtitle}</p>
+          <div class="hero-btns"><a href="${siteConfig.hero.buttonLink}" class="btn-primary">${t.hero.buttonText}</a></div>
+        </div>
+      </section>
+      <section id="features" class="feature-section fade-in">
+        <div class="container">
+          <div class="feature-text">
+            <h2 class="fade-in">${t.sections.featuresTitle}</h2>
+            <p class="fade-in">${t.sections.featuresDesc}</p>
+          </div>
+          <div class="feature-visual fade-in">
+            <img src="${siteConfig.sections.featureImage}" alt="Feature" class="feature-img">
+          </div>
+        </div>
+      </section>
+      <section id="stats" class="stats-section fade-in">
+        <div class="container">
+          <h2 class="fade-in">${t.stats.title}</h2>
+          <div class="stats-grid">
+            <div class="stat-card"><h3 class="stat-number" id="stat-win">0</h3><p>${t.stats.winRate}</p></div>
+            <div class="stat-card"><h3 class="stat-number" id="stat-trades">0</h3><p>${t.stats.totalTrades}</p></div>
+            <div class="stat-card"><h3 class="stat-number" id="stat-dd">0</h3><p>${t.stats.maxDrawdown}</p></div>
+            <div class="stat-card"><h3 class="stat-number" id="stat-return">0</h3><p>${t.stats.totalReturn}</p></div>
+          </div>
+        </div>
+      </section>
+      <section id="latest-posts" class="posts-section fade-in">
+        <div class="container">
+          <h2 class="fade-in clickable-title"><a href="#archive">${t.sections.postsTitle}</a></h2>
+          <div class="posts-grid" id="posts-grid"></div>
+        </div>
+      </section>
+      <footer class="site-footer fade-in">
+        <div class="container">
+          <div class="footer-content fade-in">
+            <div class="footer-brand">
+              <h3><img src="${siteConfig.logoImage}" alt="Logo" class="logo-img-footer"></h3>
+              <p>${t.footer.brandDesc}</p>
+            </div>
+            <div class="footer-links">
+              <h4>${t.footer.quickLinksTitle}</h4>
+              ${siteConfig.footer.quickLinks.map((link: any) => `<a href="${link.url}">${link.name}</a>`).join('')}
+            </div>
+            <div class="footer-contact">
+              <h4>${t.footer.contactTitle}</h4>
+              <p>${siteConfig.footer.contact.email}</p>
+              <p>${siteConfig.footer.contact.support}</p>
+            </div>
+          </div>
+          <div class="footer-bottom"><p>© ${new Date().getFullYear()} ${siteConfig.siteName}. All rights reserved.</p></div>
+        </div>
+      </footer>
+    </div>
+  `;
 
-    await loadPosts();
-    renderApp();
+  loadPosts().then(() => {
     handleScrollFade();
     window.dispatchEvent(new Event('scroll'));
+    ScrollTrigger.getAll().forEach(t => t.kill());
+    fetch('/stats.json').then(res => res.json()).then(stats => {
+      const statData = [
+        { id: 'stat-win', target: stats.win_rate, suffix: '%' },
+        { id: 'stat-trades', target: stats.total_trades, suffix: '' },
+        { id: 'stat-dd', target: stats.max_drawdown, suffix: '%' },
+        { id: 'stat-return', target: stats.total_return, suffix: '%' }
+      ];
+      statData.forEach(item => {
+        const el = document.getElementById(item.id)!;
+        const obj = { val: 0 };
+        gsap.to(obj, {
+          val: item.target, duration: 2, ease: "power2.out",
+          scrollTrigger: { trigger: "#stats", start: "top 80%" },
+          onUpdate: () => el.textContent = Math.round(obj.val).toString() + item.suffix
+        });
+      });
+    });
+  });
+};
 
-  } catch (err) {
-    console.error("載入網站設定失敗", err);
+// === 5. 統一 Router ===
+const handleRouting = async () => {
+  if (!siteConfig || !langData) return;
+  
+  const hash = window.location.hash;
+  const app = document.getElementById('app')!;
+  
+  // 每次切換頁面，先清空 app，避免舊事件干擾
+  app.innerHTML = '';
+  // 👈 每次轉頁或者 F5，都強制更新 Sidebar
+  updateSidebar(langData[currentLang]);
+
+  if (hash === '#archive') {
+    await renderArchive(langData[currentLang]);
+  } else if (hash.startsWith('#post/')) {
+    await loadPosts(); // 確保文章數據已載入
+    renderApp();
+  } else {
+    renderHome();
   }
 };
 
-// === 4. 啟動 ===
+// === 6. 語言切換 ===
+const setLanguage = (lang: string) => {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    if ((btn as HTMLElement).dataset.lang === lang) btn.classList.add('active');
+    else btn.classList.remove('active');
+  });
+
+  handleRouting(); // 重新觸發當前頁面渲染
+};
+
+// === 7. 啟動 ===
+const initSite = async () => {
+  try {
+    const [configRes, langRes] = await Promise.all([
+      fetch('/site-config.json'),
+      fetch('/lang.json')
+    ]);
+    siteConfig = await configRes.json();
+    langData = await langRes.json();
+
+    document.title = siteConfig.siteTitle;
+    const logoImg = document.querySelector('.logo-img') as HTMLImageElement;
+    if (logoImg) logoImg.src = siteConfig.logoImage;
+    
+    const favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    favicon.href = siteConfig.BrandmarkImage || siteConfig.logoImage;
+    document.head.appendChild(favicon);
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = (e.target as HTMLElement).dataset.lang!;
+        setLanguage(lang);
+      });
+    });
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      if ((btn as HTMLElement).dataset.lang === currentLang) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+
+    // 第一次入嚟，觸發 Router
+    handleRouting();
+
+  } catch (err) {
+    console.error("載入失敗", err);
+  }
+};
+
 initSite();
 
 // 監聽網址變化同 Scroll
-window.addEventListener('hashchange', renderApp);
+window.addEventListener('hashchange', handleRouting);
 window.addEventListener('scroll', handleScrollFade);

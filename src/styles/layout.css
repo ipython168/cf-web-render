@@ -3,7 +3,7 @@
    ========================================= */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; justify-content: center; padding: 1.5rem 0; 
+  display: flex; justify-content: center; padding: 0.8rem 0; 
   background-color: transparent;
 }
 .nav-inner {
@@ -158,7 +158,29 @@
 .sidebar-links { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2rem; }
 .sidebar-links a { font-size: 1.2rem; color: var(--text-color); text-decoration: none; font-weight: bold; }
 .sidebar-bottom { margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
-.lang-switch { margin-bottom: 1rem; color: var(--text-color); opacity: 0.7; }
+.lang-switch {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+}
+
+.lang-btn.active {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
 .social-link { color: var(--primary-color); text-decoration: none; font-weight: bold; }
 .logo-img-footer { height: 48px; width: auto; vertical-align: middle; }
 

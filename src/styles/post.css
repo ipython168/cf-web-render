@@ -91,7 +91,7 @@
    ========================================= */
 .back-link {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 0.4rem 1rem; /* 縮細 Padding */
+  padding: 0.4rem 1rem; /* 縮細 Padding */ 
   margin-bottom: 1rem;
   background-color: var(--card-bg); border: 1px solid var(--border-color);
   border-radius: 8px; color: var(--text-color); text-decoration: none;
@@ -119,4 +119,20 @@
 .feature-img:hover {
   transform: rotate(4deg) scale(1.05); /* Hover 順時針，並放大 */
   box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+}
+/* 首頁文章列表標題 (可點擊) */
+.clickable-title {
+  font-size: 2.5rem; 
+  text-align: center; 
+  margin-bottom: 3rem;
+}
+
+.clickable-title a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.clickable-title a:hover {
+  color: var(--primary-color); /* Hover 變主題色 */
 }

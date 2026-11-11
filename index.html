@@ -25,7 +25,7 @@
       <button id="close-btn" class="close-btn">✕</button>
       <div class="sidebar-content">
         <div class="theme-section">
-          <h4>主題設定</h4>
+          <h4 id="theme-title">主題設定</h4>
           <div class="icon-btn-group" id="theme-group">
             <button class="icon-btn theme-opt" data-theme="light">☀️</button>
             <button class="icon-btn theme-opt" data-theme="system">💻</button>
@@ -35,9 +35,11 @@
         <div class="sidebar-links"></div> <!-- 呢度留空，等 JS 填 -->
         <div class="sidebar-bottom">
           <div class="lang-switch">
-            <span>中文</span> | <span>EN</span>
+            <span id="lang-label">語言</span>:
+            <button class="lang-btn active" data-lang="zh">中文</button> | 
+            <button class="lang-btn" data-lang="en">EN</button>
           </div>
-          <a href="https://facebook.com" target="_blank" class="social-link">Facebook</a>
+          <a href="#" id="social-fb" target="_blank" class="social-link">Facebook</a>
         </div>
       </div>
     </div>

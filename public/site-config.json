@@ -15,6 +15,11 @@
     "featureImage": "/dashboard-preview.png",
     "postsTitle": "最新交易心得與回測"
   },
+  "sidebar": {
+    "themeTitle": "主題設定",
+    "langZH": "中文",
+    "langEN": "EN"
+  },
 
   "navLinks": [
     { "name": "關於我們", "url": "#" },
@@ -24,17 +29,20 @@
   ],
   "footer": {
     "brandDesc": "我哋係香港小型開發團隊...",
+    "quickLinksTitle": "快速連結",
     "quickLinks": [
       { "name": "關於我們", "url": "#" },
       { "name": "回測結果", "url": "#" },
       { "name": "交易心得", "url": "#" },
       { "name": "私隱條例", "url": "#" }
     ],
+    "contactTitle": "聯絡我們",
     "contact": {
       "email": "info@myquant.hk",
       "support": "WhatsApp 技術支援"
     }
   },
+  
   "social": {
     "facebook": "https://facebook.com"
   }
