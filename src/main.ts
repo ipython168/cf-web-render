@@ -10,14 +10,8 @@ const closeBtn = document.getElementById('close-btn')!;
 const sidebar = document.getElementById('sidebar')!;
 const overlay = document.getElementById('overlay')!;
 
-const openSidebar = () => {
-  sidebar.classList.add('open');
-  overlay.classList.add('active');
-};
-const closeSidebar = () => {
-  sidebar.classList.remove('open');
-  overlay.classList.remove('active');
-};
+const openSidebar = () => { sidebar.classList.add('open'); overlay.classList.add('active'); };
+const closeSidebar = () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); };
 
 menuBtn.addEventListener('click', openSidebar);
 closeBtn.addEventListener('click', closeSidebar);
@@ -33,12 +27,20 @@ const initSite = async () => {
     const res = await fetch('/site-config.json');
     const config = await res.json();
 
-    // 更新瀏覽器標題
+    // 更新標題同 Logo
     document.title = config.siteTitle;
 
-    // 更新 Navbar Logo (只改字，圖暫時用死圖)
-    const logoText = document.querySelector('.logo-text') as HTMLElement;
-    if (logoText) logoText.textContent = config.siteName;
+   
+    // 動態更新 Favicon (Browser Tab 圖標)
+    const favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    favicon.type = 'image/png';
+    favicon.href = config.BrandmarkImage || config.logoImage;
+    document.head.appendChild(favicon);
+
+    const logoImg = document.querySelector('.logo-img') as HTMLImageElement;
+    if (logoImg) logoImg.src = config.logoImage;
+
 
     // 更新 Sidebar 選單
     const sidebarLinks = document.querySelector('.sidebar-links')!;
@@ -61,16 +63,18 @@ const initSite = async () => {
         <section id="features" class="feature-section fade-in">
           <div class="container">
             <div class="feature-text">
-              <h2 class="fade-in">隨時掌握<br>市場最新動態</h2>
-              <p class="fade-in">支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。</p>
+              <h2 class="fade-in">${config.sections.featuresTitle}</h2>
+              <p class="fade-in">${config.sections.featuresDesc}</p>
             </div>
-            <div class="feature-visual fade-in"><div class="mockup-box">📊 回測圖表預覽</div></div>
+            <div class="feature-visual fade-in">
+              <img src="${config.sections.featureImage}" alt="Feature Preview" class="feature-img">
+            </div>
           </div>
         </section>
 
         <section id="latest-posts" class="posts-section fade-in">
           <div class="container">
-            <h2 class="fade-in">最新交易心得與回測</h2>
+            <h2 class="fade-in">${config.sections.postsTitle}</h2>
             <div class="posts-grid" id="posts-grid"></div>
           </div>
         </section>
@@ -79,7 +83,9 @@ const initSite = async () => {
           <div class="container">
             <div class="footer-content fade-in">
               <div class="footer-brand">
-                <h3><img src="/logo.png" alt="Logo" class="logo-img-footer"> ${config.siteName}</h3>
+                <h3>
+                  <img src="${config.logoImage}" alt="Logo" class="logo-img-footer"> 
+                </h3>
                 <p>${config.footer.brandDesc}</p>
               </div>
               <div class="footer-links">
@@ -98,7 +104,6 @@ const initSite = async () => {
       </div>
     `;
 
-    // 載入文章並初始化 Router
     await loadPosts();
     renderApp();
     handleScrollFade();

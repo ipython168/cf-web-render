@@ -13,12 +13,10 @@ export const renderApp = () => {
     const post = posts.find(p => p.id === id);
     
     if (post) {
-      // 1. 備份首頁
       if (!savedHomeHTML) {
         savedHomeHTML = app.innerHTML;
       }
 
-      // 2. 直接替換成文章內頁
       app.innerHTML = `
         <div class="container single-post">
           <a href="#" class="back-link" id="back-btn">← 返回首頁</a>
@@ -32,7 +30,6 @@ export const renderApp = () => {
       
       window.scrollTo(0, 0);
 
-      // 3. 觸發文章 Fade-in
       const singlePost = app.querySelector('.single-post') as HTMLElement;
       if (singlePost) {
         setTimeout(() => {
@@ -41,14 +38,12 @@ export const renderApp = () => {
         }, 50);
       }
 
-      // 4. 綁定返回掣
       document.getElementById('back-btn')?.addEventListener('click', (e) => {
         e.preventDefault();
         window.location.hash = '';
       });
     }
   } else {
-    // 返回首頁：還原 HTML
     if (savedHomeHTML) {
       app.innerHTML = savedHomeHTML;
       savedHomeHTML = ''; 

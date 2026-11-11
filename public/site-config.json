@@ -2,12 +2,20 @@
   "siteName": "QuantBase",
   "siteTitle": "QuantBase | 量化交易基地",
   "logoImage": "/logo.png",
+  "BrandmarkImage": "/brandmark.png",
   "hero": {
     "title": "用數據透視市場<br>用紀律執行交易",
     "subtitle": "歡迎來到我的量化交易基地。這裡紀錄了我的回測結果與交易心得。",
     "buttonText": "開始了解",
     "buttonLink": "#features"
   },
+  "sections": {
+    "featuresTitle": "隨時掌握<br>市場最新動態",
+    "featuresDesc": "支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。",
+    "featureImage": "/dashboard-preview.png",
+    "postsTitle": "最新交易心得與回測"
+  },
+
   "navLinks": [
     { "name": "關於我們", "url": "#" },
     { "name": "最新消息", "url": "#" },
