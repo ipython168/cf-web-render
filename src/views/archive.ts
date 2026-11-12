@@ -29,7 +29,8 @@ export const renderArchive = async (t: any) => {
         </select>
       </div>
 
-      <div id="category-filters" class="category-filters"></div>
+      <!-- 分類 Filter 容器 -->
+      <div id="category-filters" class="category-filters" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom: 2rem;"></div>
 
       <div class="posts-grid" id="archive-grid">
         <p style="text-align:center; width:100%;">載入中...</p>
@@ -52,7 +53,7 @@ export const renderArchive = async (t: any) => {
     bindEvents(archiveT, lang);
 
   } catch (err) {
-    console.error(err);
+    console.error("Archive Load Error:", err);
   }
 
   setTimeout(() => {
@@ -65,14 +66,17 @@ const initFilters = (archiveT: any, lang: string) => {
   const filterContainer = document.getElementById('category-filters');
   if (!filterContainer) return;
 
-  // 收集所有獨特分類 (中英文)
   const categories = [archiveT.allCategory];
   const uniqueCats = new Set();
+  
+  // 提取所有獨特分類 (根據當前語言)
   allPosts.forEach(p => {
-    const catName = lang === 'en' ? p.category.en : p.category.zh;
-    if (!uniqueCats.has(catName)) {
-      uniqueCats.add(catName);
-      categories.push(catName);
+    if (p.category && p.category.zh && p.category.en) {
+      const catName = lang === 'en' ? p.category.en : p.category.zh;
+      if (!uniqueCats.has(catName)) {
+        uniqueCats.add(catName);
+        categories.push(catName);
+      }
     }
   });
 
@@ -86,13 +90,15 @@ const renderCards = (lang: string) => {
   if (!grid) return;
 
   if (filteredPosts.length === 0) {
-    grid.innerHTML = `<p style="text-align:center; width:100%;">冇搵到相關文章。</p>`;
+    grid.innerHTML = `<p style="text-align:center; width:100%;">沒有相關文章。</p>`;
     return;
   }
 
   grid.innerHTML = filteredPosts.map((post: any) => {
+    // 語言 Fallback 邏輯：如果 en title 空，就用 zh
     const content = (lang === 'en' && post.en?.title) ? post.en : post.zh;
     const catName = (lang === 'en') ? post.category.en : post.category.zh;
+    
     return `
       <a href="#post/${post.id}" class="post-card" style="text-decoration: none; color: inherit; display: block;">
         ${post.image ? `<img src="${post.image}" alt="${content.title}" class="post-cover-img">` : ''}
@@ -109,7 +115,6 @@ const renderCards = (lang: string) => {
 const bindEvents = (archiveT: any, lang: string) => {
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
   const sortSelect = document.getElementById('sort-select') as HTMLSelectElement;
-  const filterBtns = document.querySelectorAll('.filter-btn');
 
   const applyFilters = () => {
     const query = searchInput.value.toLowerCase();
@@ -120,15 +125,12 @@ const bindEvents = (archiveT: any, lang: string) => {
       const content = (lang === 'en' && post.en?.title) ? post.en : post.zh;
       const catName = (lang === 'en') ? post.category.en : post.category.zh;
       
-      // 搜尋 Title 或 Excerpt
       const matchesSearch = content.title.toLowerCase().includes(query) || content.excerpt.toLowerCase().includes(query);
-      // 分類 Filter
       const matchesCategory = activeCat === archiveT.allCategory || catName === activeCat;
       
       return matchesSearch && matchesCategory;
     });
 
-    // 排序
     result.sort((a, b) => {
       const dateA = new Date(a.date).getTime();
       const dateB = new Date(b.date).getTime();
@@ -142,11 +144,13 @@ const bindEvents = (archiveT: any, lang: string) => {
   searchInput?.addEventListener('input', applyFilters);
   sortSelect?.addEventListener('change', applyFilters);
   
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      (e.target as HTMLElement).classList.add('active');
+  // 點擊分類自動篩選
+  document.getElementById('category-filters')?.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.classList.contains('filter-btn')) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      target.classList.add('active');
       applyFilters();
-    });
+    }
   });
 };
