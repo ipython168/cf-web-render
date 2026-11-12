@@ -275,3 +275,18 @@ initSite();
 // 監聽網址變化同 Scroll
 window.addEventListener('hashchange', handleRouting);
 window.addEventListener('scroll', handleScrollFade);
+
+
+// 👈 新增：完美處理 Backspace 上一頁
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Backspace') {
+    const activeEl = document.activeElement;
+    // 如果唔係喺輸入框或者文字區打字，先觸發
+    const isInput = activeEl?.tagName === 'INPUT' || activeEl?.tagName === 'TEXTAREA';
+    
+    if (!isInput) {
+      e.preventDefault(); // 阻止瀏覽器預設行為
+      window.history.back(); // 呼叫瀏覽器嘅「上一頁」
+    }
+  }
+});

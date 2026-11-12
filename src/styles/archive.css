@@ -81,9 +81,11 @@
   .archive-controls {
     flex-direction: column; /* 變上下排 */
   }
-.archive-sort-group {
-  justify-content: center;
-}
+  /* 
+  .archive-sort-group {
+    justify-content: center;
+  }
+  */
 
 }
 
