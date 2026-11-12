@@ -1,26 +1,4 @@
-export const initAnimations = () => {
-  const navbar = document.querySelector('.navbar') as HTMLElement;
-  
-  // Navbar 轉色
-  window.addEventListener('scroll', () => {
-    const isPostPage = window.location.hash.startsWith('#post/');
-    if (isPostPage || window.scrollY > window.innerHeight * 0.9) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  });
 
-  // 視差效果
-  const heroSection = document.querySelector('.hero-section') as HTMLElement;
-  if (window.innerWidth > 768 && heroSection) {
-    heroSection.addEventListener('mousemove', (e) => {
-      const x = (window.innerWidth / 2 - e.pageX) / 30;
-      const y = (window.innerHeight / 2 - e.pageY) / 30;
-      heroSection.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
-    });
-  }
-};
 
 // Scroll 滾動淡入淡出
 export const handleScrollFade = () => {

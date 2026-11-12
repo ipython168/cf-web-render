@@ -24,6 +24,10 @@
   
   /* 淺色背景漸層：中心為極淺的冰青色，向外自然過渡到網頁底色 */
   --page-gradient: radial-gradient(circle at center, #cffafe 0%, #a5f3fc 50%, #e0f2fe 80%, #ffffff 100%);
+
+  /* Hero 區塊專用字色 */
+  --hero-text-color: #0f172a; /* Light Mode 用深色字 */
+  --hero-bg-overlay: rgba(255, 255, 255, 0.2);
 }
 
 :root[data-theme="dark"] {
@@ -47,6 +51,11 @@
 
   /* 深色背景漸層：中心為質感中淺灰，向外圍過渡至全黑 */
   --page-gradient: radial-gradient(circle at center, #3f3f46 0%, #27272c 50%, #18181b 80%, #000000 100%);
+
+  /* Hero 區塊專用字色 */
+  --hero-text-color: #ffffff; /* Dark Mode 用白色字 */
+  --hero-bg-overlay: rgba(15, 23, 42, 0.7);
+
 }
 
 

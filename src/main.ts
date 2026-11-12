@@ -1,6 +1,6 @@
 import './style.css';
 import { initTheme } from './utils/theme';
-import { initAnimations, handleScrollFade } from './utils/animations';
+import { handleScrollFade } from './utils/animations';
 import { loadPosts } from './views/home';
 import { renderApp } from './views/post';
 import { renderArchive } from './views/archive';
@@ -23,8 +23,7 @@ closeBtn.addEventListener('click', closeSidebar);
 overlay.addEventListener('click', closeSidebar);
 
 // === 2. 初始化 Theme ===
-initTheme();
-initAnimations();
+initTheme(); 
 
 // === 3. 全局變數 ===
 let currentLang = localStorage.getItem('lang') || 'zh';
@@ -125,7 +124,8 @@ const renderHome = () => {
     if (currentTheme === 'dark') {
       hero.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/hero-bg-dark.jpg')`;
     } else {
-      hero.style.backgroundImage = `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('/hero-bg-light.jpg')`;
+      // 將白色遮罩由 0.5 減到 0.2，等張相透出嚟
+      hero.style.backgroundImage = `linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('/hero-bg-light.jpg')`;
     }
   };
 
@@ -138,7 +138,7 @@ const renderHome = () => {
       setTimeout(updateHeroBg, 50); 
     });
   });
-  
+
   // 👈 新增：Hero 滑鼠視差效果
   const heroSection = document.querySelector('.hero-section') as HTMLElement;
   if (window.innerWidth > 768 && heroSection) {
@@ -149,6 +149,15 @@ const renderHome = () => {
       heroSection.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
     });
   }
+  // 👈 新增：Navbar 喺 Hero 頂部跟 Hero 字色
+  const navbar = document.querySelector('.navbar') as HTMLElement;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > window.innerHeight - 100) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
 
 
   loadPosts().then(() => {
