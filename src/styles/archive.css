@@ -44,16 +44,32 @@
   border-color: var(--primary-color);
 }
 
-/* 6. 排序下拉選單樣式 */
-.sort-select {
-  padding: 0.8rem 1.2rem;
-  border-radius: 8px;
+/* 6. 排序按鈕樣式 (取代舊有下拉選單) */
+.archive-sort-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+ 
+.sort-btn {
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
   border: 1px solid var(--border-color);
-  background: var(--card-bg);
+  background: transparent;
   color: var(--text-color);
-  font-size: 1rem;
-  outline: none;
   cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+ 
+.sort-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+ 
+.sort-btn:hover {
+  border-color: var(--primary-color);
 }
 
 /* 7. 手機版排版修正 */
@@ -65,11 +81,42 @@
   .archive-controls {
     flex-direction: column; /* 變上下排 */
   }
+.archive-sort-group {
+  justify-content: center;
+}
+
 }
 
 
-#category-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
 
+/* 分類 Filter 樣式 */
+#category-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+ 
+.filter-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+ 
+.filter-btn:hover {
+  border-color: var(--primary-color);
+}
 
 
 
