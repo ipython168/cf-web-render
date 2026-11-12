@@ -75,7 +75,9 @@ const initFilters = (archiveT: any, lang: string) => {
   const filterContainer = document.getElementById('category-filters');
   if (!filterContainer) return;
 
-  const categories = [{ name: archiveT.allCategory, value: 'all' }];
+  // 如果 archiveT 冇 allCategory，就 fallback 用「全部 / All」
+  const allCatName = archiveT.allCategory || (lang === 'en' ? 'All' : '全部');
+  const categories = [{ name: allCatName, value: 'all' }];
   const uniqueCats = new Set();
   
   allPosts.forEach(p => {
