@@ -58,7 +58,7 @@ export const renderArchive = async (t: any) => {
     
     initFilters(archiveT, lang);
     renderCards(lang);
-    bindEvents(archiveT, lang);
+    bindEvents(lang);
 
   } catch (err) {
     console.error("Archive Load Error:", err);
@@ -118,9 +118,8 @@ const renderCards = (lang: string) => {
       </a>
     `;
   }).join('');
-};
-
-const bindEvents = (archiveT: any, lang: string) => {
+}; 
+const bindEvents = (lang: string) => {
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
 
   const applyFilters = () => {
