@@ -114,12 +114,38 @@ const renderHome = () => {
     </div>
   `;
 
+
+  // 👇👇👇 係呢個位開始加 👇👇👇
+  // 1. 新增：根據主題切換 Hero 背景圖
+  const updateHeroBg = () => {
+    const hero = document.querySelector('.hero-section') as HTMLElement;
+    if (!hero) return;
+    
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    if (currentTheme === 'dark') {
+      hero.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/hero-bg-dark.jpg')`;
+    } else {
+      hero.style.backgroundImage = `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('/hero-bg-light.jpg')`;
+    }
+  };
+
+  // 初始化時執行一次
+  updateHeroBg();
+
+  // 監聽主題切換按鈕
+  document.querySelectorAll('.theme-opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      setTimeout(updateHeroBg, 50); 
+    });
+  });
+  
   // 👈 新增：Hero 滑鼠視差效果
   const heroSection = document.querySelector('.hero-section') as HTMLElement;
   if (window.innerWidth > 768 && heroSection) {
     heroSection.addEventListener('mousemove', (e) => {
-      const x = (window.innerWidth / 2 - e.pageX) / 30;
-      const y = (window.innerHeight / 2 - e.pageY) / 30;
+      // 改為正數，而且除以 15 (之前係 30) 令郁動幅度大啲  
+      const x = -(window.innerWidth / 2 - e.pageX) / 15;
+      const y = -(window.innerHeight / 2 - e.pageY) / 15;
       heroSection.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
     });
   }

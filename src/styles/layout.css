@@ -65,10 +65,10 @@
 .hero-section {
   height: 100vh; display: flex; align-items: center; justify-content: center;
   text-align: center; 
-  background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/hero-bg.jpg');
   background-size: 110% 110%; 
   background-position: center;
   color: #ffffff; position: relative; overflow: hidden;
+  transition: background-image 0.5s ease-in-out;
 }
 .hero-content h1 { font-size: 4.5rem; line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -1px; }
 .hero-content p { font-size: 1.2rem; opacity: 0.8; margin-bottom: 3rem; padding: 0 1rem; }
