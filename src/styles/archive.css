@@ -66,3 +66,10 @@
     flex-direction: column; /* 變上下排 */
   }
 }
+
+
+#category-filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+
+
+
+

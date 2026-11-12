@@ -1,53 +1,48 @@
-export const renderDebug = async () => {
+export const renderArchive = async (t: any) => {
   const app = document.getElementById('app')!;
-  
+  const lang = localStorage.getItem('lang') || 'zh';
+
+  // 1. 畫個最基本嘅外框
   app.innerHTML = `
-    <div style="padding: 100px; font-family: monospace; background: #0f172a; color: #38bdf8; min-height: 100vh;">
-      <h1>🛠️ JSON Debug Page</h1>
-      <a href="#" style="color: white; text-decoration: underline;">← 返回首頁</a>
-      <pre id="debug-output" style="margin-top: 2rem; white-space: pre-wrap; background: #1e293b; padding: 2rem; border-radius: 10px;">載入中...</pre>
+    <div style="padding: 100px; text-align: center;">
+      <h1>Archive 測試中</h1>
+      <p id="debug-status">正在載入數據...</p>
+      <a href="#" id="back-home-btn">← 返回首頁</a>
+      <div id="archive-grid" style="margin-top: 2rem; text-align: left;"></div>
     </div>
   `;
 
-  document.querySelector('a')?.addEventListener('click', (e) => {
+  document.getElementById('back-home-btn')?.addEventListener('click', (e) => {
     e.preventDefault();
     window.location.hash = '';
   });
 
+  // 2. Fetch 數據
   try {
     const res = await fetch('/posts.json');
     const posts = await res.json();
     
-    let output = `總共有 ${posts.length} 篇文章\n\n`;
+    const statusEl = document.getElementById('debug-status')!;
+    statusEl.textContent = `成功載入 ${posts.length} 篇文章！`;
 
-    posts.forEach((post: any, index: number) => {
-      output += `--- 文章 ${index + 1} (ID: ${post.id}) ---\n`;
-      output += `Date: ${post.date}\n`;
-      output += `Image: ${post.image || '冇'}\n`;
+    const grid = document.getElementById('archive-grid')!;
+    
+    // 3. 直接印出最簡單嘅文字，唔用卡片，睇吓出唔出到
+    grid.innerHTML = posts.map((post: any) => {
+      // 確保語言 Fallback 正確
+      const content = (lang === 'en' && post.en?.title) ? post.en : post.zh;
+      const catName = (lang === 'en') ? post.category.en : post.category.zh;
       
-      // 檢查 category
-      output += `Category Type: ${typeof post.category}\n`;
-      if (typeof post.category === 'object') {
-        output += `Category (zh): ${post.category.zh}\n`;
-        output += `Category (en): ${post.category.en}\n`;
-      } else {
-        output += `Category (Raw): ${post.category}\n`;
-      }
-
-      // 檢查 zh
-      output += `Has zh: ${post.zh ? 'Yes' : 'No'}\n`;
-      if (post.zh) output += `  zh.title: ${post.zh.title ? 'Yes' : 'No'}\n`;
-      
-      // 檢查 en
-      output += `Has en: ${post.en ? 'Yes' : 'No'}\n`;
-      if (post.en) output += `  en.title: ${post.en.title ? 'Yes' : 'No (Empty)'}\n`;
-      
-      output += `\n`;
-    });
-
-    document.getElementById('debug-output')!.textContent = output;
+      return `
+        <div style="border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem;">
+          <h3>${content.title}</h3>
+          <p>分類：${catName}</p>
+          <p>${content.excerpt}</p>
+        </div>
+      `;
+    }).join('');
 
   } catch (err: any) {
-    document.getElementById('debug-output')!.textContent = `Error: ${err.message}`;
+    document.getElementById('debug-status')!.textContent = `❌ 出錯：${err.message}`;
   }
 };
