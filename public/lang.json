@@ -22,7 +22,8 @@
       "backToArchive": "返回文章",
       "searchPlaceholder": "搜尋文章...",
       "sortNewest": "最新發佈",
-      "sortOldest": "最舊發佈"
+      "sortOldest": "最舊發佈",
+      "allCategory": "全部文章"
     },
     "stats": {
       "title": "實戰數據",
@@ -65,7 +66,8 @@
       "backToArchive": "Back to Articles",
       "searchPlaceholder": "Search...",
       "sortNewest": "Newest",
-      "sortOldest": "Oldest"
+      "sortOldest": "Oldest",
+      "allCategory": "All Articles"
     },
     
     "stats": {
