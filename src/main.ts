@@ -114,6 +114,17 @@ const renderHome = () => {
     </div>
   `;
 
+  // 👈 新增：Hero 滑鼠視差效果
+  const heroSection = document.querySelector('.hero-section') as HTMLElement;
+  if (window.innerWidth > 768 && heroSection) {
+    heroSection.addEventListener('mousemove', (e) => {
+      const x = (window.innerWidth / 2 - e.pageX) / 30;
+      const y = (window.innerHeight / 2 - e.pageY) / 30;
+      heroSection.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
+    });
+  }
+
+
   loadPosts().then(() => {
     handleScrollFade();
     window.dispatchEvent(new Event('scroll'));
@@ -206,6 +217,12 @@ const initSite = async () => {
 
     // 第一次入嚟，觸發 Router
     handleRouting();
+
+    // 👈 新增：載入完成後，移除 loading class，顯示畫面
+    setTimeout(() => {
+        document.body.classList.remove('loading');
+    }, 100);
+
 
   } catch (err) {
     console.error("載入失敗", err);
