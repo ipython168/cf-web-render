@@ -17,7 +17,7 @@ export const renderArchive = async (t: any) => {
   };
 
   app.innerHTML = `
-    <div id="archive-view" class="container archive-header fade-in">
+    <div id="archive-view" class="container archive-header">
       <a href="#" class="back-link" id="back-home-btn">← ${archiveT.backToHome}</a>
       <h1>${archiveT.pageTitle}</h1>
       
@@ -29,9 +29,10 @@ export const renderArchive = async (t: any) => {
         </select>
       </div>
 
-      <!-- 分類 Filter 容器 -->
+      <!-- 分類 Filter -->
       <div id="category-filters" class="category-filters" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom: 2rem;"></div>
 
+      <!-- 文章列表 -->
       <div class="posts-grid" id="archive-grid">
         <p style="text-align:center; width:100%;">載入中...</p>
       </div>
@@ -54,6 +55,7 @@ export const renderArchive = async (t: any) => {
 
   } catch (err) {
     console.error("Archive Load Error:", err);
+    document.getElementById('archive-grid')!.innerHTML = `<p>載入失敗，請查看 Console。</p>`;
   }
 
   setTimeout(() => {
@@ -69,7 +71,6 @@ const initFilters = (archiveT: any, lang: string) => {
   const categories = [archiveT.allCategory];
   const uniqueCats = new Set();
   
-  // 提取所有獨特分類 (根據當前語言)
   allPosts.forEach(p => {
     if (p.category && p.category.zh && p.category.en) {
       const catName = lang === 'en' ? p.category.en : p.category.zh;
@@ -95,9 +96,8 @@ const renderCards = (lang: string) => {
   }
 
   grid.innerHTML = filteredPosts.map((post: any) => {
-    // 語言 Fallback 邏輯：如果 en title 空，就用 zh
     const content = (lang === 'en' && post.en?.title) ? post.en : post.zh;
-    const catName = (lang === 'en') ? post.category.en : post.category.zh;
+    const catName = (lang === 'en' && post.category?.en) ? post.category.en : (post.category?.zh || post.category);
     
     return `
       <a href="#post/${post.id}" class="post-card" style="text-decoration: none; color: inherit; display: block;">
@@ -123,7 +123,7 @@ const bindEvents = (archiveT: any, lang: string) => {
 
     let result = allPosts.filter(post => {
       const content = (lang === 'en' && post.en?.title) ? post.en : post.zh;
-      const catName = (lang === 'en') ? post.category.en : post.category.zh;
+      const catName = (lang === 'en' && post.category?.en) ? post.category.en : (post.category?.zh || post.category);
       
       const matchesSearch = content.title.toLowerCase().includes(query) || content.excerpt.toLowerCase().includes(query);
       const matchesCategory = activeCat === archiveT.allCategory || catName === activeCat;
@@ -144,7 +144,6 @@ const bindEvents = (archiveT: any, lang: string) => {
   searchInput?.addEventListener('input', applyFilters);
   sortSelect?.addEventListener('change', applyFilters);
   
-  // 點擊分類自動篩選
   document.getElementById('category-filters')?.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
     if (target.classList.contains('filter-btn')) {
