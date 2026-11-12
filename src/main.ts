@@ -4,6 +4,8 @@ import { handleScrollFade } from './utils/animations';
 import { loadPosts } from './views/home';
 import { renderApp } from './views/post';
 import { renderArchive } from './views/archive';
+import { renderDebug } from './views/debug';
+
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -198,6 +200,9 @@ const handleRouting = async () => {
 
   if (hash === '#archive') {
     await renderArchive(langData[currentLang]);
+  } else if (hash === '#debug') {
+    await renderDebug();
+
   } else if (hash.startsWith('#post/')) {
     await loadPosts(); // 確保文章數據已載入
     renderApp();

@@ -25,13 +25,20 @@ export const renderApp = () => {
       app.innerHTML = `
         <div class="container single-post">
           <a href="#archive" class="back-link" id="back-btn">← ${lang === 'en' ? 'All Articles' : '所有文章'}</a>
-          <div class="post-category">${post.category}</div> <!-- 如果你有 category 英文對照可以喺呢度加 -->
+          <!-- 如果你有 category 英文對照可以喺呢度加 -->
+          <div class="post-category">${lang === 'en' ? post.category.en : post.category.zh}</div> 
 
 
           <h1>${t.title}</h1>
           <p class="post-date">${post.date}</p>
           ${post.image ? `<img src="${post.image}" alt="${t.title}" class="single-post-img">` : ''}
           <div class="post-body">${marked.parse(t.content.replace(/\\\\n/g, '\\n'))}</div>
+
+          <div class="post-disclaimer">
+            ${lang === 'en' 
+              ? 'Disclaimer: The content above is for sharing and educational purposes only and does not constitute any investment advice.' 
+              : '免責聲明：以上內容純屬分享與教學用途，不構成任何投資建議。'}
+          </div>
         </div>
       `;
       
