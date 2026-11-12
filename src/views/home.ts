@@ -69,16 +69,18 @@ export const renderPosts = () => {
   const postsToShow = filteredPosts.slice(0, displayCount);
 
   grid.innerHTML = postsToShow.map(post => {
-    const t = (lang === 'en' && post.en?.title) ? post.en : post.zh;
-    
+    // 語言 Fallback 邏輯
+    const content = (lang === 'en' && post.en?.title) ? post.en : post.zh;
+    const catName = (lang === 'en') ? post.category.en : post.category.zh;
+
     return `
       <article class="post-card fade-in">
-        ${post.image ? `<img src="${post.image}" alt="${t.title}" class="post-cover-img">` : ''}
-        <div class="post-category">${post.category}</div>
-        <h3 class="post-title">${t.title}</h3>
+        ${post.image ? `<img src="${post.image}" alt="${content.title}" class="post-cover-img">` : ''}
+        <div class="post-category">${catName}</div>
+        <h3 class="post-title">${content.title}</h3>
         <p class="post-date">${post.date}</p>
-        <p class="post-excerpt">${t.excerpt}</p>
-        <a href="#post/${post.id}" class="read-more">閱讀更多 →</a>
+        <p class="post-excerpt">${content.excerpt}</p>
+        <a href="#post/${post.id}" class="read-more">${lang === 'en' ? 'Read more' : '閱讀更多'} →</a>
       </article>
     `;
   }).join('');
