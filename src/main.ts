@@ -4,6 +4,7 @@ import { handleScrollFade } from './utils/animations';
 import { loadPosts } from './views/home';
 import { renderApp } from './views/post';
 import { renderArchive } from './views/archive';
+
 import { renderDebug } from './views/debug';
 
 import gsap from 'gsap';
