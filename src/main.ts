@@ -3,12 +3,11 @@ import { initTheme } from './utils/theme';
 import { initUI } from './utils/ui';
 
 import { handleScrollFade } from './utils/animations';
-import { loadPosts } from './views/home';
-import { renderApp } from './views/post';
-import { renderArchive } from './views/archive';
-import { renderHome } from './views/homeView';
 
-import { renderDebug } from './views/debug';
+import { renderHome } from './views/homeView';
+import { handleRouting } from './router';
+import { updateSidebar } from './utils/sidebar';
+
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -24,51 +23,8 @@ let currentLang = localStorage.getItem('lang') || 'zh';
 let siteConfig: any = null;
 let langData: any = null;
 
-// === 4. 渲染首頁 ===
-// === 新增：更新 Sidebar 文字 ===
-const updateSidebar = (t: any) => {
-  // 更新主題設定同語言標籤
- document.getElementById('theme-title')!.textContent = t.sidebar.themeTitle;
- document.getElementById('lang-label')!.textContent = t.sidebar.langLabel;
-  
-  // 更新選單連結：直接由 siteConfig 讀取，保證 F5 都一定有
-  const sidebarLinks = document.querySelector('.sidebar-links')!;
-  if (t.nav) {
-    sidebarLinks.innerHTML = `
-      <a href="#">${t.nav.about}</a>
-      <a href="#">${t.nav.news}</a>
-      <a href="#">${t.nav.help}</a>
-      <a href="#">${t.nav.support}</a>
-    `;
-  }
-};
-
-
-// === 5. 統一 Router ===
-const handleRouting = async () => {
-  if (!siteConfig || !langData) return;
-  
-  const hash = window.location.hash;
-  const app = document.getElementById('app')!;
-  
-  // 每次切換頁面，先清空 app，避免舊事件干擾
-  app.innerHTML = '';
-  // 👈 每次轉頁或者 F5，都強制更新 Sidebar
-  updateSidebar(langData[currentLang]);
-
-  if (hash === '#archive') {
-    await renderArchive(langData[currentLang]);
-  } else if (hash === '#debug') {
-    await renderDebug();
-
-  } else if (hash.startsWith('#post/')) {
-    await loadPosts(); // 確保文章數據已載入
-    renderApp();
-  } else {
-    renderHome(siteConfig, langData[currentLang]);
-
-  }
-};
+ 
+ 
 
 // === 6. 語言切換 ===
 const setLanguage = (lang: string) => {
@@ -80,7 +36,7 @@ const setLanguage = (lang: string) => {
     else btn.classList.remove('active');
   });
 
-  handleRouting(); // 重新觸發當前頁面渲染
+  handleRouting(siteConfig, langData, currentLang); 
 };
 
 // === 7. 啟動 ===
@@ -165,7 +121,10 @@ const initSite = async () => {
 initSite();
 
 // 監聽網址變化同 Scroll
-window.addEventListener('hashchange', handleRouting);
+window.addEventListener('hashchange', () => {
+  handleRouting(siteConfig, langData, currentLang);
+});
+
 window.addEventListener('scroll', handleScrollFade);
 
 
