@@ -34,6 +34,15 @@ const setLanguage = (lang: string) => {
     else btn.classList.remove('active');
   });
 
+    // 👈 新增：動態填寫語言按鈕文字
+    const langBtnZh = document.getElementById('lang-btn-zh');
+    const langBtnEn = document.getElementById('lang-btn-en');
+    if (langBtnZh && langBtnEn) {
+      langBtnZh.textContent = langData.zh.languageName || '中文';
+      langBtnEn.textContent = langData.en.languageName || 'EN';
+    }
+
+  // 第一次入嚟，觸發 Router
   handleRouting(siteConfig, langData, currentLang); 
 };
 

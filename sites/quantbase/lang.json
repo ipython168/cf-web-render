@@ -1,5 +1,6 @@
 {
   "zh": {
+    "languageName": "中文",
     "nav": {
       "about": "關於我們",
       "news": "最新消息",
@@ -49,6 +50,7 @@
     } 
   },
   "en": {
+    "languageName": "EN",
     "nav": {
       "about": "About Us",
       "news": "News",

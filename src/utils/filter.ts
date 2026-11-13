@@ -32,6 +32,15 @@ export const bindFilterEvents = (allPosts: any[], lang: string) => {
   // 1. 搜尋
   searchInput?.addEventListener('input', (e) => {
     currentQuery = (e.target as HTMLInputElement).value.toLowerCase();
+    // 👈 新增：如果清空咗搜尋字，就自動重置返「全部」分類
+    if (currentQuery === '') {
+      currentCategory = 'all';
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-category') === 'all') btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+    }
+    
     applyFilters();
   });
 
