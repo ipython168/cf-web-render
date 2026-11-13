@@ -1,4 +1,5 @@
 import { handleScrollFade } from '../utils/animations';
+import { bindFilterEvents } from '../utils/filter';
 
 let allPosts: any[] = [];
 let filteredPosts: any[] = [];
@@ -58,7 +59,9 @@ export const renderArchive = async (t: any) => {
     
     initFilters(archiveT, lang);
     renderCards(lang);
-    bindEvents(lang);
+
+    // 👈 改用新嘅 bindFilterEvents
+    bindFilterEvents(allPosts, lang, archiveT);
 
   } catch (err) {
     console.error("Archive Load Error:", err);
@@ -96,7 +99,7 @@ const initFilters = (archiveT: any, lang: string) => {
   `).join('');
 };
 
-const renderCards = (lang: string) => {
+export const renderCards = (filteredPosts: any[], lang: string) => {
   const grid = document.getElementById('archive-grid');
   if (!grid) return;
 
@@ -121,55 +124,4 @@ const renderCards = (lang: string) => {
     `;
   }).join('');
 }; 
-const bindEvents = (lang: string) => {
-  const searchInput = document.getElementById('search-input') as HTMLInputElement;
-
-  const applyFilters = () => {
-    let result = allPosts.filter(post => {
-      const content = (lang === 'en' && post.en?.title) ? post.en : post.zh;
-      const catValue = post.category?.en || post.category; // 統一用 en 做比對
-      
-      const matchesSearch = content.title.toLowerCase().includes(currentQuery) || content.excerpt.toLowerCase().includes(currentQuery);
-      const matchesCategory = currentCategory === 'all' || catValue === currentCategory;
-      
-      return matchesSearch && matchesCategory;
-    });
-
-    result.sort((a, b) => {
-      const dateA = new Date(a.date).getTime();
-      const dateB = new Date(b.date).getTime();
-      return currentSort === 'newest' ? dateB - dateA : dateA - dateB;
-    });
-
-    filteredPosts = result;
-    renderCards(lang);
-  };
-
-  // 搜尋
-  searchInput?.addEventListener('input', (e) => {
-    currentQuery = (e.target as HTMLInputElement).value.toLowerCase();
-    applyFilters();
-  });
-
-  // 排序掣
-  document.querySelectorAll('.sort-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement;
-      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-      target.classList.add('active');
-      currentSort = target.dataset.sort!;
-      applyFilters();
-    });
-  });
-  
-  // 分類掣
-  document.getElementById('category-filters')?.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (target.classList.contains('filter-btn')) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      target.classList.add('active');
-      currentCategory = target.dataset.category!;
-      applyFilters();
-    }
-  });
-};
+ 
