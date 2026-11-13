@@ -4,9 +4,7 @@ import { initUI } from './utils/ui';
 
 import { handleScrollFade } from './utils/animations';
 
-import { renderHome } from './views/homeView';
 import { handleRouting } from './router';
-import { updateSidebar } from './utils/sidebar';
 
 
 import gsap from 'gsap';
@@ -105,7 +103,8 @@ const initSite = async () => {
     });
 
     // 第一次入嚟，觸發 Router
-    handleRouting();
+    handleRouting(siteConfig, langData, currentLang);
+
 
     // 👈 新增：載入完成後，移除 loading class，顯示畫面
     setTimeout(() => {
