@@ -14,3 +14,25 @@ export const updateSidebar = (t: any) => {
     `;
   }
 };
+
+
+export const updateLangButtons = (currentLang: string, langData: any) => {
+  // 1. 更新掣嘅 Active 狀態
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    if ((btn as HTMLElement).dataset.lang === currentLang) btn.classList.add('active');
+    else btn.classList.remove('active');
+  });
+
+  // 2. 更新掣嘅文字 (由 JSON 讀取)
+  const langBtnZh = document.getElementById('lang-btn-zh');
+  const langBtnEn = document.getElementById('lang-btn-en');
+  if (langBtnZh && langBtnEn) {
+    langBtnZh.textContent = langData.zh.languageName || '中文';
+    langBtnEn.textContent = langData.en.languageName || 'EN';
+  }
+};
+
+
+
+
+

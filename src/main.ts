@@ -5,6 +5,7 @@ import { initUI } from './utils/ui';
 import { handleScrollFade } from './utils/animations';
 
 import { handleRouting } from './router';
+import { updateLangButtons } from './utils/sidebar';
 
 
 import gsap from 'gsap';
@@ -29,18 +30,8 @@ const setLanguage = (lang: string) => {
   currentLang = lang;
   localStorage.setItem('lang', lang);
   
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    if ((btn as HTMLElement).dataset.lang === lang) btn.classList.add('active');
-    else btn.classList.remove('active');
-  });
-
-    // 👈 新增：動態填寫語言按鈕文字
-    const langBtnZh = document.getElementById('lang-btn-zh');
-    const langBtnEn = document.getElementById('lang-btn-en');
-    if (langBtnZh && langBtnEn) {
-      langBtnZh.textContent = langData.zh.languageName || '中文';
-      langBtnEn.textContent = langData.en.languageName || 'EN';
-    }
+  // 👈 改用新 Function
+  updateLangButtons(currentLang, langData);
 
   // 第一次入嚟，觸發 Router
   handleRouting(siteConfig, langData, currentLang); 
@@ -106,18 +97,9 @@ const initSite = async () => {
       });
     });
 
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      if ((btn as HTMLElement).dataset.lang === currentLang) btn.classList.add('active');
-      else btn.classList.remove('active');
-    });
+    // 👈 改用新 Function
+    updateLangButtons(currentLang, langData);
 
-    // 👈 新增：動態填寫語言按鈕文字
-    const langBtnZh = document.getElementById('lang-btn-zh');
-    const langBtnEn = document.getElementById('lang-btn-en');
-    if (langBtnZh && langBtnEn) {
-      langBtnZh.textContent = langData.zh.languageName || '中文';
-      langBtnEn.textContent = langData.en.languageName || 'EN';
-    }
 
     // 第一次入嚟，觸發 Router
     handleRouting(siteConfig, langData, currentLang);
