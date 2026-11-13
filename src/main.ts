@@ -125,10 +125,10 @@ const renderHome = () => {
     
     const currentTheme = document.documentElement.getAttribute('data-theme');
     if (currentTheme === 'dark') {
-      hero.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/hero-bg-dark.jpg')`;
+      hero.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/images/hero/hero-bg-dark.jpg')`;
     } else {
       // 將白色遮罩由 0.5 減到 0.2，等張相透出嚟
-      hero.style.backgroundImage = `linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('/hero-bg-light.jpg')`;
+      hero.style.backgroundImage = `linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('/images/hero/hero-bg-light.jpg')`;
     }
   };
 

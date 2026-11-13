@@ -1,8 +1,8 @@
 {
   "siteName": "QuantBase",
   "siteTitle": "QuantBase | 量化交易基地",
-  "logoImage": "/logo.png",
-  "BrandmarkImage": "/brandmark.png",
+  "logoImage": "/images/branding/logo.png",
+  "BrandmarkImage": "/images/branding/brandmark.png",
   "hero": {
     "title": "用數據透視市場<br>用紀律執行交易",
     "subtitle": "歡迎來到我的量化交易基地。這裡紀錄了我的回測結果與交易心得。",
@@ -12,7 +12,7 @@
   "sections": {
     "featuresTitle": "隨時掌握<br>市場最新動態",
     "featuresDesc": "支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。",
-    "featureImage": "/dashboard-preview.png",
+    "featureImage": "/images/branding/dashboard-preview.png",
     "postsTitle": "最新交易心得與回測"
   },
   "sidebar": {
@@ -20,21 +20,44 @@
     "langZH": "中文",
     "langEN": "EN"
   },
-
   "navLinks": [
-    { "name": "關於我們", "url": "#" },
-    { "name": "最新消息", "url": "#" },
-    { "name": "幫助中心", "url": "#" },
-    { "name": "支持我們", "url": "#" }
+    {
+      "name": "關於我們",
+      "url": "#"
+    },
+    {
+      "name": "最新消息",
+      "url": "#"
+    },
+    {
+      "name": "幫助中心",
+      "url": "#"
+    },
+    {
+      "name": "支持我們",
+      "url": "#"
+    }
   ],
   "footer": {
     "brandDesc": "我哋係香港小型開發團隊...",
     "quickLinksTitle": "快速連結",
     "quickLinks": [
-      { "name": "關於我們", "url": "#" },
-      { "name": "回測結果", "url": "#" },
-      { "name": "交易心得", "url": "#" },
-      { "name": "私隱條例", "url": "#" }
+      {
+        "name": "關於我們",
+        "url": "#"
+      },
+      {
+        "name": "回測結果",
+        "url": "#"
+      },
+      {
+        "name": "交易心得",
+        "url": "#"
+      },
+      {
+        "name": "私隱條例",
+        "url": "#"
+      }
     ],
     "contactTitle": "聯絡我們",
     "contact": {
@@ -42,7 +65,6 @@
       "support": "WhatsApp 技術支援"
     }
   },
-  
   "social": {
     "facebook": "https://facebook.com"
   }

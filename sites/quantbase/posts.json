@@ -6,7 +6,7 @@
       "zh": "回測結果",
       "en": "Backtest"
     },
-    "image": "/ma-cross.jpg",
+    "image": "/images/posts/ma-cross.jpg",
     "zh": {
       "title": "均線交叉策略回測報告",
       "excerpt": "喂喂喂，各位老細手足散戶同路人！10 年恆指數據、20MA 上穿 50MA 就買入，勝率高達 65%？聽落好威，但係……你知我知單眼佬都知，回測呢家嘢好似旺角街頭啲「必中貼士」，信一成雙目失明！",
@@ -25,7 +25,7 @@
       "zh": "交易心得",
       "en": "Insights"
     },
-    "image": "/fomo.jpg",
+    "image": "/images/posts/fomo.jpg",
     "zh": {
       "title": "交易心理學：如何克服 FOMO",
       "excerpt": "見到隻股票係咁升，隔籬阿陳賺到笑，你個心係咁痕，手指不自覺咁㩒咗買入掣？恭喜你，你中咗 FOMO 毒！唔使驚，今日同你拆解呢隻「錯失恐懼症」，教你點樣唔好再做韭菜。",
@@ -44,7 +44,7 @@
       "zh": "技術教學",
       "en": "Tutorial"
     },
-    "image": "/python-trading.jpg",
+    "image": "/images/posts/python-trading.jpg",
     "zh": {
       "title": "用 Python 打造自動化交易系統",
       "excerpt": "由零開始建立 FastAPI 後端，配合 TypeScript 前端顯示即時數據。唔使識晒成個 IT 行業，識少少 Python 同識開 browser 就開得工。今日執數佬帶你由零砌到有，順便講吓點解唔好一開始就諗住「全自動落盤」——嗰個係另一個地獄。",
@@ -63,7 +63,7 @@
       "zh": "交易心得",
       "en": "Insights"
     },
-    "image": "/你的圖片名.jpg",
+    "image": "",
     "zh": {
       "title": "你的新文章標題",
       "excerpt": "呢度寫文章摘要，會顯示喺首頁卡片。",
@@ -82,7 +82,7 @@
       "zh": "技術教學",
       "en": "Tutorial"
     },
-    "image": "/macd.jpg",
+    "image": "/images/posts/macd.jpg",
     "zh": {
       "title": "解構 MACD 指標：黃金交叉一定準？",
       "excerpt": "MACD 係最經典嘅技術指標之一，但點解咁多人用 MACD 都會輸錢？因為你只係識得睇「交叉」，而唔知佢背後嘅數學邏輯。",
@@ -101,7 +101,7 @@
       "zh": "回測結果",
       "en": "Backtest"
     },
-    "image": "/rebound.jpg",
+    "image": "/images/posts/rebound.jpg",
     "zh": {
       "title": "從歷史數據看：恆指大跌後的反彈規律",
       "excerpt": "每次恆指大跌，坊間都會有「撈底」嘅聲音。但到底大跌幾多先算多？反彈嘅勝率有幾高？今次用 Python 跑咗過去 20 年嘅數據話你知。",
@@ -120,7 +120,7 @@
       "zh": "技術教學",
       "en": "Tutorial"
     },
-    "image": "/python-news.jpg",
+    "image": "/images/posts/python-news.jpg",
     "zh": {
       "title": "如何用 Python 自動抓取財經新聞情緒？",
       "excerpt": "市場情緒（Sentiment）對短線走勢影響極大。今日教你點樣用 Python 嘅 NLP 工具，自動分析新聞標題係利好定利淡，再用嚟做交易訊號。",
