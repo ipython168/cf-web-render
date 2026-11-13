@@ -14,24 +14,16 @@ export const initUI = () => {
     overlay.addEventListener('click', closeSidebar);
   }
 
-  // 2. Backspace 上一頁邏輯
+  // 2. Backspace 上一頁邏輯 (最簡潔版)
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Backspace') {
       const activeEl = document.activeElement;
       const isInput = activeEl?.tagName === 'INPUT' || activeEl?.tagName === 'TEXTAREA';
-      
+     
+      // 如果唔係喺輸入框打字，就執行瀏覽器原生上一頁
       if (!isInput) {
-        e.preventDefault();
-        const hash = window.location.hash;
-        
-        if (hash.startsWith('#post/')) {
-          const from = sessionStorage.getItem('post-from') || 'home';
-          window.location.hash = from === 'home' ? '' : from;
-        } else if (hash.startsWith('#archive')) {
-          window.location.hash = '';
-        } else {
-          window.history.back();
-        }
+        e.preventDefault(); // 防止瀏覽器預設彈回上一頁（如果有衝突）
+       window.history.back(); // 👈 最直接嘅 Browser 上一頁
       }
     }
   });
