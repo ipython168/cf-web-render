@@ -1,5 +1,7 @@
 import './style.css';
 import { initTheme } from './utils/theme';
+import { initUI } from './utils/ui';
+
 import { handleScrollFade } from './utils/animations';
 import { loadPosts } from './views/home';
 import { renderApp } from './views/post';
@@ -13,21 +15,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// === 1. 漢堡選單開關 ===
-const menuBtn = document.getElementById('menu-btn')!;
-const closeBtn = document.getElementById('close-btn')!;
-const sidebar = document.getElementById('sidebar')!;
-const overlay = document.getElementById('overlay')!;
-
-const openSidebar = () => { sidebar.classList.add('open'); overlay.classList.add('active'); };
-const closeSidebar = () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); };
-
-menuBtn.addEventListener('click', openSidebar);
-closeBtn.addEventListener('click', closeSidebar);
-overlay.addEventListener('click', closeSidebar);
-
 // === 2. 初始化 Theme ===
 initTheme(); 
+initUI(); // 👈 新增：初始化 UI 事件（選單、Backspace）
 
 // === 3. 全局變數 ===
 let currentLang = localStorage.getItem('lang') || 'zh';
@@ -179,16 +169,5 @@ window.addEventListener('hashchange', handleRouting);
 window.addEventListener('scroll', handleScrollFade);
 
 
-// 👈 新增：完美處理 Backspace 上一頁
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Backspace') {
-    const activeEl = document.activeElement;
-    // 如果唔係喺輸入框或者文字區打字，先觸發
-    const isInput = activeEl?.tagName === 'INPUT' || activeEl?.tagName === 'TEXTAREA';
-    
-    if (!isInput) {
-      e.preventDefault(); // 阻止瀏覽器預設行為
-      window.history.back(); // 呼叫瀏覽器嘅「上一頁」
-    }
-  }
-});
+
+
