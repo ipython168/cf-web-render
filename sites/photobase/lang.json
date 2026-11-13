@@ -1,0 +1,20 @@
+{
+  "zh": {
+    "nav": { "about": "關於", "news": "新聞", "help": "幫助", "support": "支持" },
+    "hero": { "title": "測試中<br>PhotoBase 建立成功！", "subtitle": "呢個係一個獨立嘅網站。", "buttonText": "開始了解" },
+    "sections": { "featuresTitle": "功能測試", "featuresDesc": "切換成功！", "postsTitle": "最新文章" },
+    "stats": { "title": "數據", "winRate": "勝率", "totalTrades": "交易", "maxDrawdown": "回撤", "totalReturn": "回報" },
+    "footer": { "brandDesc": "PhotoBase", "quickLinksTitle": "連結", "contactTitle": "聯絡" },
+    "sidebar": { "themeTitle": "主題", "langLabel": "語言" },
+    "archive": { "pageTitle": "所有文章", "backToHome": "返回", "searchPlaceholder": "搜尋...", "sortNewest": "最新", "sortOldest": "最舊", "allCategory": "全部" }
+  },
+  "en": {
+    "nav": { "about": "About", "news": "News", "help": "Help", "support": "Support" },
+    "hero": { "title": "Testing<br>PhotoBase is Live!", "subtitle": "This is an independent site.", "buttonText": "Start" },
+    "sections": { "featuresTitle": "Features", "featuresDesc": "Switch successful!", "postsTitle": "Latest Posts" },
+    "stats": { "title": "Stats", "winRate": "Win Rate", "totalTrades": "Trades", "maxDrawdown": "Drawdown", "totalReturn": "Return" },
+    "footer": { "brandDesc": "PhotoBase", "quickLinksTitle": "Links", "contactTitle": "Contact" },
+    "sidebar": { "themeTitle": "Theme", "langLabel": "Lang" },
+    "archive": { "pageTitle": "All Articles", "backToHome": "Back", "searchPlaceholder": "Search...", "sortNewest": "Newest", "sortOldest": "Oldest", "allCategory": "All" }
+  }
+}

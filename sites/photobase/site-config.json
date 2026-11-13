@@ -1,0 +1,26 @@
+{
+  "siteName": "PhotoBase",
+  "siteTitle": "PhotoBase | 測試中",
+  "logoImage": "/images/logo.png",
+  "BrandmarkImage": "/images/brandmark.png",
+  "hero": {
+    "title": "測試中<br>PhotoBase 建立成功！",
+    "subtitle": "呢個係一個獨立嘅網站，用緊同一個 Code 骨架。",
+    "buttonText": "開始了解",
+    "buttonLink": "#features"
+  },
+  "sections": {
+    "featuresTitle": "功能測試",
+    "featuresDesc": "如果你見到呢段字，代表 VITE_SITE_DIR 切換成功！",
+    "featureImage": "/images/dashboard-preview.png",
+    "postsTitle": "最新文章"
+  },
+  "footer": {
+    "brandDesc": "PhotoBase 測試團隊",
+    "quickLinksTitle": "快速連結",
+    "quickLinks": [],
+    "contactTitle": "聯絡我們",
+    "contact": { "email": "test@photobase.com", "support": "WhatsApp" }
+  },
+  "social": { "facebook": "https://facebook.com" }
+}
