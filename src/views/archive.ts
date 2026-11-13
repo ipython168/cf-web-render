@@ -1,11 +1,7 @@
 import { handleScrollFade } from '../utils/animations';
 import { bindFilterEvents } from '../utils/filter';
 
-let allPosts: any[] = [];
-let filteredPosts: any[] = [];
-let currentCategory = 'all';
-let currentSort = 'newest';
-let currentQuery = '';
+let allPosts: any[] = []; 
 
 export const renderArchive = async (t: any) => {
   const app = document.getElementById('app')!;
@@ -20,11 +16,7 @@ export const renderArchive = async (t: any) => {
     allCategory: lang === 'en' ? "All" : "全部"
   };
 
-  // Reset 狀態
-  currentCategory = 'all';
-  currentSort = 'newest';
-  currentQuery = '';
-
+ 
   app.innerHTML = `
     <div id="archive-view" class="container archive-header">
       <a href="#" class="back-link" id="back-home-btn">← ${archiveT.backToHome}</a>
@@ -54,14 +46,13 @@ export const renderArchive = async (t: any) => {
 
   try {
     const res = await fetch('/posts.json');
-    allPosts = await res.json();
-    filteredPosts = [...allPosts];
+    allPosts = await res.json(); 
     
     initFilters(archiveT, lang);
-    renderCards(lang);
+    renderCards(allPosts, lang);
 
     // 👈 改用新嘅 bindFilterEvents
-    bindFilterEvents(allPosts, lang, archiveT);
+    bindFilterEvents(allPosts, lang);
 
   } catch (err) {
     console.error("Archive Load Error:", err);

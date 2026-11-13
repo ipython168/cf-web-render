@@ -4,7 +4,7 @@ let currentCategory = 'all';
 let currentSort = 'newest';
 let currentQuery = '';
 
-export const bindFilterEvents = (allPosts: any[], lang: string, archiveT: any) => {
+export const bindFilterEvents = (allPosts: any[], lang: string) => {
   const searchInput = document.getElementById('search-input') as HTMLInputElement;
   const filterContainer = document.getElementById('category-filters');
 
