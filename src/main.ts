@@ -103,6 +103,40 @@ const initSite = async () => {
     siteConfig = await configRes.json();
     langData = await langRes.json();
 
+    // 👈 新增：動態套用 JSON 主題色
+    if (siteConfig.theme) {
+      const lightTheme = siteConfig.theme.light;
+      const darkTheme = siteConfig.theme.dark;
+     
+      // 建立一個 <style> 標籤塞入 HTML
+      const styleTag = document.createElement('style');
+      styleTag.innerHTML = `
+        :root[data-theme="light"] {
+          --bg-color: ${lightTheme.bgColor};
+          --text-color: ${lightTheme.textColor};
+          --card-bg: ${lightTheme.cardBg};
+          --primary-color: ${lightTheme.primaryColor};
+          --border-color: ${lightTheme.borderColor};
+          --sidebar-bg: ${lightTheme.sidebarBg};
+          --page-gradient: ${lightTheme.pageGradient};
+          --hero-text-color: ${lightTheme.heroTextColor};
+          --hero-bg-overlay: ${lightTheme.heroBgOverlay};
+        }
+        :root[data-theme="dark"] {
+          --bg-color: ${darkTheme.bgColor};
+          --text-color: ${darkTheme.textColor};
+          --card-bg: ${darkTheme.cardBg};
+          --primary-color: ${darkTheme.primaryColor};
+          --border-color: ${darkTheme.borderColor};
+          --sidebar-bg: ${darkTheme.sidebarBg};
+          --page-gradient: ${darkTheme.pageGradient};
+          --hero-text-color: ${darkTheme.heroTextColor};
+          --hero-bg-overlay: ${darkTheme.heroBgOverlay};
+        }
+      `;
+      document.head.appendChild(styleTag);
+    }
+
     document.title = siteConfig.siteTitle;
     const logoImg = document.querySelector('.logo-img') as HTMLImageElement;
     if (logoImg) logoImg.src = siteConfig.logoImage;
