@@ -55,8 +55,10 @@ export const renderHome = (siteConfig: any, t: any) => {
             </div>
             <div class="footer-links">
               <h4>${t.footer.quickLinksTitle}</h4>
-              ${siteConfig.footer.quickLinks.map((link: any) => `<a href="${link.url}">${link.name}</a>`).join('')}
-            </div>
+              <a href="#">${t.footer.links.about}</a>
+              <a href="#">${t.footer.links.backtest}</a>
+              <a href="#">${t.footer.links.insights}</a>
+              <a href="#">${t.footer.links.privacy}</a>            </div>
             <div class="footer-contact">
               <h4>${t.footer.contactTitle}</h4>
               <p>${siteConfig.footer.contact.email}</p>

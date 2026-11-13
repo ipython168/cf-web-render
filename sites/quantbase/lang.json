@@ -15,6 +15,28 @@
       "featuresTitle": "隨時掌握<br>市場最新動態",
       "featuresDesc": "支援即時回測數據、歷史圖表顯示。無論你用電腦定手機，都可以快速查閱策略表現。",
       "postsTitle": "最新交易心得與回測"
+    }, 
+    "sidebar": {
+      "themeTitle": "主題設定",
+      "langLabel": "語言"
+    },
+    "footer": {
+      "brandDesc": "我哋係香港小型開發團隊...",
+      "quickLinksTitle": "快速連結",
+      "contactTitle": "聯絡我們",
+      "links": {
+        "about": "關於我們",
+        "backtest": "回測結果",
+        "insights": "交易心得",
+        "privacy": "私隱條例"
+      }
+    },    
+    "stats": {
+      "title": "實戰數據",
+      "winRate": "勝率",
+      "totalTrades": "總交易次數",
+      "maxDrawdown": "最大回撤",
+      "totalReturn": "總回報"
     },
     "archive": {
       "pageTitle": "所有文章",
@@ -24,24 +46,7 @@
       "sortNewest": "最新發佈",
       "sortOldest": "最舊發佈",
       "allCategory": "全部文章"
-    },
-    "stats": {
-      "title": "實戰數據",
-      "winRate": "勝率",
-      "totalTrades": "總交易次數",
-      "maxDrawdown": "最大回撤",
-      "totalReturn": "總回報"
-    },
-
-    "footer": {
-      "brandDesc": "我哋係香港小型開發團隊...",
-      "quickLinksTitle": "快速連結",
-      "contactTitle": "聯絡我們"
-    },
-    "sidebar": {
-      "themeTitle": "主題設定",
-      "langLabel": "語言"
-    }
+    } 
   },
   "en": {
     "nav": {
@@ -59,6 +64,28 @@
       "featuresTitle": "Stay Updated<br>with Market Trends",
       "featuresDesc": "Real-time backtest data and historical charts. Whether on desktop or mobile, check your strategy performance quickly.",
       "postsTitle": "Latest Trading Insights"
+    }, 
+    "sidebar": {
+      "themeTitle": "Theme",
+      "langLabel": "Language"
+    },    
+    "footer": {
+      "brandDesc": "We are a small dev team based in Hong Kong...",
+      "quickLinksTitle": "Quick Links",
+      "contactTitle": "Contact Us",
+      "links": {
+        "about": "About Us",
+        "backtest": "Backtest",
+        "insights": "Insights",
+        "privacy": "Privacy Policy"
+      }
+    },
+    "stats": {
+      "title": "Live Stats",
+      "winRate": "Win Rate",
+      "totalTrades": "Total Trades",
+      "maxDrawdown": "Max Drawdown",
+      "totalReturn": "Total Return"
     },
     "archive": {
       "pageTitle": "All Articles",
@@ -68,23 +95,6 @@
       "sortNewest": "Newest",
       "sortOldest": "Oldest",
       "allCategory": "All Articles"
-    },
-    
-    "stats": {
-      "title": "Live Stats",
-      "winRate": "Win Rate",
-      "totalTrades": "Total Trades",
-      "maxDrawdown": "Max Drawdown",
-      "totalReturn": "Total Return"
-    },
-    "footer": {
-      "brandDesc": "We are a small dev team based in Hong Kong...",
-      "quickLinksTitle": "Quick Links",
-      "contactTitle": "Contact Us"
-    },
-    "sidebar": {
-      "themeTitle": "Theme",
-      "langLabel": "Language"
-    }
+    }    
   }
 }

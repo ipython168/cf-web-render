@@ -38,8 +38,8 @@ let langData: any = null;
 // === 新增：更新 Sidebar 文字 ===
 const updateSidebar = (t: any) => {
   // 更新主題設定同語言標籤
-  document.getElementById('theme-title')!.textContent = t.sidebar?.themeTitle || "主題設定";
-  document.getElementById('lang-label')!.textContent = t.sidebar?.langLabel || "語言";
+ document.getElementById('theme-title')!.textContent = t.sidebar.themeTitle;
+ document.getElementById('lang-label')!.textContent = t.sidebar.langLabel;
   
   // 更新選單連結：直接由 siteConfig 讀取，保證 F5 都一定有
   const sidebarLinks = document.querySelector('.sidebar-links')!;
