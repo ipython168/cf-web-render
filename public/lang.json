@@ -25,6 +25,7 @@
       "brandDesc": "我哋係香港小型開發團隊...",
       "quickLinksTitle": "快速連結",
       "contactTitle": "聯絡我們",
+      "support": "WhatsApp 技術支援",  
       "links": {
         "about": "關於我們",
         "backtest": "回測結果",
@@ -75,6 +76,7 @@
       "brandDesc": "We are a small dev team based in Hong Kong...",
       "quickLinksTitle": "Quick Links",
       "contactTitle": "Contact Us",
+      "support": "WhatsApp support",  
       "links": {
         "about": "About Us",
         "backtest": "Backtest",

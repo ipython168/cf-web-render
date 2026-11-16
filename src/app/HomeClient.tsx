@@ -1,100 +1,101 @@
 'use client';
 
-import { useState } from 'react';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
-interface GreetingProps {
-  name: string;
-  age: number;
+interface HomeClientProps {
+  config: any;
+  langData: any;
+  posts: any[];
 }
 
-const Greeting = ({ name, age }: GreetingProps) => {
+export default function HomeClient({ config, langData, posts }: HomeClientProps) {
+  const t = langData.zh;
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const heroBg = resolvedTheme === 'dark' 
+    ? "linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/images/hero/hero-bg-dark.jpg')"
+    : "linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('/images/hero/hero-bg-light.jpg')";
+
   return (
-    <div style={{ padding: '1rem', background: '#1e293b', borderRadius: '8px', marginBottom: '1rem' }}>
-      <h2>你好，{name}！</h2>
-      <p>你今年 {age} 歲。</p>
-    </div>
-  );
-};
-
-const Counter = () => {
-  const [count, setCount] = useState(0);
-  return (
-    <div style={{ padding: '1rem', background: '#1e293b', borderRadius: '8px', marginBottom: '1rem' }}>
-      <h2>計數機</h2>
-      <p>你撳咗 <strong style={{ color: '#38bdf8', fontSize: '1.5rem' }}>{count}</strong> 次</p>
-      <button 
-        onClick={() => setCount(count + 1)}
-        style={{ padding: '0.5rem 1rem', background: '#38bdf8', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' }}
-      >
-        撳我 +1
-      </button>
-    </div>
-  );
-};
-
-const Footer = ({ siteConfig, t }: { siteConfig: any, t: any }) => {
-  return (
-    <footer style={{ background: '#1e293b', borderTop: '1px solid #334155', padding: '4rem 0 2rem', marginTop: '4rem' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 5%' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '4rem', marginBottom: '3rem' }}>
-          
-          {/* 品牌簡介 */}
-          <div>
-            <h3 style={{ color: '#38bdf8', fontSize: '1.5rem', marginBottom: '1rem' }}>
-              <img src={siteConfig.logoImage} alt="Logo" style={{ height: '48px', verticalAlign: 'middle' }} />
-            </h3>
-            <p style={{ lineHeight: '1.6', opacity: 0.7, fontSize: '0.95rem' }}>{t.footer.brandDesc}</p>
+    <div id="home-view">
+      <Navbar siteConfig={config} />
+      
+      {/* 1. Hero */}
+      <main className="hero-section" style={{ backgroundImage: heroBg }}>
+        <div className="hero-content">
+          <h1 dangerouslySetInnerHTML={{ __html: t.hero.title }} />
+          <p>{t.hero.subtitle}</p>
+          <div className="hero-btns">
+            <a href={config.hero.buttonLink} className="btn-primary">
+              {t.hero.buttonText}
+            </a>
           </div>
-
-          {/* 快速連結 */}
-          <div>
-            <h4 style={{ fontSize: '1.1rem', marginBottom: '1.5rem' }}>{t.footer.quickLinksTitle}</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-              <a href="#" style={{ color: 'white', textDecoration: 'none', opacity: 0.7 }}>{t.footer.links.about}</a>
-              <a href="#" style={{ color: 'white', textDecoration: 'none', opacity: 0.7 }}>{t.footer.links.backtest}</a>
-              <a href="#" style={{ color: 'white', textDecoration: 'none', opacity: 0.7 }}>{t.footer.links.insights}</a>
-              <a href="#" style={{ color: 'white', textDecoration: 'none', opacity: 0.7 }}>{t.footer.links.privacy}</a>
-            </div>
-          </div>
-
-          {/* 聯絡我們 */}
-          <div>
-            <h4 style={{ fontSize: '1.1rem', marginBottom: '1.5rem' }}>{t.footer.contactTitle}</h4>
-            <p style={{ opacity: 0.7, marginBottom: '0.8rem', fontSize: '0.95rem' }}>{siteConfig.footer.contact.email}</p>
-            <p style={{ opacity: 0.7, marginBottom: '0.8rem', fontSize: '0.95rem' }}>WhatsApp 技術支援</p>
-          </div>
-
         </div>
-        <div style={{ textAlign: 'center', paddingTop: '2rem', borderTop: '1px solid #334155', opacity: 0.5, fontSize: '0.85rem' }}>
-          <p>© {new Date().getFullYear()} {siteConfig.siteName}. All rights reserved.</p>
+      </main>
+
+      {/* 2. Features */}
+      <section id="features" className="feature-section fade-in">
+        <div className="container">
+          <div className="feature-text">
+            <h2 className="fade-in" dangerouslySetInnerHTML={{ __html: t.sections.featuresTitle }} />
+            <p className="fade-in">{t.sections.featuresDesc}</p>
+          </div>
+          <div className="feature-visual fade-in">
+            <img src={config.sections.featureImage} alt="Feature" className="feature-img" />
+          </div>
         </div>
-      </div>
-    </footer>
-  );
-};
+      </section>
 
+      {/* 3. Stats */}
+      <section id="stats" className="stats-section fade-in">
+        <div className="container">
+          <h2 className="fade-in">{t.stats?.title || "實戰數據"}</h2>
+          <div className="stats-grid">
+            <div className="stat-card"><h3 className="stat-number">65%</h3><p>勝率</p></div>
+            <div className="stat-card"><h3 className="stat-number">248</h3><p>總交易次數</p></div>
+            <div className="stat-card"><h3 className="stat-number">13%</h3><p>最大回撤</p></div>
+            <div className="stat-card"><h3 className="stat-number">34%</h3><p>總回報</p></div>
+          </div>
+        </div>
+      </section>
 
+      {/* 4. Posts */}
+      <section id="latest-posts" className="posts-section fade-in">
+        <div className="container">
+          <h2 className="fade-in clickable-title">
+            <a href="#archive">{t.sections.postsTitle}</a>
+          </h2>
+          <div className="posts-grid">
+            {posts.slice(0, 3).map((post) => {
+              const content = (t === langData.zh) ? post.zh : (post.en?.title ? post.en : post.zh);
+              const catName = post.category.zh;
+              return (
+                <article key={post.id} className="post-card fade-in">
+                  {post.image && <img src={post.image} alt={content.title} className="post-cover-img" />}
+                  <div className="post-category">{catName}</div>
+                  <h3 className="post-title">{content.title}</h3>
+                  <p className="post-date">{post.date}</p>
+                  <p className="post-excerpt">{content.excerpt}</p>
+                  <a href={`#post/${post.id}`} className="read-more">閱讀更多 →</a>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
-
-export default function HomeClient({ config, langData }: { config: any, langData: any }) {
-  const t = langData.zh; // 暫時寫死用中文
-
-  return (    
-    <main style={{ padding: '4rem', fontFamily: 'sans-serif', background: '#0f172a', color: 'white', minHeight: '100vh' }}>
-      <h1>{config.siteName} 測試頁</h1>
-      
-      <Greeting name="阿明" age={25} />
-      <Greeting name="小美" age={30} />
-      
-      <Counter />
-      
-      <div style={{ marginTop: '2rem', padding: '1rem', background: '#1e293b', borderRadius: '8px' }}>
-        <h2>Logo 測試：</h2>
-        <img src={config.logoImage} alt="Logo" style={{ height: '60px' }} />
-      </div> 
-      
+      {/* 5. Footer */}
       <Footer siteConfig={config} t={t} />
-
-    </main>
+    </div>
   );
-} 
+}
