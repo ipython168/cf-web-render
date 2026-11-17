@@ -25,35 +25,26 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (window.innerWidth > 768) {
-      const x = -(window.innerWidth / 2 - e.pageX) / 25;
-      const y = -(window.innerHeight / 2 - e.pageY) / 25;
+      const x = -(window.innerWidth / 2 - e.pageX) / 15;
+      const y = -(window.innerHeight / 2 - e.pageY) / 15;
       setMousePos({ x, y });
     }
   };
 
   return (
     <section
-      className="hero-section min-h-screen flex items-center justify-center relative overflow-hidden bg-cover bg-center transition-all duration-500"
+      className="hero-section"
       style={{
         backgroundImage: heroBg,
         backgroundPosition: `calc(50% + ${mousePos.x}px) calc(50% + ${mousePos.y}px)`,
       }}
       onMouseMove={handleMouseMove}
     >
-      <div className="hero-content text-center max-w-3xl mx-auto px-4 fade-in">
-        <h1
-          className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
-          style={{ color: 'var(--hero-text-color)' }}
-          dangerouslySetInnerHTML={{ __html: t.hero.title }}
-        />
-        <p className="text-xl md:text-2xl mb-8 opacity-80" style={{ color: 'var(--hero-text-color)' }}>
-          {t.hero.subtitle}
-        </p>
+      <div className="hero-content">
+        <h1 dangerouslySetInnerHTML={{ __html: t.hero.title }} />
+        <p>{t.hero.subtitle}</p>
         <div className="hero-btns">
-          <a
-            href={siteConfig.hero.buttonLink}
-            className="btn-primary inline-block px-8 py-3 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg font-semibold transition-colors"
-          >
+          <a href={siteConfig.hero.buttonLink} className="btn-primary">
             {t.hero.buttonText}
           </a>
         </div>
