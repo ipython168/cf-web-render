@@ -8,7 +8,7 @@ interface NavbarProps {
   siteConfig: any;
   langData: any;
   currentLang?: string;
-  onLangChange?: (lang: string) => void;
+  onLangChange?: (lang: 'zh' | 'en') => void;
 }
 
 export default function Navbar({ siteConfig, langData, currentLang: propLang, onLangChange: propOnChange }: NavbarProps) {

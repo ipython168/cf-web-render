@@ -10,7 +10,7 @@ interface SidebarProps {
   siteConfig: any;
   langData: any;
   currentLang: string;
-  onLangChange: (lang: string) => void;
+  onLangChange: (lang: 'zh' | 'en') => void;
 }
 
 export default function Sidebar({ open, onClose, siteConfig, langData, currentLang, onLangChange }: SidebarProps) {
