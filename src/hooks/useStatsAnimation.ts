@@ -8,7 +8,7 @@ interface StatItem {
   suffix: string;
 }
 
-export function useStatsAnimation(stats: StatItems) {
+export function useStatsAnimation(stats: StatItem[]) {
   const animated = useRef(false);
 
   useEffect(() => {
@@ -16,31 +16,29 @@ export function useStatsAnimation(stats: StatItems) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting && !animated.current) {
             animated.current = true;
-            
-            stats.forEach(item => {
-              const el = document.getElementById(item.id);
+
+            stats.forEach((stat) => {
+              const el = document.getElementById(stat.id);
               if (!el) return;
 
               const duration = 2000;
               const startTime = performance.now();
 
-              const animate = (currentTime: number) => {
+              function animate(currentTime: number) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-                
-                // Ease out quad
-                const eased = 1 - (1 - progress) * (1 - progress);
-                const currentVal = Math.round(item.target * eased);
-                
-                el.textContent = currentVal.toString() + item.suffix;
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(eased * stat.target);
+
+                el!.textContent = current.toLocaleString() + stat.suffix;
 
                 if (progress < 1) {
                   requestAnimationFrame(animate);
                 }
-              };
+              }
 
               requestAnimationFrame(animate);
             });
@@ -52,8 +50,8 @@ export function useStatsAnimation(stats: StatItems) {
       { threshold: 0.3 }
     );
 
-    const statsSection = document.getElementById('stats');
-    if (statsSection) observer.observe(statsSection);
+    const section = document.querySelector('#stats-section');
+    if (section) observer.observe(section);
 
     return () => observer.disconnect();
   }, [stats]);
