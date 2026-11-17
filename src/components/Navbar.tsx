@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import LangSwitcher from './LangSwitcher';
+import Sidebar from './Sidebar';
 
 interface NavbarProps {
   siteConfig: any;
@@ -10,25 +10,29 @@ interface NavbarProps {
 
 export default function Navbar({ siteConfig, langData }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > window.innerHeight - 100);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > window.innerHeight - 100);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="nav-inner">
-        <a href="/" className="logo">
-          <img src={siteConfig.logoImage} alt="Logo" className="logo-img" />
-        </a>
-        <div className="flex items-center gap-3">
-          <LangSwitcher langData={langData} />
+    <>
+      <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="nav-inner">
+          <a href="/" className="logo">
+            <img src={siteConfig.logoImage} alt="Logo" className="logo-img" />
+          </a>
+          <button id="menu-btn" className="menu-btn" onClick={() => setSidebarOpen(true)} aria-label="選單">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-      </div>
-    </header>
+      </header>
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} siteConfig={siteConfig} langData={langData} />
+    </>
   );
 }
