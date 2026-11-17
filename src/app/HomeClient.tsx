@@ -12,7 +12,7 @@ interface HomeClientProps {
   config: any;
   langData: any;
   posts: any[];
-  stats: any[];
+  stats: any;
 }
 
 export default function HomeClient({ config, langData, posts, stats }: HomeClientProps) {
@@ -30,8 +30,8 @@ export default function HomeClient({ config, langData, posts, stats }: HomeClien
       <main>
         <HeroSection siteConfig={config} t={t} />
         <FeatureSection siteConfig={config} t={t} />
-        <StatsSection stats={stats} t={t} />
-        <PostGrid posts={posts} t={t} />
+        <StatsSection t={t} stats={stats} />
+        <PostGrid initialPosts={posts} />
       </main>
       <Footer siteConfig={config} t={t} />
     </>
