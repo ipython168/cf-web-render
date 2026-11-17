@@ -16,11 +16,11 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
   };
 
   return (
-    <footer className="site-footer">
+    <footer className="site-footer footer-final" style={{ overflow: 'hidden' }}>
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
-            <img src={siteConfig.logoImage} alt="QuantBase" className="footer-logo-img" />
+            <img src={siteConfig.logoImage} alt="QuantBase" className="footer-logo-final" />
             <p>{t('footer.description')}</p>
           </div>
           <div className="footer-links">

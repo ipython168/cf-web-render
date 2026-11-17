@@ -1,5 +1,4 @@
 'use client';
-
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 
@@ -13,10 +12,7 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
   const [mounted, setMounted] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+  useEffect(() => { setMounted(true); }, []);
   if (!mounted) return null;
 
   const heroBg = resolvedTheme === 'dark'
@@ -34,17 +30,18 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
   return (
     <section
       className="hero-section"
-      style={{
-        backgroundImage: heroBg,
-        backgroundPosition: `calc(50% + ${mousePos.x}px) calc(50% + ${mousePos.y}px)`,
-      }}
+      style={{ backgroundImage: heroBg, backgroundPosition: `calc(50% + ${mousePos.x}px) calc(50% + ${mousePos.y}px)` }}
       onMouseMove={handleMouseMove}
     >
       <div className="hero-content">
         <h1 dangerouslySetInnerHTML={{ __html: t.hero.title }} />
         <p>{t.hero.subtitle}</p>
         <div className="hero-btns">
-          <a href={siteConfig.hero.buttonLink} className="btn-primary">
+          {/* 強制實色背景，Hover 透明 */}
+          <a 
+            href={siteConfig.hero.buttonLink} 
+            className="hero-btn-final"
+          >
             {t.hero.buttonText}
           </a>
         </div>

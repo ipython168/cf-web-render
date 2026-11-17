@@ -31,7 +31,13 @@ export default function Navbar({ siteConfig, langData, currentLang: propLang, on
           <a href="/" className="logo">
             <img src={siteConfig.logoImage} alt="Logo" className="logo-img" />
           </a>
-          <button id="menu-btn" className="menu-btn" onClick={() => setSidebarOpen(true)} aria-label="選單">
+          {/* 強制三小點 + 透明底 + Hover 效果 */}
+          <button 
+            id="menu-btn" 
+            className="menu-btn-final" 
+            onClick={() => setSidebarOpen(true)} 
+            aria-label="選單"
+          >
             <span></span><span></span><span></span>
           </button>
         </div>

@@ -80,23 +80,6 @@ body {
   padding: 0 1rem;
 }
 
-.btn-primary {
-  display: inline-block;
-  padding: 1rem 3rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  background-color: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  border-radius: 50px;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
 /* ===== Feature Section ===== */
 .feature-section {
   padding: 8rem 0;
@@ -381,99 +364,14 @@ body {
   color: var(--text-color); text-decoration: none;
 }
 
-/* ===== Menu Button (三點) ===== */
-/* ===== 三點按鈕：永遠顯示，手機放大熱區 ===== */
-.menu-btn {
-  flex: 0 0 auto !important;
-  margin-left: auto !important;
-  width: 44px !important;
-  height: 44px !important;
-  background: transparent !important;
-  border: none !important;
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  cursor: pointer;
-  padding: 0;
-  z-index: 1001;
-}
-.menu-btn span {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: var(--text-color, #fff);
-  display: block;
-  transition: all 0.3s ease;
-}
-.menu-btn:hover span {
-  opacity: 0.7;
-} 
-
 /* Scrolled state */
-.navbar.scrolled .menu-btn {
-  border-color: var(--text-color);
-}
-.navbar.scrolled .menu-btn span {
-  background-color: var(--text-color, #000);
-}
-
-.navbar.scrolled .menu-btn:hover {
-  background-color: var(--text-color);
-}
-
-.navbar.scrolled .menu-btn:hover span {
-  background-color: var(--bg-color);
-}
-
 
 
 /* ===== 手機 breakpoint ===== */
 @media (max-width: 768px) {
   .nav-inner { padding: 0.75rem 5%; }
   .logo-img { height: 32px; }
-  .menu-btn { width: 44px; height: 44px; }
-}
- 
 
-
-/* ===== Fix: Logo bigger, menu-btn visible, btn outline ===== */
-.logo-img {
-  height: 48px !important;
-  width: auto;
-}
-
-.menu-btn {
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: 52px !important;
-  height: 52px !important;
-  background: transparent;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 10px;
-  flex-shrink: 0;
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-.menu-btn:hover {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-}
-.menu-btn span {
-  display: block;
-  width: 18px;
-  height: 3px;
-  background: var(--text-color);
-  border-radius: 2px;
-}
-.menu-btn:hover span {
-  background: #fff;
-}
 
 /* Hero 字體回調 */
 .hero-content h1 {
@@ -485,24 +383,9 @@ body {
 }
 
 /* 按鈕：有框，hover 填色 */
-.btn-primary {
-  border: 2px solid var(--border-color) !important;
-  background: transparent !important;
-  color: var(--primary-color) !important;
-  transition: all 0.3s ease !important;
-}
-.btn-primary:hover {
-  background: var(--primary-color) !important;
-  color: #fff !important;
-  border-color: var(--primary-color) !important;
-}
-
 /* 手機適應 */
 @media (max-width: 768px) {
   .logo-img { height: 36px !important; }
-  .menu-btn { width: 44px !important; height: 44px !important; }
-}
-
 /* ===== Fix: Layout overflow & Footer logo size ===== */
 html, body {
   overflow-x: hidden !important;
@@ -522,18 +405,6 @@ html, body {
 }
 
 /* Footer Logo 修復：縮細，唔可以撐爆 */
-.footer-logo, 
-footer .logo-img,
-footer h2, 
-footer .quantbase-logo {
-  font-size: clamp(2rem, 8vw, 3.5rem) !important;
-  height: auto !important;
-  max-width: 100%;
-  width: auto !important;
-  margin: 0 auto;
-  opacity: 0.8;
-}
-
 /* 確保文章卡片唔撐爆 */
 .article-card, .card {
   max-width: 100%;
@@ -541,64 +412,7 @@ footer .quantbase-logo {
 }
 
 /* ===== Hero button: 填色背景, hover 透明 ===== */
-.btn-primary {
-  background: var(--primary-color) !important;
-  color: #fff !important;
-  border: 2px solid var(--primary-color) !important;
-  transition: all 0.3s ease !important;
-}
-.btn-primary:hover {
-  background: transparent !important;
-  color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
-}
-
 /* ===== Menu button: 三小點, 透明底, 框+點跟theme, hover填實色, 點轉白 ===== */
-.menu-btn {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 3px !important;
-  width: 38px !important;
-  height: 34px !important;
-  background: transparent !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 6px !important;
-  cursor: pointer !important;
-  padding: 0 !important;
-  flex-shrink: 0 !important;
-  transition: all 0.3s ease !important;
-}
-.menu-btn:hover {
-  background: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
-}
-.menu-btn span {
-  display: block !important;
-  width: 5px !important;
-  height: 5px !important;
-  border-radius: 50% !important;
-  background: var(--text-color) !important;
-  transition: background 0.3s ease !important;
-}
-.menu-btn:hover span {
-  background: #fff !important;
-}
-
-/* ===== Footer: 改用 logo 圖 ===== */
-.site-footer .footer-brand h3,
-.site-footer .footer-brand .logo-text {
-  display: none !important;
-}
-.site-footer .footer-brand .footer-logo-img {
-  display: block !important;
-  height: 64px !important;
-  width: auto !important;
-  max-width: 240px !important;
-  margin-bottom: 1rem !important;
-}
-
 /* ===== Footer 原有文字 logo 隱藏，改顯示圖片 ===== */
 footer .logo-img-footer {
   height: 96px !important;
@@ -606,108 +420,28 @@ footer .logo-img-footer {
   max-width: 280px !important;
 }
 
-/* ===== Hero Button: 填色背景，hover 透明 ===== */
-.hero .btn-primary,
-.btn-hero,
-a.btn-primary {
-  background: var(--primary-color) !important;
-  color: #fff !important;
-  border: 2px solid var(--primary-color) !important;
-  transition: all 0.3s ease !important;
-}
-.hero .btn-primary:hover,
-.btn-hero:hover,
-a.btn-primary:hover {
-  background: transparent !important;
-  color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
-}
-
-/* ===== Menu Button: 三小點 ===== */
-.menu-btn {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 4px !important;
-  width: 36px !important;
-  height: 28px !important;
-  background: transparent !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 6px !important;
-  cursor: pointer !important;
-  padding: 0 !important;
-  flex-shrink: 0 !important;
-  transition: all 0.3s ease !important;
-  z-index: 99 !important;
-}
-.menu-btn:hover {
-  background: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
-}
-.menu-btn span {
-  display: block !important;
-  width: 5px !important;
-  height: 5px !important;
-  border-radius: 50% !important;
-  background: var(--text-color) !important;
-  transition: background 0.3s ease !important;
-}
-.menu-btn:hover span {
-  background: #fff !important;
-}
-
-/* ===== Footer: 圖片 logo 尺寸 ===== */
-.footer-logo-img {
-  height: 72px !important;
-  width: auto !important;
-  max-width: 260px !important;
-  display: block !important;
-  margin-bottom: 1rem !important;
-}
-/* 隱藏任何文字 logo */
-.site-footer .footer-brand h2,
-.site-footer .footer-brand h3,
-.site-footer .footer-brand .logo-text {
-  display: none !important;
-}
-
-/* ===== v2 Fix: Hero Btn 填色/Hover透明 ===== */
-.hero .btn-primary,
-.btn-hero,
-a.btn-primary {
-  background-color: var(--primary-color) !important;
-  color: #ffffff !important;
-  border: 2px solid var(--primary-color) !important;
-}
-.hero .btn-primary:hover,
-.btn-hero:hover,
-a.btn-primary:hover {
-  background-color: transparent !important;
-  color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
-}
-
 
 /* ===== Final Fix: Hero Btn (填色背景, hover 透明) ===== */
-.hero .btn-primary,
-.btn-hero,
-a.btn-primary {
+/* ===== Final Fix: Menu Btn (三小點, 透明底, 框/點跟theme, hover填實色, 點轉白) ===== */
+/* ===== Final Fix: Footer Logo 圖片尺寸 (隱藏文字) ===== */
+
+/* ===== FINAL ABSOLUTE FIX ===== */
+.hero-btn-final {
+  display: inline-block !important;
   background-color: var(--primary-color) !important;
   color: #ffffff !important;
   border: 2px solid var(--primary-color) !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 9999px !important;
+  text-decoration: none !important;
   transition: all 0.3s ease !important;
 }
-.hero .btn-primary:hover,
-.btn-hero:hover,
-a.btn-primary:hover {
+.hero-btn-final:hover {
   background-color: transparent !important;
   color: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
 }
 
-/* ===== Final Fix: Menu Btn (三小點, 透明底, 框/點跟theme, hover填實色, 點轉白) ===== */
-.menu-btn {
+.menu-btn-final {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
@@ -724,11 +458,11 @@ a.btn-primary:hover {
   transition: all 0.3s ease !important;
   z-index: 99 !important;
 }
-.menu-btn:hover {
+.menu-btn-final:hover {
   background: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
 }
-.menu-btn span {
+.menu-btn-final span {
   display: block !important;
   width: 5px !important;
   height: 5px !important;
@@ -736,20 +470,28 @@ a.btn-primary:hover {
   background: var(--text-color) !important;
   transition: background 0.3s ease !important;
 }
-.menu-btn:hover span {
+.menu-btn-final:hover span {
   background: #fff !important;
 }
 
-/* ===== Final Fix: Footer Logo 圖片尺寸 (隱藏文字) ===== */
-.footer-logo-img {
-  height: 80px !important;
+.footer-logo-final {
+  height: 64px !important;
   width: auto !important;
-  max-width: 220px !important;
+  max-width: 100% !important;
   display: block !important;
   margin-bottom: 1rem !important;
 }
-.site-footer .footer-brand h2,
-.site-footer .footer-brand h3,
-.site-footer .footer-brand .logo-text {
+.footer-final .footer-brand h2,
+.footer-final .footer-brand h3,
+.footer-final .footer-brand .logo-text {
   display: none !important;
+}
+
+/* 修復 Navbar 透明底 */
+.navbar {
+  background: transparent !important;
+}
+.navbar.scrolled {
+  background: var(--bg-color) !important;
+  border-bottom: 1px solid var(--border-color) !important;
 }
