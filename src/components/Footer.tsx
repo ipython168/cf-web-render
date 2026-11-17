@@ -16,7 +16,7 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
   };
 
   return (
-    <footer className="site-footer" style={{ overflow: 'hidden' }}>
+    <footer className="site-footer">
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">

@@ -31,18 +31,8 @@ export default function Navbar({ siteConfig, langData, currentLang: propLang, on
           <a href="/" className="logo">
             <img src={siteConfig.logoImage} alt="Logo" className="logo-img" />
           </a>
-          <button 
-            id="menu-btn" 
-            className="menu-btn" 
-            onClick={() => setSidebarOpen(true)} 
-            aria-label="選單"
-            style={{ background: 'transparent', border: '1px solid var(--border-color)', borderRadius: '6px', width: '38px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px', cursor: 'pointer', transition: 'all 0.3s ease', padding: '0' }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--primary-color)'; e.currentTarget.style.borderColor = 'var(--primary-color)'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'var(--border-color)'; }}
-          >
-            <span style={{ display: 'block', width: '5px', height: '5px', borderRadius: '50%', background: 'var(--text-color)', transition: 'background 0.3s ease' }}></span>
-            <span style={{ display: 'block', width: '5px', height: '5px', borderRadius: '50%', background: 'var(--text-color)', transition: 'background 0.3s ease' }}></span>
-            <span style={{ display: 'block', width: '5px', height: '5px', borderRadius: '50%', background: 'var(--text-color)', transition: 'background 0.3s ease' }}></span>
+          <button id="menu-btn" className="menu-btn" onClick={() => setSidebarOpen(true)} aria-label="選單">
+            <span></span><span></span><span></span>
           </button>
         </div>
       </header>

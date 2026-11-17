@@ -688,11 +688,63 @@ a.btn-primary:hover {
   border-color: var(--primary-color) !important;
 }
 
-/* ===== v2 Fix: Footer 圖片大小與文字隱藏 ===== */
+
+/* ===== Final Fix: Hero Btn (填色背景, hover 透明) ===== */
+.hero .btn-primary,
+.btn-hero,
+a.btn-primary {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+  border: 2px solid var(--primary-color) !important;
+  transition: all 0.3s ease !important;
+}
+.hero .btn-primary:hover,
+.btn-hero:hover,
+a.btn-primary:hover {
+  background-color: transparent !important;
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+/* ===== Final Fix: Menu Btn (三小點, 透明底, 框/點跟theme, hover填實色, 點轉白) ===== */
+.menu-btn {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  width: 42px !important;
+  height: 34px !important;
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+  transition: all 0.3s ease !important;
+  z-index: 99 !important;
+}
+.menu-btn:hover {
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+.menu-btn span {
+  display: block !important;
+  width: 5px !important;
+  height: 5px !important;
+  border-radius: 50% !important;
+  background: var(--text-color) !important;
+  transition: background 0.3s ease !important;
+}
+.menu-btn:hover span {
+  background: #fff !important;
+}
+
+/* ===== Final Fix: Footer Logo 圖片尺寸 (隱藏文字) ===== */
 .footer-logo-img {
-  height: 64px !important;
+  height: 80px !important;
   width: auto !important;
-  max-width: 100% !important;
+  max-width: 220px !important;
   display: block !important;
   margin-bottom: 1rem !important;
 }
