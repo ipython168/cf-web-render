@@ -322,9 +322,9 @@ body {
   padding: 1rem 5%;
   display: flex !important;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1rem;
-} 
+}
 
 .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
 
@@ -385,6 +385,7 @@ body {
 /* ===== 三點按鈕：永遠顯示，手機放大熱區 ===== */
 .menu-btn {
   flex: 0 0 auto !important;
+  margin-left: auto !important;
   width: 44px !important;
   height: 44px !important;
   background: transparent !important;
