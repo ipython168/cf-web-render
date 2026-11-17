@@ -437,3 +437,68 @@ body {
 }
  
 
+
+/* ===== Fix: Logo bigger, menu-btn visible, btn outline ===== */
+.logo-img {
+  height: 48px !important;
+  width: auto;
+}
+
+.menu-btn {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 52px !important;
+  height: 52px !important;
+  background: transparent;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+  flex-shrink: 0;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.menu-btn:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.menu-btn span {
+  display: block;
+  width: 18px;
+  height: 3px;
+  background: var(--text-color);
+  border-radius: 2px;
+}
+.menu-btn:hover span {
+  background: #fff;
+}
+
+/* Hero 字體回調 */
+.hero-content h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
+  line-height: 1.15 !important;
+}
+.hero-content p {
+  font-size: clamp(1rem, 2vw, 1.25rem) !important;
+}
+
+/* 按鈕：有框，hover 填色 */
+.btn-primary {
+  border: 2px solid var(--border-color) !important;
+  background: transparent !important;
+  color: var(--primary-color) !important;
+  transition: all 0.3s ease !important;
+}
+.btn-primary:hover {
+  background: var(--primary-color) !important;
+  color: #fff !important;
+  border-color: var(--primary-color) !important;
+}
+
+/* 手機適應 */
+@media (max-width: 768px) {
+  .logo-img { height: 36px !important; }
+  .menu-btn { width: 44px !important; height: 44px !important; }
+}
