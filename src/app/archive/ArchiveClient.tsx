@@ -162,7 +162,7 @@ export default function ArchiveClient({ posts, langData, config }: ArchiveClient
         </div>
       </main>
 
-      <Footer siteConfig={config} t={t} />
+      <Footer siteConfig={config} langData={t} />
     </div>
   );
 }

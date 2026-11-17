@@ -72,7 +72,7 @@ export default function PostClient({ post, langData, config }: PostClientProps) 
           </article>
         </div>
       </main>
-      <Footer siteConfig={config} t={t} />
+      <Footer siteConfig={config} langData={t} />
     </div>
   );
 }
