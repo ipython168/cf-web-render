@@ -43,23 +43,19 @@ body {
   padding: 0 5%;
 }
 
-/* ===== Navbar ===== */
-.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: all 0.3s; background: transparent; }
-.nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
+/* logo 唔好被壓扁 */
+.logo-img {
+  height: 40px;          /* 大一個碼 */
+  width: auto;
+  display: block;
+}
+
 .logo-text { font-size: 1.8rem; letter-spacing: 0.5px; }
 
 
 .navbar.scrolled { background: var(--bg-color); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
 
-.nav-inner {
-  width: 100%;
-  max-width: 1200px;
-  padding: 0 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
+ 
 .logo {
   display: flex;
   align-items: center;
@@ -67,10 +63,6 @@ body {
   text-decoration: none;
 }
 
-.logo-img {
-  height: 54px;
-  width: auto;
-}
 
 /* ===== Hero Section ===== */
 .hero-section {
@@ -322,22 +314,34 @@ body {
   opacity: 0.5;
   font-size: 0.85rem;
 }
-
-/* ===== M
-
+ 
 /* ===== Navbar (透明 + 三點) ===== */
-.navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: transparent; transition: background 0.4s, backdrop-filter 0.4s;
-}
+
 .navbar.scrolled {
   background: var(--card-bg); border-bottom: 1px solid var(--border-color); backdrop-filter: blur(8px);
 }
 .nav-inner {
-  max-width: 1200px; margin: 0 auto; padding: 1rem 5%;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.logo-img { height: 32px; width: auto; }
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+} 
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: transparent;
+  transition: background 0.3s ease;
+} 
+
+.nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
+
+
+
 .menu-dot-btn {
   width: 40px; height: 40px; border-radius: 50%;
   background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);
@@ -395,10 +399,34 @@ body {
 }
 
 /* ===== Menu Button (三點) ===== */
-.menu-btn { width: 40px; height: 40px; border-radius: 10px; border: 1.5px solid var(--text-color); background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; }
-.menu-btn span { width: 4px; height: 4px; border-radius: 50%; background: var(--text-color); }
-.menu-btn:hover { background: var(--text-color); }
-.menu-btn:hover span { background: var(--bg-color); }
+/* ===== 三點按鈕：永遠顯示，手機放大熱區 ===== */
+.menu-btn {
+  flex: 0 0 auto;        /* 唔好俾 flex 壓走 */
+  width: 44px;           /* 手機可點擊熱區 */
+  height: 44px;
+  border-radius: 10px;
+  border: 1.5px solid var(--text-color);
+  background: transparent;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0;
+}
+.menu-btn span {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background-color: var(--text-color);
+  transition: all 0.3s ease;
+}
+.menu-btn:hover {
+  background-color: var(--text-color);
+}
+.menu-btn:hover span {
+  background-color: var(--bg-color);
+}
 
 /* Scrolled state */
 .navbar.scrolled .menu-btn {
@@ -416,3 +444,30 @@ body {
 .navbar.scrolled .menu-btn:hover span {
   background-color: var(--bg-color);
 }
+
+
+
+/* ===== 手機 / 窄窗 breakpoint ===== */
+@media (max-width: 768px) {
+  .nav-inner {
+    padding: 0.75rem 5%;
+  }
+  .logo-img {
+    height: 32px;        /* 手機稍細但清晰 */
+  }
+  .menu-btn {
+    width: 44px;
+    height: 44px;        /* 保持大熱區 */
+  }
+  /* sidebar 手機全寬啲 */
+  .sidebar {
+    width: 85%;
+    right: -100%;
+  }
+  .sidebar.open { right: 0; }
+}
+
+@media (max-width: 480px) {
+  .logo-img { height: 28px; }
+}
+
