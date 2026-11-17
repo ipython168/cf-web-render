@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useScrollFade } from '@/hooks/useScrollFade';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import FeatureSection from '@/components/FeatureSection';
@@ -19,6 +20,9 @@ export default function HomeClient({ config, langData, posts, stats }: HomeClien
   const [currentLang, setCurrentLang] = useState('zh');
   const t = langData[currentLang] || langData.zh || {};
 
+
+  useScrollFade();
+
   return (
     <>
       <Navbar
@@ -33,7 +37,7 @@ export default function HomeClient({ config, langData, posts, stats }: HomeClien
         <StatsSection t={t} stats={stats} />
         <PostGrid initialPosts={posts} />
       </main>
-      <Footer siteConfig={config} t={t} />
+      <Footer siteConfig={config} langData={t} />
     </>
   );
 }

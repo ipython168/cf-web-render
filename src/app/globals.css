@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* ============================
+   THEME VARIABLES
+   ============================ */
 :root[data-theme="light"] {
   --bg-color: #f8fafc;
   --text-color: #0f172a;
@@ -24,7 +27,26 @@
   --hero-bg-overlay: rgba(15, 23, 42, 0.7);
 }
 
-html { scroll-behavior: smooth; }
+
+
+/* ===== Scroll Fade-in Base ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+}
+
+ 
+
+
+/* ============================
+   RESET / BASE
+   ============================ */
+html {
+  scroll-behavior: smooth; 
+  max-width: 100vw;
+}
 
 body {
   margin: 0;
@@ -33,26 +55,138 @@ body {
   background-attachment: fixed;
   color: var(--text-color);
   transition: background 0.5s ease, color 0.5s ease;
-  overflow-x: hidden;
+  overflow-x: clip; /* 修復游標需在文字上才能滾動的問題 */
+  max-width: 100vw;
 }
-
-/* ===== Container ===== */
+/* ============================
+   CONTAINER
+   ============================ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 5%;
 }
 
-/* logo 唔好被壓扁 */
-.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.logo-img { height: 40px; width: auto; }
-.logo-text { font-size: 1.8rem; letter-spacing: 0.5px; }
+/* ============================
+   LOGO
+   ============================ */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+/* Navbar logo — 用 header .logo-img 提高特異性，唔使 !important */
+header .logo-img {
+  height: 56px;
+  width: auto;
+  max-width: 60vw;
+}
+
+/* ============================
+   NAVBAR
+   ============================ */
+
+.navbar {
+   
+  display: flex; justify-content: center; padding: 0.8rem 0; 
+  background-color: transparent;
+}
+
+header.navbar {
+  padding: 0.8rem 0; 
+  position: fixed; 
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: transparent;
+  transition: background 0.3s ease, backdrop-filter 0.3s, border-bottom 0.3s;
+}
+
+/* 全程透明 — scrolled 都唔變 */
+header.navbar.scrolled {
+  background: transparent;
+  border-bottom: none;
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 45px;              
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem; 
+}
+
+/* ============================
+   MENU BUTTON (三點直排 + 正方)
+   ============================ */
+button.menu-btn-final {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;        
+  gap: 4px;
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  border-radius: 12px; 
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+button.menu-btn-final:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+button.menu-btn-final span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-color);
+  transition: background 0.3s ease;
+}
+
+button.menu-btn-final:hover span {
+  background: #fff;
+}
 
 
+/* ============================
+   HERO BUTTON
+   ============================ */
+a.hero-btn-final {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: 2px solid var(--primary-color);
+  padding: 0.8rem 3rem;    /* 開始了解 button 放大 */
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.3s ease; 
+}
 
+a.hero-btn-final:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+}
 
-/* ===== Hero Section ===== */
-.hero-section {
+/* ============================
+   HERO SECTION
+   ============================ */
+.hero-section { 
   height: 100vh;
   display: flex;
   align-items: center;
@@ -68,19 +202,21 @@ body {
 
 .hero-content h1 {
   font-size: 4.5rem;
-  line-height: 1.2;
+  line-height: 1.15;
   margin-bottom: 1.5rem;
   letter-spacing: -1px;
 }
 
 .hero-content p {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2vw, 1.25rem);
   opacity: 0.8;
   margin-bottom: 3rem;
   padding: 0 1rem;
 }
 
-/* ===== Feature Section ===== */
+/* ============================
+   FEATURE SECTION
+   ============================ */
 .feature-section {
   padding: 8rem 0;
   min-height: 80vh;
@@ -123,7 +259,9 @@ body {
   box-shadow: 0 20px 50px rgba(0,0,0,0.1);
 }
 
-/* ===== Stats Section ===== */
+/* ============================
+   STATS SECTION
+   ============================ */
 .stats-section {
   padding: 8rem 0;
   background-color: var(--card-bg);
@@ -157,7 +295,9 @@ body {
   opacity: 0.7;
 }
 
-/* ===== Posts Section ===== */
+/* ============================
+   POSTS SECTION
+   ============================ */
 .posts-section {
   padding: 8rem 0;
 }
@@ -174,7 +314,6 @@ body {
   gap: 2rem;
 }
 
-/* ===== Post Card ===== */
 .post-card {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -232,7 +371,9 @@ body {
   text-decoration: none;
 }
 
-/* ===== Footer ===== */
+/* ============================
+   FOOTER
+   ============================ */
 .site-footer {
   background-color: var(--card-bg);
   border-top: 1px solid var(--border-color);
@@ -258,7 +399,8 @@ body {
   font-size: 0.95rem;
 }
 
-.footer-links h4, .footer-contact h4 {
+.footer-links h4,
+.footer-contact h4 {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
 }
@@ -284,214 +426,187 @@ body {
   opacity: 0.5;
   font-size: 0.85rem;
 }
- 
-/* ===== Navbar (透明 + 三點) ===== */
-.navbar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: transparent;
-  transition: background 0.3s ease, backdrop-filter 0.3s;
-}
-.navbar.scrolled {
-  background: var(--card-bg, #fff);
-  border-bottom: 1px solid var(--border-color, #eee);
-  backdrop-filter: blur(8px);
-}
-.nav-inner {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 5%;
-  display: flex !important;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
+
+/* Footer logo */
+footer .logo-img-footer {
+  height: 64px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  margin-bottom: 1rem;
 }
 
-.nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
-
-
-
-.menu-dot-btn { display: none !important; }
-.menu-dot-btn span {
-  width: 4px; height: 4px; border-radius: 50%; background: var(--text-color);
-}
-.menu-dot-btn:hover { background: var(--primary-color); border-color: var(--primary-color); }
-.menu-dot-btn:hover span { background: #fff; }
-
-/* ===== Sidebar / Overlay (已存在部分會被覆蓋，確保完整) ===== */
+/* ============================
+   SIDEBAR / OVERLAY
+   ============================ */
 .overlay {
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
-  z-index: 150; opacity: 0; pointer-events: none; transition: opacity 0.4s;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
 }
-.overlay.active { opacity: 1; pointer-events: auto; }
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 .sidebar {
-  position: fixed; top: 0; right: -350px; width: 320px; height: 100vh;
-  background: var(--sidebar-bg); z-index: 200;
+  position: fixed;
+  top: 0; right: -350px;
+  width: 320px; height: 100vh;
+  background: var(--sidebar-bg);
+  z-index: 200;
   box-shadow: -10px 0 30px rgba(0,0,0,0.1);
   transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex; flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-.sidebar.open { right: 0; }
-/* 關閉符號 */
-.close-btn { align-self: flex-end; margin: 0.5rem 1.5rem; font-size: 1.2rem; background: none; border: none; color: var(--text-color); cursor: pointer; }
 
-.sidebar-content { flex: 1; padding: 0 2rem 2rem; display: flex; flex-direction: column; }
-.theme-section { margin-bottom: 1rem; }
-.theme-section h4 { margin: 0 0 0.5rem; font-size: 1rem; opacity: 0.7; }
+.sidebar.open {
+  right: 0;
+}
 
-/* 側欄主題圖標 */
-.icon-btn-group { display: flex; gap: 10px; }
-.icon-btn { flex: 1; padding: 10px; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; font-size: 1.2rem; }
-.icon-btn.active { background: var(--primary-color); border-color: var(--primary-color); }
+.close-btn {
+  align-self: flex-end;
+  margin: 0.2rem 1rem 0;      
+  font-size: 1rem;
 
-.sidebar-links { display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0; }
-.sidebar-links a { font-size: 1.2rem; color: var(--text-color); text-decoration: none; font-weight: bold; }
-.sidebar-bottom { margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+}
 
-/* 語言膠囊 */
-.lang-switch-container { display: flex; justify-content: center; margin-bottom: 1.5rem; }
-.lang-switch { display: flex; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 30px; padding: 4px; width: 140px; }
-.lang-btn { flex: 1; padding: 0.5rem; border: none; background: transparent; color: var(--text-color); font-weight: bold; border-radius: 25px; cursor: pointer; }
-.lang-btn.active { background: var(--primary-color); color: #fff; }
+.sidebar-content {
+  flex: 1;
+  padding: 0 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.theme-section {
+  margin-bottom: 0.5rem;
+}
+
+.theme-section h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.icon-btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-btn {
+  flex: 1;
+  padding: 3px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.icon-btn.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1rem 0 2rem;
+}
+
+.sidebar-links a {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem;
+}
+
+.lang-switch-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.lang-switch {
+  display: flex;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  padding: 4px;
+  width: 200px;
+}
+
+.lang-btn {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+  background: transparent;
+  color: var(--text-color);
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.lang-btn.active {
+  background: var(--primary-color);
+  color: #fff;
+}
 
 .social-link {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 40px; height: 40px; border-radius: 50%; background: var(--bg-color);
-  color: var(--text-color); text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--bg-color);
+  color: var(--text-color);
+  text-decoration: none;
 }
 
-/* Scrolled state */
-
-
-/* ===== 手機 breakpoint ===== */
+/* ============================
+   MOBILE BREAKPOINT
+   ============================ */
 @media (max-width: 768px) {
-  .nav-inner { padding: 0.75rem 5%; }
-  .logo-img { height: 32px; }
+  .nav-inner {
+    padding: 0 5%;
+    height: 60px; 
+  } 
+  header .logo-img {
+    height: 40px;
+  }
 
+  .feature-section .container {
+    flex-direction: column;
+  }
 
-/* Hero 字體回調 */
-.hero-content h1 {
-  font-size: clamp(2.5rem, 6vw, 4.5rem) !important;
-  line-height: 1.15 !important;
-}
-.hero-content p {
-  font-size: clamp(1rem, 2vw, 1.25rem) !important;
-}
+  .feature-visual {
+    padding-left: 0;
+    margin-top: 2rem;
+    justify-content: center;
+  }
 
-/* 按鈕：有框，hover 填色 */
-/* 手機適應 */
-@media (max-width: 768px) {
-  .logo-img { height: 36px !important; }
-/* ===== Fix: Layout overflow & Footer logo size ===== */
-html, body {
-  overflow-x: hidden !important;
-  max-width: 100vw;
-}
-
-/* Navbar Logo 穩定尺寸 (唔好太大) */
-.navbar .logo-img {
-  height: 40px !important;
-  width: auto !important;
-  max-width: 60vw;
-}
-@media (max-width: 768px) {
-  .navbar .logo-img {
-    height: 32px !important;
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
-/* Footer Logo 修復：縮細，唔可以撐爆 */
-/* 確保文章卡片唔撐爆 */
-.article-card, .card {
-  max-width: 100%;
-  overflow: hidden;
-}
-
-/* ===== Hero button: 填色背景, hover 透明 ===== */
-/* ===== Menu button: 三小點, 透明底, 框+點跟theme, hover填實色, 點轉白 ===== */
-/* ===== Footer 原有文字 logo 隱藏，改顯示圖片 ===== */
-footer .logo-img-footer {
-  height: 96px !important;
-  width: auto !important;
-  max-width: 280px !important;
-}
-
-
-/* ===== Final Fix: Hero Btn (填色背景, hover 透明) ===== */
-/* ===== Final Fix: Menu Btn (三小點, 透明底, 框/點跟theme, hover填實色, 點轉白) ===== */
-/* ===== Final Fix: Footer Logo 圖片尺寸 (隱藏文字) ===== */
-
-/* ===== FINAL ABSOLUTE FIX ===== */
-.hero-btn-final {
-  display: inline-block !important;
-  background-color: var(--primary-color) !important;
-  color: #ffffff !important;
-  border: 2px solid var(--primary-color) !important;
-  padding: 0.75rem 1.5rem !important;
-  border-radius: 9999px !important;
-  text-decoration: none !important;
-  transition: all 0.3s ease !important;
-}
-.hero-btn-final:hover {
-  background-color: transparent !important;
-  color: var(--primary-color) !important;
-}
-
-.menu-btn-final {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 4px !important;
-  width: 42px !important;
-  height: 34px !important;
-  background: transparent !important;
-  border: 1px solid var(--border-color) !important;
-  border-radius: 6px !important;
-  cursor: pointer !important;
-  padding: 0 !important;
-  flex-shrink: 0 !important;
-  transition: all 0.3s ease !important;
-  z-index: 99 !important;
-}
-.menu-btn-final:hover {
-  background: var(--primary-color) !important;
-  border-color: var(--primary-color) !important;
-}
-.menu-btn-final span {
-  display: block !important;
-  width: 5px !important;
-  height: 5px !important;
-  border-radius: 50% !important;
-  background: var(--text-color) !important;
-  transition: background 0.3s ease !important;
-}
-.menu-btn-final:hover span {
-  background: #fff !important;
-}
-
-.footer-logo-final {
-  height: 64px !important;
-  width: auto !important;
-  max-width: 100% !important;
-  display: block !important;
-  margin-bottom: 1rem !important;
-}
-.footer-final .footer-brand h2,
-.footer-final .footer-brand h3,
-.footer-final .footer-brand .logo-text {
-  display: none !important;
-}
-
-/* 修復 Navbar 透明底 */
-.navbar {
-  background: transparent !important;
-}
-.navbar.scrolled {
-  background: var(--bg-color) !important;
-  border-bottom: 1px solid var(--border-color) !important;
-}
+.footer-logo-final { max-width: 120px !important; height: auto !important; }

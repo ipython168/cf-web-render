@@ -33,7 +33,7 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
       style={{ backgroundImage: heroBg, backgroundPosition: `calc(50% + ${mousePos.x}px) calc(50% + ${mousePos.y}px)` }}
       onMouseMove={handleMouseMove}
     >
-      <div className="hero-content">
+      <div className="hero-content fade-in">
         <h1 dangerouslySetInnerHTML={{ __html: t.hero.title }} />
         <p>{t.hero.subtitle}</p>
         <div className="hero-btns">

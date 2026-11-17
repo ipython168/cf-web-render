@@ -12,14 +12,14 @@ export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="feature-text">
             <h2
-              className="text-3xl md:text-4xl font-bold mb-6 fade-in"
+              className="text-3xl md:text-4xl font-bold mb-6"
               dangerouslySetInnerHTML={{ __html: t.sections.featuresTitle }}
             />
-            <p className="text-lg opacity-70 leading-relaxed fade-in">
+            <p className="text-lg opacity-70 leading-relaxed">
               {t.sections.featuresDesc}
             </p>
           </div>
-          <div className="feature-visual fade-in">
+          <div className="feature-visual">
             <img
               src={siteConfig.sections.featureImage}
               alt="Feature"
