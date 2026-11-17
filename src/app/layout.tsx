@@ -3,16 +3,15 @@ import fs from 'fs';
 import path from 'path';
 import ThemeProvider from '../components/ThemeProvider';
 import "./globals.css";
-
-// src/app/layout.tsx 頭部
-export const metadata = {
-  title: 'QuantBase',
-  viewport: 'width=device-width, initial-scale=1',
+ 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export async function generateMetadata(): Promise<Metadata> {
   const configPath = path.join(process.cwd(), 'public/site-config.json');
-  let title = 'Quant Web';
+  let title = 'QuantBase';
   try {
     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     title = config.siteTitle || title;
