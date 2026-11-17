@@ -539,3 +539,69 @@ footer .quantbase-logo {
   max-width: 100%;
   overflow: hidden;
 }
+
+/* ===== Hero button: 填色背景, hover 透明 ===== */
+.btn-primary {
+  background: var(--primary-color) !important;
+  color: #fff !important;
+  border: 2px solid var(--primary-color) !important;
+  transition: all 0.3s ease !important;
+}
+.btn-primary:hover {
+  background: transparent !important;
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+/* ===== Menu button: 三小點, 透明底, 框+點跟theme, hover填實色, 點轉白 ===== */
+.menu-btn {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 3px !important;
+  width: 38px !important;
+  height: 34px !important;
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+  transition: all 0.3s ease !important;
+}
+.menu-btn:hover {
+  background: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+.menu-btn span {
+  display: block !important;
+  width: 5px !important;
+  height: 5px !important;
+  border-radius: 50% !important;
+  background: var(--text-color) !important;
+  transition: background 0.3s ease !important;
+}
+.menu-btn:hover span {
+  background: #fff !important;
+}
+
+/* ===== Footer: 改用 logo 圖 ===== */
+.site-footer .footer-brand h3,
+.site-footer .footer-brand .logo-text {
+  display: none !important;
+}
+.site-footer .footer-brand .footer-logo-img {
+  display: block !important;
+  height: 64px !important;
+  width: auto !important;
+  max-width: 240px !important;
+  margin-bottom: 1rem !important;
+}
+
+/* ===== Footer 原有文字 logo 隱藏，改顯示圖片 ===== */
+footer .logo-img-footer {
+  height: 96px !important;
+  width: auto !important;
+  max-width: 280px !important;
+}
