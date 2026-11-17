@@ -12,13 +12,12 @@ interface NavbarProps {
 }
 
 export default function Navbar({ siteConfig, langData, currentLang: propLang, onLangChange: propOnChange }: NavbarProps) {
-  const { lang, setLang, mounted } = useLang();
+  const { lang, changeLang, mounted } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // Use prop if provided, otherwise fallback to useLang
   const currentLang = propLang ?? lang;
-  const onLangChange = propOnChange ?? setLang;
+  const onLangChange = propOnChange ?? changeLang;
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > window.innerHeight - 100);
