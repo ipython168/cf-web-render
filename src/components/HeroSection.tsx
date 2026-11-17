@@ -20,8 +20,8 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
   if (!mounted) return null;
 
   const heroBg = resolvedTheme === 'dark'
-    ? `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('/images/hero/hero-bg-dark.jpg')`
-    : `linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('/images/hero/hero-bg-light.jpg')`;
+    ? `linear-gradient(${siteConfig.theme.dark.heroBgOverlay}, ${siteConfig.theme.dark.heroBgOverlay}), url('/images/hero/hero-bg-dark.jpg')`
+    : `linear-gradient(${siteConfig.theme.light.heroBgOverlay}, ${siteConfig.theme.light.heroBgOverlay}), url('/images/hero/hero-bg-light.jpg')`;
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (window.innerWidth > 768) {
