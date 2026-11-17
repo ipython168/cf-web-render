@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import LangSwitcher from './LangSwitcher';
-import ThemeSwitcher from './ThemeSwitcher';
 
 interface NavbarProps {
   siteConfig: any;
@@ -28,7 +27,6 @@ export default function Navbar({ siteConfig, langData }: NavbarProps) {
         </a>
         <div className="flex items-center gap-3">
           <LangSwitcher langData={langData} />
-          <ThemeSwitcher />
         </div>
       </div>
     </header>
