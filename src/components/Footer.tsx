@@ -26,8 +26,8 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
           <div className="footer-brand">
             <img
               src={siteConfig.logoImage}
-              alt="QuantBase Logo"
-              className="logo-img-footer"
+              alt="QuantBase"
+              className="footer-logo-img"
             />
             <p>{t('footer.description')}</p>
           </div>
