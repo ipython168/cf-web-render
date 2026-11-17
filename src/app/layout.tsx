@@ -1,12 +1,13 @@
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 import fs from 'fs';
 import path from 'path';
 import ThemeProvider from '../components/ThemeProvider';
 import "./globals.css";
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1,
+// src/app/layout.tsx 頭部
+export const metadata = {
+  title: 'QuantBase',
+  viewport: 'width=device-width, initial-scale=1',
 };
 
 export async function generateMetadata(): Promise<Metadata> {
