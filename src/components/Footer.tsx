@@ -1,5 +1,4 @@
 'use client';
-
 import { useLang } from '@/hooks/useLang';
 
 interface FooterProps {
@@ -9,26 +8,19 @@ interface FooterProps {
 
 export default function Footer({ siteConfig, langData }: FooterProps) {
   const { lang } = useLang();
-
   const t = (key: string) => {
     const keys = key.split('.');
     let obj = langData?.[lang] || langData?.zh || {};
-    for (const k of keys) {
-      obj = obj?.[k];
-    }
+    for (const k of keys) obj = obj?.[k];
     return obj || key;
   };
 
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" style={{ overflow: 'hidden' }}>
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
-            <img
-              src={siteConfig.logoImage}
-              alt="QuantBase"
-              className="footer-logo-img"
-            />
+            <img src={siteConfig.logoImage} alt="QuantBase" className="footer-logo-img" />
             <p>{t('footer.description')}</p>
           </div>
           <div className="footer-links">

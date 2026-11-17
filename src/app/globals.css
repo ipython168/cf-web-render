@@ -671,3 +671,33 @@ a.btn-primary:hover {
 .site-footer .footer-brand .logo-text {
   display: none !important;
 }
+
+/* ===== v2 Fix: Hero Btn 填色/Hover透明 ===== */
+.hero .btn-primary,
+.btn-hero,
+a.btn-primary {
+  background-color: var(--primary-color) !important;
+  color: #ffffff !important;
+  border: 2px solid var(--primary-color) !important;
+}
+.hero .btn-primary:hover,
+.btn-hero:hover,
+a.btn-primary:hover {
+  background-color: transparent !important;
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+/* ===== v2 Fix: Footer 圖片大小與文字隱藏 ===== */
+.footer-logo-img {
+  height: 64px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  display: block !important;
+  margin-bottom: 1rem !important;
+}
+.site-footer .footer-brand h2,
+.site-footer .footer-brand h3,
+.site-footer .footer-brand .logo-text {
+  display: none !important;
+}
