@@ -25,8 +25,6 @@ export default function Navbar({ siteConfig, langData, currentLang: propLang, on
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!mounted) return null;
-
   return (
     <>
       <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
