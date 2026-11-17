@@ -1,17 +1,8 @@
 'use client';
-
 import { useTheme } from 'next-themes';
 import { useEffect } from 'react';
-import LangSwitcher from './LangSwitcher';
 
-interface SidebarProps {
-  open: boolean;
-  onClose: () => void;
-  siteConfig: any;
-  langData: any;
-}
-
-export default function Sidebar({ open, onClose, siteConfig, langData }: SidebarProps) {
+export default function Sidebar({ open, onClose, siteConfig, langData, currentLang, onLangChange }: any) {
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
@@ -22,45 +13,34 @@ export default function Sidebar({ open, onClose, siteConfig, langData }: Sidebar
 
   return (
     <>
-      {/* Overlay — 點擊關閉 */}
       <div id="overlay" className={`overlay ${open ? 'active' : ''}`} onClick={onClose} />
-
-      {/* Sidebar — 跟原版 HTML 結構 */}
       <div id="sidebar" className={`sidebar ${open ? 'open' : ''}`}>
         <button id="close-btn" className="close-btn" onClick={onClose}>✕</button>
         <div className="sidebar-content">
-          {/* 主題設定 */}
           <div className="theme-section">
-            <h4 id="theme-title">{langData.sidebar?.themeTitle || 'Theme Settings'}</h4>
-            <select className="theme-select" value={theme} onChange={(e) => setTheme(e.target.value)}>
-              <option value="system">System</option>
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-            </select>
+            <h4 id="theme-title">主題設定</h4>
+            <div className="icon-btn-group">
+              <button className={`icon-btn ${theme==='light'?'active':''}`} onClick={()=>setTheme('light')}>☀️</button>
+              <button className={`icon-btn ${theme==='system'?'active':''}`} onClick={()=>setTheme('system')}>💻</button>
+              <button className={`icon-btn ${theme==='dark'?'active':''}`} onClick={()=>setTheme('dark')}>🌙</button>
+            </div>
           </div>
-
-          {/* 選單連結 — 跟原版 sidebar.ts 結構 */}
           <div className="sidebar-links">
-            {langData.nav && (
-              <>
-                <a href="#">{langData.nav.about}</a>
-                <a href="#">{langData.nav.news}</a>
-                <a href="#">{langData.nav.help}</a>
-                <a href="#">{langData.nav.support}</a>
-              </>
-            )}
+            <a href="#">{langData.nav?.about || '關於我們'}</a>
+            <a href="#">{langData.nav?.news || '最新消息'}</a>
+            <a href="#">{langData.nav?.help || '幫助中心'}</a>
+            <a href="#">{langData.nav?.support || '支持我們'}</a>
           </div>
-
-          {/* 底部：語言切換 + 社交 */}
           <div className="sidebar-bottom">
             <div className="lang-switch-container">
-              <LangSwitcher langData={langData} />
+              <div className="lang-switch">
+                <button className={`lang-btn ${currentLang==='zh'?'active':''}`} onClick={()=>onLangChange('zh')}>中文</button>
+                <button className={`lang-btn ${currentLang==='en'?'active':''}`} onClick={()=>onLangChange('en')}>EN</button>
+              </div>
             </div>
             {siteConfig.social?.facebook && (
-              <div style={{ textAlign: 'center' }}>
-                <a href={siteConfig.social.facebook} target="_blank" rel="noopener noreferrer" className="social-link">
-                  f
-                </a>
+              <div style={{textAlign:'center'}}>
+                <a href={siteConfig.social.facebook} target="_blank" rel="noopener" className="social-link">f</a>
               </div>
             )}
           </div>
