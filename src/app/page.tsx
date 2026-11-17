@@ -1,9 +1,7 @@
+// src/app/page.tsx
 import fs from 'fs';
 import path from 'path';
 import HomeClient from './HomeClient';
-
-const [currentLang, setCurrentLang] = useState('zh');
-// Navbar 接收: currentLang={currentLang} onLangChange={setCurrentLang}
 
 function readJson(filePath: string) {
   try {
