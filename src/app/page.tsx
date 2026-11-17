@@ -2,20 +2,28 @@ import fs from 'fs';
 import path from 'path';
 import HomeClient from './HomeClient';
 
-export default async function Home() {
-  const configPath = path.join(process.cwd(), 'public/site-config.json');
-  const langPath = path.join(process.cwd(), 'public/lang.json');
-  const postsPath = path.join(process.cwd(), 'public/posts.json');
-  const statsPath = path.join(process.cwd(), 'public/stats.json');
-
-  const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-  const langData = JSON.parse(fs.readFileSync(langPath, 'utf8'));
-  const posts = JSON.parse(fs.readFileSync(postsPath, 'utf8'));
-
-  let stats = null;
+function readJson(filePath: string) {
   try {
-    stats = JSON.parse(fs.readFileSync(statsPath, 'utf8'));
-  } catch {}
+    const fullPath = path.join(process.cwd(), 'public', filePath);
+    return JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+  } catch {
+    return {};
+  }
+}
 
-  return <HomeClient config={config} langData={langData} posts={posts} stats={stats} />;
+export default function HomePage() {
+  const config = readJson('site-config.json');
+  const langData = readJson('lang.json');
+  const stats = readJson('stats.json');
+  const postsData = readJson('posts.json');
+  const posts = postsData.posts || postsData || [];
+
+  return (
+    <HomeClient
+      config={config}
+      langData={langData}
+      posts={posts}
+      stats={stats}
+    />
+  );
 }

@@ -6,7 +6,6 @@
       "bgColor": "#f8fafc",
       "textColor": "#0f172a",
       "cardBg": "#ffffff",
-      "_primaryColor": "#ff0000",
       "primaryColor": "#0891b2",
       "borderColor": "#cbd5e1",
       "sidebarBg": "#f0f9ff",
@@ -26,7 +25,6 @@
       "heroBgOverlay": "rgba(15, 23, 42, 0.7)"
     }
   },
-
   "logoImage": "/images/branding/logo.png",
   "BrandmarkImage": "/images/branding/brandmark.png",
   "hero": {
