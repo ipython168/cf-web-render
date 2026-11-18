@@ -219,12 +219,15 @@ a.hero-btn-final:hover {
 .feature-section {
   padding: 8rem 0;
   min-height: 80vh;
+  overflow: hidden; /* 防止傾斜時超出 */
+
 }
 
 .feature-section .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 4rem;
 }
 
 .feature-text {
@@ -249,14 +252,31 @@ a.hero-btn-final:hover {
   display: flex;
   justify-content: flex-end;
   padding-left: 2rem;
+  perspective: 1000px; /* 增加 3D 空間感 */
+
 }
 
 .feature-img {
   max-width: 400px;
+  width: 100%;
+
   height: auto;
   border-radius: 20px;
   box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+
+  /* 初始輕微傾斜（參考圖中效果） */
+  transform: rotate(3deg) translateZ(0);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+  cursor: pointer;
 }
+/* Hover 時反轉方向 + 浮起 */
+.feature-img:hover {
+  /*   transform: rotateY(15deg) rotateZ(-3deg) scale(1.05); */
+  transform: rotate(-3deg) translateY(-10px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+
 
 /* ============================
    STATS SECTION
@@ -621,6 +641,7 @@ footer .logo-img-footer {
 
   .feature-section .container {
     flex-direction: column;
+    text-align: center;
   }
 
   .feature-visual {
@@ -628,14 +649,14 @@ footer .logo-img-footer {
     margin-top: 2rem;
     justify-content: center;
   }
+  .feature-img {
+    max-width: 320px;
+  }
 
   .footer-content {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-}
-
-@media (max-width: 768px) {
+  } 
   .hero-content h1 {
     font-size: 2.5rem;      /* 4.5rem → 2.5rem (40px)，手機啱啱好 */
     line-height: 1.2;
