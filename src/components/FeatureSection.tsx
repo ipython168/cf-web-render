@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useRef } from 'react';
 
 interface FeatureSectionProps {
   siteConfig: any;
@@ -6,6 +7,29 @@ interface FeatureSectionProps {
 }
 
 export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            img.classList.add('spin-right');
+          } else {
+            img.classList.remove('spin-right');
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(img);
+    return () => observer.disconnect();
+  }, []);
+  
   return (
     <section id="features" className="feature-section py-20 fade-in overflow-hidden">
       <div className="container">
@@ -21,6 +45,7 @@ export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
         </div>
         <div className="feature-visual">
           <img
+            ref={imgRef}
             src={siteConfig.sections.featureImage}
             alt="Feature"
             className="feature-img"
