@@ -7,9 +7,10 @@ interface FeatureSectionProps {
 
 export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
   return (
-    <section id="features" className="feature-section py-20 fade-in overflow-hidden">
+    <section id="features" className="feature-section py-20 fade-in">
       <div className="container">
-        <div className="grid md:grid-cols-2 gap-12 items-center" style={{ perspective: '1000px' }}>
+        {/* 移走 grid md:grid-cols-2，CSS 已經用 flex 控制左右 */}
+        <div className="flex flex-col md:flex-row gap-12 items-center" style={{ perspective: '1000px' }}>
           {/* 左邊文字 */}
           <div className="feature-text">
             <h2
