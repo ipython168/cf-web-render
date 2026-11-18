@@ -5,7 +5,7 @@
    ============================ */
 :root[data-theme="light"] {
   --bg-color: #f8fafc;
-  --text-color: #0f172a;
+  --text-color: #5b5b5b;
   --card-bg: #ffffff;
   --primary-color: #0891b2;
   --primary-color2: #35cddf; 
@@ -377,7 +377,8 @@ a.hero-btn-final:hover {
   background-color: var(--primary-color2);
   border-top: 1px solid var(--border-color);
   padding: 4rem 0 2rem;
-  opacity: 1;
+  color: var(--text-color);
+  transition: none;
 }
 
 .footer-content {
@@ -399,37 +400,40 @@ a.hero-btn-final:hover {
   font-size: 0.95rem;
 }
 
+
+
+/* ── Footer 統一連結區域 ── */
 .footer-links h4,
 .footer-contact h4 {
   font-size: 1.1rem;
+  font-weight: 700;
   margin-bottom: 1.5rem;
   color: var(--text-color);
+  /* H4 唔 hover，唔變 */
 }
 
-.footer-links a {
+.footer-links a,
+.footer-contact a {
   display: block;
-  color: var(--text-color);
+  font-weight: 700;
   text-decoration: none;
   margin-bottom: 0.8rem;
-  opacity: 0.85;
+  /* 空心字：用 theme 字色做 stroke */
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-color);
+  transition: all 0.3s ease;
 }
+
 .footer-links a:hover,
 .footer-contact a:hover {
-  color: rgba(255, 255, 255, 0.7);  /* hover 淺色實色 */
+  /* hover 填實色：用 primary-color */
+  color: var(--primary-color);
   -webkit-text-stroke: 1px transparent;
-
+  text-decoration: none;
 }
 
-.footer-contact a {
-  color: transparent;
-  -webkit-text-stroke: 1px #ffffff;
-  transition: all 0.3s ease;
-  font-weight: normal;
-  text-decoration: none; 
-}
-
+/* footer-contact 入面 p 包住 a 嘅情況 */
 .footer-contact p {
-  opacity: 0.85;
   margin-bottom: 0.8rem;
   font-size: 0.95rem;
 }
