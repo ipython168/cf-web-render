@@ -24,7 +24,7 @@ export default function StatsSection({ t, stats }: StatsSectionProps) {
 
   return (
     <section id="stats" className="stats-section py-20 fade-in">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="container">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           {t.stats?.title || '實戰數據'}
         </h2>

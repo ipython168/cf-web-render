@@ -8,7 +8,7 @@ interface FeatureSectionProps {
 export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
   return (
     <section id="features" className="feature-section py-20 fade-in">
-      <div className="max-w-6xl mx-auto px-4">
+      <div className="container">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="feature-text">
             <h2

@@ -30,7 +30,7 @@ export default function PostGrid({ initialPosts, showLoadMore = true }: PostGrid
   const hasMore = displayCount < filteredPosts.length;
 
   return (
-    <div>
+    <div className="container">
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {postsToShow.map(post => (
           <PostCard key={post.id} post={post} lang={lang} />

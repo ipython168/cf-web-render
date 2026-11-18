@@ -112,7 +112,7 @@ header.navbar.scrolled {
   max-width: 1280px;
   margin: 0 auto;
   height: 45px;              
-  padding: 0 5%;
+  padding: 0 1%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -434,6 +434,8 @@ footer .logo-img-footer {
   margin-bottom: 1rem;
 }
 
+.footer-logo-final { max-width: 120px !important; height: auto !important; }
+
 /* ============================
    SIDEBAR / OVERLAY
    ============================ */
@@ -584,7 +586,7 @@ footer .logo-img-footer {
    ============================ */
 @media (max-width: 768px) {
   .nav-inner {
-    padding: 0 5%;
+    padding: 0 1%;
     height: 60px; 
   } 
   header .logo-img {
@@ -607,4 +609,18 @@ footer .logo-img-footer {
   }
 }
 
-.footer-logo-final { max-width: 120px !important; height: auto !important; }
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;      /* 4.5rem → 2.5rem (40px)，手機啱啱好 */
+    line-height: 1.2;
+  }
+  .hero-content p {
+    font-size: 1rem;        /* subtitle 改細啲 */
+    padding: 0;
+  }
+}
+
+
+
+
+
