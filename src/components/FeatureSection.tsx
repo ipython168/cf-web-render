@@ -18,12 +18,11 @@ export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             img.classList.add('spin-right');
-          } else {
-            img.classList.remove('spin-right');
+            observer.unobserve(img); // ← 觸發一次就停，唔再監聽
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.3, rootMargin: '0px 0px -30px 0px' }
     );
 
     observer.observe(img);
