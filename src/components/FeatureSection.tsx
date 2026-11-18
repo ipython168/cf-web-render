@@ -13,20 +13,35 @@ export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
     const img = imgRef.current;
     if (!img) return;
 
+
+  // 等圖 load 完先 observe，避免 layout shift
+  const handleLoad = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            img.classList.add('spin-right');
-            observer.unobserve(img); // ← 觸發一次就停，唔再監聽
+            // 延遲一幀，等瀏覽器 idle 先播
+            requestAnimationFrame(() => {
+              img.classList.add('spin-right');
+            });
+            observer.unobserve(img);
           }
         });
       },
-      { threshold: 0.3, rootMargin: '0px 0px -30px 0px' }
+      { threshold: 0.3, rootMargin: '0px 0px -50px 0px' }
     );
-
     observer.observe(img);
-    return () => observer.disconnect();
+  };
+
+  if (img.complete) {
+    handleLoad();
+  } else {
+    img.addEventListener('load', handleLoad);
+  }
+
+    return () => {
+    img.removeEventListener('load', handleLoad);
+  };
   }, []);
   
   return (
