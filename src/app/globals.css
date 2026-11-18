@@ -109,10 +109,10 @@ header.navbar.scrolled {
 
 .nav-inner {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
   height: 45px;              
-  padding: 0 1%;
+  padding: 0 1.5%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -586,7 +586,7 @@ footer .logo-img-footer {
    ============================ */
 @media (max-width: 768px) {
   .nav-inner {
-    padding: 0 1%;
+    padding: 0 1.5%;
     height: 60px; 
   } 
   header .logo-img {

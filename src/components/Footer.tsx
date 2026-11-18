@@ -75,7 +75,7 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
           </div>
         </div>
         
-        <div className="footer-bottom fade-in">
+        <div className="footer-bottom">
           <p>&copy; {new Date().getFullYear()} {siteConfig?.siteName || 'QuantBase'}. All rights reserved.</p>
         </div>
       </div>
