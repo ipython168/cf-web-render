@@ -31,7 +31,8 @@
         "insights": "交易心得",
         "privacy": "私隱條例",
         "support": "WhatsApp 技術支援"
-      }
+      },
+      "copyright": "© {year} QuantBase. All rights reserved."      
     },    
     "stats": {
       "title": "實戰數據",

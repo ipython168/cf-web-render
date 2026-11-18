@@ -25,12 +25,12 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
     about: '/about',
     backtest: '/backtest',
     insights: '/insights',
-    privacy: '/privacy',
-    support: '/support'
+    privacy: '/privacy' 
   };
 
   const links = t('footer.links');
   const email = siteConfig?.footer?.contact?.email || 'info@myquant.hk';
+  const whatsapp = siteConfig?.footer?.contact?.whatsapp || '';
 
   return (
     <footer className="site-footer footer-final">
@@ -49,7 +49,9 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
           <div className="footer-links">
             <h4>{t('footer.quickLinksTitle')}</h4>
             {links && typeof links === 'object' ? (
-              Object.entries(links).map(([key, label]) => (
+              Object.entries(links)
+                .filter(([key]) => key !== 'support')
+                .map(([key, label]) => (
                 <a key={key} href={linkMap[key] || '#'}>{label as string}</a>
               ))
             ) : null}
@@ -57,13 +59,24 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
           
           <div className="footer-contact">
             <h4>{t('footer.contactTitle')}</h4>
-            <p>{email}</p>
-            {/* 已移除 phone，因 site-config.json 無此欄位，避免出 undefined */}
+            <p><a href={`mailto:${email}`}>{email}</a></p>
+            {siteConfig?.footer?.contact?.whatsapp && (
+                <p>
+                <a 
+                    href={`https://wa.me/${siteConfig.footer.contact.whatsapp.replace(/\D/g, '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {t('footer.links.support')}
+                </a>
+                </p>
+            )}
+
           </div>
         </div>
         
         <div className="footer-bottom fade-in">
-          <p>&copy; {new Date().getFullYear()} QuantBase. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} {siteConfig?.siteName || 'QuantBase'}. All rights reserved.</p>
         </div>
       </div>
     </footer>

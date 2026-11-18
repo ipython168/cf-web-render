@@ -44,8 +44,7 @@
    RESET / BASE
    ============================ */
 html {
-  scroll-behavior: smooth; 
-  max-width: 100vw;
+  scroll-behavior: smooth;  
 }
 
 body {
@@ -55,14 +54,13 @@ body {
   background-attachment: fixed;
   color: var(--text-color);
   transition: background 0.5s ease, color 0.5s ease;
-  overflow-x: clip; /* 修復游標需在文字上才能滾動的問題 */
-  max-width: 100vw;
+  overflow-x: clip; /* 修復游標需在文字上才能滾動的問題 */ 
 }
 /* ============================
    CONTAINER
    ============================ */
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 5%;
 }
@@ -111,7 +109,7 @@ header.navbar.scrolled {
 
 .nav-inner {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   height: 45px;              
   padding: 0 5%;
