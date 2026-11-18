@@ -31,7 +31,7 @@ export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
   }, []);
   
   return (
-    <section id="features" className="feature-section py-20 fade-in overflow-hidden">
+    <section id="features" className="feature-section fade-in overflow-hidden">
       <div className="container">
         {/* 唔加任何 flex/grid class，全部交 CSS 控制 */}
         <div className="feature-text">
