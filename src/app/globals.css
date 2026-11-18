@@ -8,10 +8,10 @@
   --text-color: #033b43;     /* 深色字 */
   --card-bg: #ffffff;
   --primary-color: #55b0c0;  /* 中間色(hover) */
-  --primary-color2: #8be9f7; /* 淺色底 */
+  --primary-color2: #a5f3fc; /* 淺色底 */
   --border-color: #cbd5e1;
   --sidebar-bg: #f0f9ff;
-  --page-gradient: radial-gradient(circle at center, #cffafe 0%, #a5f3fc 50%, #e0f2fe 80%, #ffffff 100%);
+  --page-gradient: radial-gradient(circle at center, #a5f3fc 0%, #cffafe 50%, #e0f2fe 80%, #ffffff 100%);
   --hero-text-color: #0f172a;
   --hero-bg-overlay: rgba(255, 255, 255, 0.2);
 }
