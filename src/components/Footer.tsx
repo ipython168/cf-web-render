@@ -43,7 +43,6 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
               className="footer-logo-final"
               style={{ maxWidth: '120px', height: 'auto' }}
             />
-            <h3>{siteConfig?.siteName || 'QuantBase'}</h3>
             <p>{t('footer.brandDesc')}</p>
           </div>
           
