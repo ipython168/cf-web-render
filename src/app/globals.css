@@ -417,12 +417,15 @@ a.hero-btn-final:hover {
 .footer-contact a:hover {
   color: rgba(255, 255, 255, 0.7);  /* hover 淺色實色 */
   -webkit-text-stroke: 1px transparent;
+
 }
 
 .footer-contact a {
   color: transparent;
   -webkit-text-stroke: 1px #ffffff;
   transition: all 0.3s ease;
+  font-weight: normal;
+  text-decoration: none; 
 }
 
 .footer-contact p {
