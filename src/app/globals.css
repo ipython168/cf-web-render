@@ -152,7 +152,7 @@ button.menu-btn-final span {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--text-color);
+  background: var(--primary-color);
   transition: background 0.3s ease;
 }
 
