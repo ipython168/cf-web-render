@@ -5,7 +5,7 @@
    ============================ */
 :root[data-theme="light"] {
   --bg-color: #f8fafc;
-  --text-color: #033b43;     /* 深色字 */
+  --text-color: #0d5861;     /* 深色字 */
   --card-bg: #ffffff;
   --primary-color: #55b0c0;  /* 中間色(hover) */
   --primary-color2: #a5f3fc; /* 淺色底 */
