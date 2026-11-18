@@ -242,7 +242,8 @@ a.hero-btn-final:hover {
 
 .feature-text p {
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;     /* 減少文字同圖之間 */
   opacity: 0.7;
 }
 
@@ -641,6 +642,7 @@ footer .logo-img-footer {
   .feature-section .container {
     flex-direction: column;
     text-align: center;
+    gap: 1.5rem;
   }
 
   .feature-visual {
