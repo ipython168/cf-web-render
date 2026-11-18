@@ -6,7 +6,7 @@
 :root[data-theme="light"] {
   --bg-color: #f8fafc;
   --text-color: #0f172a;
-  --card-bg: #ffffff;
+  --card-bg: #055f73;
   --primary-color: #0891b2;
   --primary-color2: color-mix(in srgb, #0891b2 72%, black); /* 深兩級 ≈ #055f73 */ 
   --border-color: #cbd5e1;
@@ -19,7 +19,7 @@
 :root[data-theme="dark"] {
   --bg-color: #09090b;
   --text-color: #f4f4f5;
-  --card-bg: #18181b;
+  --card-bg: #0e7a8f;
   --primary-color: #22d3ee;
   --primary-color2: color-mix(in srgb, #22d3ee 78%, black); /* 暗色微深 ≈ #0e7a8f */
   --border-color: #27272a;
