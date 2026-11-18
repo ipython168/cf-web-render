@@ -9,7 +9,8 @@ export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
   return (
     <section id="features" className="feature-section py-20 fade-in overflow-hidden">
       <div className="container">
-        <div className="grid md:grid-cols-2 gap-12 items-center style={{ perspective: '1000px' }}">
+        <div className="grid md:grid-cols-2 gap-12 items-center" style={{ perspective: '1000px' }}>
+          {/* 左邊文字 */}
           <div className="feature-text">
             <h2
               className="text-3xl md:text-4xl font-bold mb-6"
@@ -19,6 +20,7 @@ export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
               {t.sections.featuresDesc}
             </p>
           </div>
+          {/* 右邊圖片 */}
           <div className="feature-visual">
             <img
               src={siteConfig.sections.featureImage}
