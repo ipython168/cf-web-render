@@ -264,14 +264,14 @@ a.hero-btn-final:hover {
   box-shadow: 0 20px 50px rgba(0,0,0,0.1);
 
   /* 初始輕微傾斜（參考圖中效果） */
-  transform: rotate(-3deg) translateZ(0);
+  transform: rotate(-4deg) translateZ(0);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
   cursor: pointer;
 }
 /* Hover 時反轉方向 + 浮起 */
 .feature-img:hover {
   /*   transform: rotateY(15deg) rotateZ(-3deg) scale(1.05); */
-  transform: rotate(3deg) translateY(-10px) scale(1.02);
+  transform: rotate(4deg) translateY(-15px) scale(1.02);
   box-shadow: 0 30px 60px rgba(0,0,0,0.15);
 }
 
@@ -651,11 +651,11 @@ footer .logo-img-footer {
   .feature-img {
     max-width: 100%;
     max-height: 300px;     /* 限制高度，唔好太長 */
-    transform: rotate(-3deg);
+    transform: rotate(-4deg);
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .feature-img.spin-right {
-    transform: rotate(3deg);  /* scroll 到變右旋 */
+    transform: rotate(4deg);  /* scroll 到變右旋 */
   }
 
   .footer-content {
