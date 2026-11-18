@@ -256,7 +256,7 @@ a.hero-btn-final:hover {
 }
 
 .feature-img {
-  max-width: 320px;      /* 👈 9:16 直圖，闊度唔好太闊 */
+  max-width: 426px;      /* 👈 9:16 直圖，闊度唔好太闊 */
   width: 100%;
   height: auto;              /* 9:16 自然高度 ~569px */
   object-fit: cover;
