@@ -3,7 +3,7 @@
     "languageName": "中文",
     "nav": {
       "about": "關於我們",
-      "news": "最新消息",
+      "news": "交易心得",
       "help": "幫助中心",
       "support": "支持我們"
     },
@@ -55,7 +55,7 @@
     "languageName": "EN",
     "nav": {
       "about": "About Us",
-      "news": "News",
+      "news": "Trading Tips",
       "help": "Help Center",
       "support": "Support Us"
     },

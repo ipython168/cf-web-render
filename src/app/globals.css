@@ -345,6 +345,7 @@ a.hero-btn-final:hover {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
+  width: 100%; 
 }
 
 .post-card {
@@ -669,7 +670,7 @@ footer .logo-img-footer {
     max-width: 100%;
     max-height: 400px;     /* 限制高度，唔好太長 */
     transform: rotate(-4deg);
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .feature-img.spin-right {
     transform: rotate(4deg);  /* scroll 到變右旋 */
