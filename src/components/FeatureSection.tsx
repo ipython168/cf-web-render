@@ -48,7 +48,7 @@ export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
     <section id="features" className="feature-section overflow-hidden">
       <div className="container">
         {/* 唔加任何 flex/grid class，全部交 CSS 控制 */}
-        <div className="feature-text">
+        <div className="feature-text sticky-text">
           <h2
             className="text-3xl md:text-4xl font-bold mb-6 fade-in"
             dangerouslySetInnerHTML={{ __html: t.sections.featuresTitle }}
