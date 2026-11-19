@@ -225,7 +225,7 @@ a.hero-btn-final:hover {
 .feature-section .container { 
   /* max-width: 1440px;*/
   display: flex;
-  align-items: flex-start; /* 文字置頂，跟 block 由上滾到下 */
+  align-items: center;
   justify-content: space-between;
   gap: 4rem;
 }

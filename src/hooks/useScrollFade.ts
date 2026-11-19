@@ -16,6 +16,7 @@ export function useScrollFade() {
 
         sections.forEach(section => {
           // Skip elements inside sticky-text (handled separately)
+          // Skip if this fade-in element is inside a sticky-text container
           if (section.closest('.sticky-text')) return;
 
           const rect = section.getBoundingClientRect();
