@@ -49,24 +49,36 @@ export function useScrollFade() {
           const section = text.closest('section');
           if (!section) return;
           
-          const rect = section.getBoundingClientRect();
-          const visibleTop = Math.max(0, rect.top);
-          const visibleBottom = Math.min(windowHeight, rect.bottom);
-          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-          const totalHeight = rect.height;
-          const visibilityRatio = totalHeight > 0 ? visibleHeight / totalHeight : 0;
+          const sectionRect = section.getBoundingClientRect();
+          const sectionHeight = sectionRect.height;
+          const sectionVisibleTop = Math.max(0, sectionRect.top);
+          const sectionVisibleBottom = Math.min(windowHeight, sectionRect.bottom);
+          const sectionVisibleHeight = Math.max(0, sectionVisibleBottom - sectionVisibleTop);
+          const sectionVisibility = sectionHeight > 0 ? sectionVisibleHeight / sectionHeight : 0;
           
+          // 用 section 的可見比例來控制 sticky 文字的淡入淡出
+          // 當 section 剛出現時（visibility 從 0 到 0.3）：淡入
+          // 當 section 完全可見時（visibility 0.3 到 0.7）：保持全透明
+          // 當 section 快離開時（visibility 0.7 到 1）：淡出
           let opacity = 0;
-          if (visibilityRatio > 0.8) {
+          if (sectionVisibility < 0.3) {
+            // 淡入階段
+            opacity = sectionVisibility / 0.3;
+          } else if (sectionVisibility > 0.7) {
+            // 淡出階段
+            opacity = (1 - sectionVisibility) / 0.3;
+          } else {
+            // 中間保持全透明
             opacity = 1;
-          } else if (visibilityRatio > 0.3) {
-            opacity = (visibilityRatio - 0.3) / (0.8 - 0.3);
           }
-          
+
           opacity = Math.max(0, Math.min(1, opacity));
           (text as HTMLElement).style.opacity = opacity.toString();
           
-          const translateY = (1 - opacity) * 30;
+          // Sticky 元素唔需要 translateY（佢自己 sticky 定位）
+          // 但可以保留少少滑入效果
+          const translateY = opacity < 1 ? (1 - opacity) * 20 : 0;
+
           (text as HTMLElement).style.transform = `translateY(${translateY}px)`;
         });        
       });
