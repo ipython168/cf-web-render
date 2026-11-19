@@ -650,12 +650,7 @@ footer .logo-img-footer {
   header .logo-img {
     height: 40px;
   }
-  
-  .sticky-text {
-    position: static;
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+ 
 
   .feature-section .container { 
     flex-direction: column;
@@ -703,27 +698,7 @@ footer .logo-img-footer {
     padding: 0;
   }
 }
-
-
-/* ============================
-   STICKY TEXT (Desktop only)
-   ============================ */
-@media (min-width: 769px) {
-  .sticky-text {
-    position: sticky;
-    top: 30vh;
-    align-self: flex-start;
-    z-index: 10;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-  }
-
-  /* 當 section 有 sticky-text 時，container 要 align items 去 flex-start */
-  section:has(.sticky-text) .container {
-    align-items: flex-start;
-  }
-}
-
+ 
 
 
 
