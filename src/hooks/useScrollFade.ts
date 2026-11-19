@@ -11,9 +11,13 @@ export function useScrollFade() {
       rafId = requestAnimationFrame(() => {
         rafId = null;
         const sections = document.querySelectorAll('.fade-in');
+        const stickyTexts = document.querySelectorAll('.sticky-text');
         const windowHeight = window.innerHeight;
 
         sections.forEach(section => {
+          // Skip elements inside sticky-text (handled separately)
+          if (section.closest('.sticky-text')) return;
+
           const rect = section.getBoundingClientRect();
           
           const topRatio = rect.top / windowHeight;
@@ -39,6 +43,32 @@ export function useScrollFade() {
           const translateY = (1 - opacity) * 50;
           (section as HTMLElement).style.transform = `translateY(${translateY}px)`;
         });
+
+        // Handle sticky text separately - fade based on parent section visibility
+        stickyTexts.forEach(text => {
+          const section = text.closest('section');
+          if (!section) return;
+          
+          const rect = section.getBoundingClientRect();
+          const visibleTop = Math.max(0, rect.top);
+          const visibleBottom = Math.min(windowHeight, rect.bottom);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          const totalHeight = rect.height;
+          const visibilityRatio = totalHeight > 0 ? visibleHeight / totalHeight : 0;
+          
+          let opacity = 0;
+          if (visibilityRatio > 0.8) {
+            opacity = 1;
+          } else if (visibilityRatio > 0.3) {
+            opacity = (visibilityRatio - 0.3) / (0.8 - 0.3);
+          }
+          
+          opacity = Math.max(0, Math.min(1, opacity));
+          (text as HTMLElement).style.opacity = opacity.toString();
+          
+          const translateY = (1 - opacity) * 30;
+          (text as HTMLElement).style.transform = `translateY(${translateY}px)`;
+        });        
       });
     };
 
