@@ -1,8 +1,8 @@
-// src/components/Sidebar.tsx
 'use client';
 
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 
 interface SidebarProps {
   open: boolean;
@@ -16,6 +16,8 @@ interface SidebarProps {
 export default function Sidebar({ open, onClose, siteConfig, langData, currentLang, onLangChange }: SidebarProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
@@ -24,10 +26,16 @@ export default function Sidebar({ open, onClose, siteConfig, langData, currentLa
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
-  // 未 mounted 前當 undefined 處理，避免 hydration mismatch
   const currentTheme = mounted ? theme : undefined;
-
   const t = langData[currentLang] || langData.zh || {};
+
+  const switchLang = (newLang: 'zh' | 'en') => {
+    localStorage.setItem('lang', newLang);
+    const newPath = pathname.replace(/^\/(zh|en)/, `/${newLang}`);
+    router.push(newPath);
+    onLangChange(newLang);
+    onClose();
+  };
 
   return (
     <>
@@ -46,24 +54,24 @@ export default function Sidebar({ open, onClose, siteConfig, langData, currentLa
           <div className="sidebar-links">
             {t.nav && (
               <>
-                <a href="#">{t.nav.about}</a>
-                <a href="/article">{t.nav.news}</a>
-                <a href="#">{t.nav.help}</a>
-                <a href="#">{t.nav.support}</a>
+                <a href={`/${currentLang}`}>{t.nav.about}</a>
+                <a href={`/${currentLang}/article`}>{t.nav.news}</a>
+                <a href={`/${currentLang}`}>{t.nav.help}</a>
+                <a href={`/${currentLang}`}>{t.nav.support}</a>
               </>
             )}
           </div>
           <div className="sidebar-bottom">
             <div className="lang-switch-container">
               <div className="lang-switch">
-                <button className={`lang-btn ${currentLang === 'zh' ? 'active' : ''}`} onClick={() => onLangChange('zh')}>中文</button>
-                <button className={`lang-btn ${currentLang === 'en' ? 'active' : ''}`} onClick={() => onLangChange('en')}>EN</button>
+                <button className={`lang-btn ${currentLang === 'zh' ? 'active' : ''}`} onClick={() => switchLang('zh')}>中文</button>
+                <button className={`lang-btn ${currentLang === 'en' ? 'active' : ''}`} onClick={() => switchLang('en')}>EN</button>
               </div>
             </div>
             {siteConfig.social?.facebook && (
               <a href={siteConfig.social.facebook} id="social-fb" target="_blank" rel="noopener noreferrer" className="sidebar-social-link" title="Facebook" style={{ display: 'inline-flex', alignItems: 'center', color: 'var(--text-color)', opacity: 0.7, transition: 'opacity 0.2s' }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 2418.062 24 12.073z"/>
                 </svg>
               </a>
             )}

@@ -20,7 +20,6 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
     return obj || key;
   };
 
-  // 快速連結映射（對應 lang.json 的 footer.links）
   const linkMap: Record<string, string> = {
     about: '/about',
     backtest: '/backtest',
@@ -35,7 +34,7 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
   return (
     <footer className="site-footer footer-final">
       <div className="container">
-        <div className="footer-content fade-in">
+        <div className="footer-content fade-in-visible">
           <div className="footer-brand">
             <img 
               src={siteConfig?.logoImage || '/images/branding/logo.png'} 

@@ -28,7 +28,7 @@ export default function Navbar({ siteConfig, langData, currentLang: propLang, on
     <>
       <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-inner">
-          <a href="/" className="logo">
+          <a href={"/"+currentLang} className="logo">
             <img src={siteConfig.logoImage} alt="Logo" className="logo-img" />
           </a>
           {/* 強制三小點 + 透明底 + Hover 效果 */}

@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useLang } from '@/hooks/useLang';
-import Navbar from '../../../components/Navbar';
-import Footer from '../../../components/Footer';
+import Navbar from './Navbar';
 import { getLocalizedContent, getLocalizedCategory, formatDate } from '@/lib/utils';
 
 interface PostClientProps {
@@ -72,7 +71,6 @@ export default function PostClient({ post, langData, config }: PostClientProps) 
           </article>
         </div>
       </main>
-      <Footer siteConfig={config} langData={t} />
     </div>
   );
 }

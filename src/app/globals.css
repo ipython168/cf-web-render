@@ -710,3 +710,211 @@ footer .logo-img-footer {
 
 
 
+
+/* ===== Article 頁面專用樣式 ===== */
+.archive-page {
+  padding: 2rem 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.archive-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: #111;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: opacity 0.2s, transform 0.2s;
+  width: fit-content;
+}
+
+.back-link:hover {
+  opacity: 0.8;
+  transform: translateX(-2px);
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: #1a1a1a;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.filter-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.sort-group,
+.category-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background-color: #1a1a1a;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.filter-btn:hover {
+  border-color: var(--primary-color);
+}
+
+.filter-btn.active {
+  background-color: var(--primary-color);
+  color: #111;
+  border-color: transparent;
+}
+
+.post-grid-archive {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+.post-card-archive {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.post-card-archive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.post-card-archive .post-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.post-card-archive .post-category {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background-color: rgba(0, 229, 255, 0.1);
+  color: var(--primary-color);
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+}
+
+.post-card-archive .post-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: var(--text-color);
+}
+
+.post-card-archive .post-date {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.post-card-archive .post-excerpt {
+  font-size: 0.95rem;
+  color: #aaa;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.post-card-archive .read-more {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: auto;
+}
+.fade-in-visible { opacity: 1 !important; transform: none !important; }
+.fade-in-visible { opacity: 1 !important; transform: none !important; }
+
+/* 推低 Article Page 防止被 Navbar 遮擋 */
+.article-page-wrapper {
+  padding-top: 5rem; 
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 修正 Search Input 動態主題顏色 */
+.article-search-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  margin-top: 1rem;  
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.article-search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* 修正 Filter Button 動態主題顏色 */
+.article-filter-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.article-filter-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.article-filter-btn.active {
+  background-color: var(--primary-color);
+  color: #111; /* 保持選中時文字為深色以突出對比 */
+  border-color: transparent;
+}
