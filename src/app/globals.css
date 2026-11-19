@@ -704,12 +704,6 @@ footer .logo-img-footer {
 @media (min-width: 769px) {
   .sticky-text {
     position: sticky;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    /* 初始透明，由 hook 控制 */
-    opacity: 0;
-    transition: opacity 0.1s ease; /* 平滑過渡 */
   }
 }
 
