@@ -225,7 +225,7 @@ a.hero-btn-final:hover {
 .feature-section .container { 
   /* max-width: 1440px;*/
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* 文字置頂，跟 block 由上滾到下 */
   justify-content: space-between;
   gap: 4rem;
 }
@@ -233,6 +233,8 @@ a.hero-btn-final:hover {
 .feature-text {
   flex: 1;
   max-width: 500px;
+  margin-top: 0; /* 確保貼頂，可按視覺微調 */
+
 }
 
 .feature-text h2 {
@@ -630,7 +632,7 @@ footer .logo-img-footer {
 
 .social-link {
   display: inline-flex;
-  align-items: center;
+  align-items: center;    
   justify-content: center;
   width: 40px; height: 40px;
   border-radius: 50%;
