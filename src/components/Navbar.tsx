@@ -28,8 +28,12 @@ export default function Navbar({ siteConfig, langData, currentLang: propLang, on
     <>
       <header className={`flex justify-center py-3 bg-transparent fixed inset-x-0 top-0 z-[100] transition-all duration-300 ease-in-out ${scrolled ? 'scrolled' : ''}`}>
         <div className="w-full max-w-[1280px] mx-auto h-[45px] px-[1.5%] flex items-center justify-between gap-4">
-          <a href={"/"+currentLang} className="flex items-center gap-3 no-underline">
-            <img src={siteConfig.logoImage} alt="Logo" className="h-auto w-auto max-w-[33vw]" />
+          <a href={"/"+currentLang} className="flex items-center gap-3 no-underline shrink-0">
+            <img 
+              src={siteConfig.logoImage} 
+              alt="Logo" 
+              className="h-8 md:h-9 w-auto object-contain" 
+            />
           </a>
           {/* 強制三小點 + 透明底 + Hover 效果 */}
           <button 
