@@ -27,7 +27,7 @@ export default function StatsSection({ t, stats }: StatsSectionProps) {
   return (
     <section id="stats-section" className="py-20 overflow-hidden fade-in">
       <div className="max-w-[1280px] mx-auto px-[5%]">
-        <h2 className="text-[2.5rem] leading-tight font-bold text-center mb-16">
+        <h2 className="mb-10 py-2 md:py-4 text-[2.5rem] leading-tight font-bold text-center">
           {t.stats?.title || '實戰數據'}
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
@@ -43,9 +43,9 @@ export default function StatsSection({ t, stats }: StatsSectionProps) {
 }
 function StatCard({ id, target, suffix, label }: { id: string; target: number; suffix: string; label: string }) {
   return (
-    <div className="p-8 px-4 rounded-2xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] fade-in">
-      <div className="text-6xl font-extrabold text-[var(--primary-color)] mb-2 font-mono fade-in" id={id}>0{suffix}</div>
-      <p className="mt-2 text-lg opacity-70">{label}</p>
+    <div className="px-4 rounded-2xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] fade-in">
+      <div className="text-6xl font-extrabold text-[var(--primary-color)] mb-2 py-2 md:py-4 font-mono fade-in" id={id}>0{suffix}</div>
+      <p className="mt-2 py-2 md:py-4 text-lg opacity-70">{label}</p>
     </div>
   );
 }
