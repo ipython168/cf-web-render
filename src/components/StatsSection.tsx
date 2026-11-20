@@ -27,7 +27,7 @@ export default function StatsSection({ t, stats }: StatsSectionProps) {
   return (
     <section id="stats-section" className="py-20 overflow-hidden fade-in">
       <div className="max-w-[1280px] mx-auto px-[5%]">
-        <h2 className="text-[2.5rem] leading-tight font-bold text-center mb-16 fade-in">
+        <h2 className="text-[2.5rem] leading-tight font-bold text-center mb-16">
           {t.stats?.title || '實戰數據'}
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
