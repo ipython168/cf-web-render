@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-HK" data-theme="light" suppressHydrationWarning className="scroll-smooth">
-      <body className="min-h-screen antialiased m-0 font-sans bg-[var(--page-gradient)] bg-fixed text-[var(--text-color)] transition-[background,color] duration-500 ease-in-out overflow-x-clip">
+      <body className="min-h-screen antialiased m-0 font-sans bg-[image:var(--page-gradient)] bg-fixed text-[var(--text-color)] transition-[background,color] duration-1500 ease-in-out overflow-x-clip">
         <ThemeProvider>
           {children}
         </ThemeProvider>

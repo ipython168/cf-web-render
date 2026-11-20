@@ -35,7 +35,8 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
     <footer className="bg-[var(--secondary-color)] border-t border-white/10 pt-16 pb-8 text-[var(--text-color)] transition-colors duration-300">
       <div className="max-w-[1280px] mx-auto px-[5%]">
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 md:gap-16 mb-12 opacity-100 transform-none">
-          <div className="footer-brand">
+          {/* 品牌資訊 */}
+          <div>
             <img 
               src={siteConfig?.logoImage || '/images/branding/logo.png'} 
               alt="QuantBase" 
@@ -43,8 +44,8 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
             />
             <p className="leading-relaxed opacity-85 text-sm text-[var(--text-color)]">{t('footer.brandDesc')}</p>
           </div>
-          
-          <div className="footer-links">
+          {/* 快速連結 */}
+          <div>
             <h4 className="text-lg font-bold mb-6 text-[var(--text-color)]">{t('footer.quickLinksTitle')}</h4>
             {links && typeof links === 'object' ? (
               Object.entries(links)
@@ -54,8 +55,8 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
               ))
             ) : null}
           </div>
-          
-          <div className="footer-contact">
+          {/* 聯絡我們 */}
+          <div>
             <h4 className="text-lg font-bold mb-6 text-[var(--text-color)]">{t('footer.contactTitle')}</h4>
             <p className="mb-3 text-sm text-[var(--text-color)]"><a href={`mailto:${email}`} className="block font-bold no-underline mb-3 text-[var(--text-color)] transition-all duration-300 hover:text-[var(--primary-color)]">{email}</a></p>
             {siteConfig?.footer?.contact?.whatsapp && (
@@ -72,17 +73,16 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
             )}
           </div>
         </div>
-        
+        {/* 版權聲明 */}
         <div className="text-center pt-8 mt-8 border-t border-gray-500/30 opacity-90 text-sm text-[var(--text-color)]">
           <p>&copy; {new Date().getFullYear()} {siteConfig?.siteName || 'QuantBase'}. All rights reserved.</p>
         </div>
       </div>
     </footer>
   );
-
-
-
-
-
-
 }
+
+
+
+
+
