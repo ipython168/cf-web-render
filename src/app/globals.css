@@ -40,97 +40,6 @@
 }
 
    
-/* ============================
-   FOOTER
-   ============================ */
-.site-footer {
-  background-color: var(--primary-color2);
-  border-top: 1px solid rgba(255,255,255,0.1); /* dark好睇，light微透 */
-  /* border-top: 1px solid var(--border-color);  */
-  padding: 4rem 0 2rem;
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 3rem;
-}
-
-.footer-brand h3 {
-  color: var(--primary-color2);
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.footer-brand p {
-  line-height: 1.6;
-  opacity: 0.85;
-  font-size: 0.95rem;
-  color: var(--text-color);
-}
-
-
-
-/* ── Footer 統一連結區域 ── */
-.footer-links h4,
-.footer-contact h4 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: var(--text-color);
-  /* H4 唔 hover，唔變 */
-}
-
-.footer-links a,
-.footer-contact a {
-  display: block;
-  font-weight: 700;
-  text-decoration: none;
-  margin-bottom: 0.8rem;
-  /* 空心字：用 theme 字色做 stroke */
-  color: var(--text-color); /* 平時實色 */ 
-  transition: all 0.3s ease;
-}
-
-.footer-links a:hover,
-.footer-contact a:hover {
-  /* hover 填實色：用 primary-color */
-  color: var(--primary-color); 
-  text-decoration: none;
-}
-
-/* footer-contact 入面 p 包住 a 嘅情況 */
-.footer-contact p {
-  margin-bottom: 0.8rem;
-  font-size: 0.95rem;
-  color: var(--text-color);
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: 2rem;
-  margin-top: 2rem;
-  border-top: 1px solid rgba(128,128,128,0.3);
-  opacity: 0.9;
-  font-size: 0.85rem;
-  color: var(--text-color);
-}
-
-/* Footer logo */
-footer .logo-img-footer {
-  height: 64px;
-  width: auto;
-  max-width: 100%;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.footer-logo-final { max-width: 120px !important; height: auto !important; }
-
-
 
 /* ============================
    SIDEBAR / OVERLAY
@@ -288,15 +197,7 @@ footer .logo-img-footer {
   header .logo-img {
     height: 40px;
   }
- 
-
-
-
- 
-  .footer-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  } 
+  
 }
  
 @media (min-width: 769px) {

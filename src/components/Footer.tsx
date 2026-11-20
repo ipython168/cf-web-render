@@ -32,49 +32,48 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
   const whatsapp = siteConfig?.footer?.contact?.whatsapp || '';
 
   return (
-    <footer className="site-footer footer-final">
+    <footer className="bg-[var(--primary-color2)] border-t border-white/10 pt-16 pb-8 text-[var(--text-color)] transition-colors duration-300">
       <div className="max-w-[1280px] mx-auto px-[5%]">
-        <div className="footer-content fade-in-visible">
+        <div className="grid grid-cols-[2fr_1fr_1fr] gap-16 mb-12 fade-in-visible">
           <div className="footer-brand">
             <img 
               src={siteConfig?.logoImage || '/images/branding/logo.png'} 
               alt="QuantBase" 
-              className="footer-logo-final"
-              style={{ maxWidth: '120px', height: 'auto' }}
+              className="max-w-[120px] h-auto"
             />
-            <p>{t('footer.brandDesc')}</p>
+            <p className="leading-relaxed opacity-85 text-sm text-[var(--text-color)]">{t('footer.brandDesc')}</p>
           </div>
           
           <div className="footer-links">
-            <h4>{t('footer.quickLinksTitle')}</h4>
+            <h4 className="text-lg font-bold mb-6 text-[var(--text-color)]">{t('footer.quickLinksTitle')}</h4>
             {links && typeof links === 'object' ? (
               Object.entries(links)
                 .filter(([key]) => key !== 'support')
                 .map(([key, label]) => (
-                <a key={key} href={linkMap[key] || '#'}>{label as string}</a>
+                <a key={key} href={linkMap[key] || '#'} className="block font-bold no-underline mb-3 text-[var(--text-color)] transition-all duration-300 hover:text-[var(--primary-color)]">{label as string}</a>
               ))
             ) : null}
           </div>
           
           <div className="footer-contact">
-            <h4>{t('footer.contactTitle')}</h4>
-            <p><a href={`mailto:${email}`}>{email}</a></p>
+            <h4 className="text-lg font-bold mb-6 text-[var(--text-color)]">{t('footer.contactTitle')}</h4>
+            <p className="mb-3 text-sm text-[var(--text-color)]"><a href={`mailto:${email}`} className="block font-bold no-underline mb-3 text-[var(--text-color)] transition-all duration-300 hover:text-[var(--primary-color)]">{email}</a></p>
             {siteConfig?.footer?.contact?.whatsapp && (
-                <p>
+                <p className="mb-3 text-sm text-[var(--text-color)]">
                 <a 
                     href={`https://wa.me/${siteConfig.footer.contact.whatsapp.replace(/\D/g, '')}`}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="block font-bold no-underline mb-3 text-[var(--text-color)] transition-all duration-300 hover:text-[var(--primary-color)]"
                 >
                     {t('footer.links.support')}
                 </a>
                 </p>
             )}
-
           </div>
         </div>
         
-        <div className="footer-bottom">
+        <div className="text-center pt-8 mt-8 border-t border-gray-500/30 opacity-90 text-sm text-[var(--text-color)]">
           <p>&copy; {new Date().getFullYear()} {siteConfig?.siteName || 'QuantBase'}. All rights reserved.</p>
         </div>
       </div>
