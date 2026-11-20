@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import PostClient from '@/components/PostClient';
+import { Suspense } from 'react'; 
 
 function makeSlug(post: any): string {
   const enTitle = post.en?.title || '';
@@ -46,8 +47,6 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
   try {
     const data = fs.readFileSync(filePath, 'utf8');
     const posts = JSON.parse(data);
-    
-    // 從 slug 提取 id（最後的數字部分）
     const idMatch = slug.match(/-(\d+)$/);
     const postId = idMatch ? idMatch[1] : slug;
     post = posts.find((p: any) => String(p.id) === postId) || null;
@@ -61,7 +60,17 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
 
   return (
     <main>
-      <PostClient post={post} config={config} langData={langData} />
+      <Suspense fallback={<div>Loading...</div>}>  {/* 新增 Suspense 邊界 */}
+        <PostClient post={post} config={config} langData={langData} />
+      </Suspense>
     </main>
   );
-}
+} 
+
+
+
+
+
+
+
+
