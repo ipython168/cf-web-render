@@ -50,25 +50,24 @@ export default function Sidebar({ open, onClose, siteConfig, langData, currentLa
               <button className={`flex-1 py-1 px-2 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg cursor-pointer text-xl ${currentTheme === 'system' ? 'bg-[var(--primary-color)] border-[var(--primary-color)]' : ''}`} onClick={() => setTheme('system')}>💻</button>
               <button className={`flex-1 py-1 px-2 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg cursor-pointer text-xl ${currentTheme === 'dark' ? 'bg-[var(--primary-color)] border-[var(--primary-color)]' : ''}`} onClick={() => setTheme('dark')}>🌙</button>            </div>
           </div>
-          <div className="sidebar-links">
+          <div className="flex flex-col gap-6 my-4 mb-8">
             {t.nav && (
               <>
-                <a href={`/${currentLang}`}>{t.nav.about}</a>
-                <a href={`/${currentLang}/article`}>{t.nav.news}</a>
-                <a href={`/${currentLang}`}>{t.nav.help}</a>
-                <a href={`/${currentLang}`}>{t.nav.support}</a>
-              </>
+                <a href={`/${currentLang}`} className="text-lg text-[var(--text-color)] no-underline font-bold">{t.nav.about}</a>
+                <a href={`/${currentLang}/article`} className="text-lg text-[var(--text-color)] no-underline font-bold">{t.nav.news}</a>
+                <a href={`/${currentLang}`} className="text-lg text-[var(--text-color)] no-underline font-bold">{t.nav.help}</a>
+                <a href={`/${currentLang}`} className="text-lg text-[var(--text-color)] no-underline font-bold">{t.nav.support}</a>              </>
             )}
           </div>
-          <div className="sidebar-bottom pb-[env(safe-area-inset-bottom)]">
-            <div className="lang-switch-container">
-              <div className="lang-switch">
-                <button className={`lang-btn ${currentLang === 'zh' ? 'active' : ''}`} onClick={() => switchLang('zh')}>中文</button>
-                <button className={`lang-btn ${currentLang === 'en' ? 'active' : ''}`} onClick={() => switchLang('en')}>EN</button>
+          <div className="mt-auto border-t border-[var(--border-color)] pt-6 pb-[env(safe-area-inset-bottom)]">
+            <div className="flex justify-center mb-6">
+              <div className="flex bg-[var(--bg-color)] border border-[var(--border-color)] rounded-[30px] p-1 w-[200px]">
+                <button className={`flex-1 py-2 border-none bg-transparent text-[var(--text-color)] font-bold rounded-[25px] cursor-pointer ${currentLang === 'zh' ? 'bg-[var(--primary-color)] text-white' : ''}`} onClick={() => switchLang('zh')}>中文</button>
+                <button className={`flex-1 py-2 border-none bg-transparent text-[var(--text-color)] font-bold rounded-[25px] cursor-pointer ${currentLang === 'en' ? 'bg-[var(--primary-color)] text-white' : ''}`} onClick={() => switchLang('en')}>EN</button>
               </div>
             </div>
             {siteConfig.social?.facebook && (
-              <a href={siteConfig.social.facebook} id="social-fb" target="_blank" rel="noopener noreferrer" className="sidebar-social-link" title="Facebook" style={{ display: 'inline-flex', alignItems: 'center', color: 'var(--text-color)', opacity: 0.7, transition: 'opacity 0.2s' }}>
+              <a href={siteConfig.social.facebook} id="social-fb" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-[var(--bg-color)] text-[var(--text-color)] no-underline hover:opacity-100 transition-opacity duration-200" title="Facebook">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 12.073z"/>
                 </svg>

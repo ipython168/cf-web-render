@@ -17,7 +17,7 @@ export default function LangSwitcher({ langData }: LangSwitcherProps) {
         id="lang-btn-zh"
         data-lang="zh"
         onClick={() => changeLang('zh')}
-        className={`lang-btn px-3 py-1 rounded-md text-sm transition-colors ${
+        className={`px-3 py-1 rounded-md text-sm transition-colors ${
           lang === 'zh' 
             ? 'bg-cyan-500 text-white' 
             : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
@@ -29,7 +29,7 @@ export default function LangSwitcher({ langData }: LangSwitcherProps) {
         id="lang-btn-en"
         data-lang="en"
         onClick={() => changeLang('en')}
-        className={`lang-btn px-3 py-1 rounded-md text-sm transition-colors ${
+        className={`px-3 py-1 rounded-md text-sm transition-colors ${
           lang === 'en' 
             ? 'bg-cyan-500 text-white' 
             : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
