@@ -34,7 +34,7 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
   return (
     <footer className="bg-[var(--primary-color2)] border-t border-white/10 pt-16 pb-8 text-[var(--text-color)] transition-colors duration-300">
       <div className="max-w-[1280px] mx-auto px-[5%]">
-        <div className="grid grid-cols-[2fr_1fr_1fr] gap-16 mb-12 fade-in-visible">
+        <div className="grid grid-cols-[2fr_1fr_1fr] gap-16 mb-12 opacity-100 transform-none">
           <div className="footer-brand">
             <img 
               src={siteConfig?.logoImage || '/images/branding/logo.png'} 
