@@ -69,34 +69,7 @@
 /* ============================
    HERO SECTION
    ============================ */
-.hero-section { 
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-size: 110% 110%;
-  background-position: center;
-  color: var(--hero-text-color);
-  position: relative;
-  overflow: hidden;
-  transition: background-image 0.5s ease-in-out;
-}
-
-.hero-content h1 {
-  font-size: 4.5rem;
-  line-height: 1.15;
-  margin-bottom: 1.5rem;
-  letter-spacing: -1px;
-}
-
-.hero-content p {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  opacity: 0.8;
-  margin-bottom: 3rem;
-  padding: 0 1rem;
-}
-
+ 
 /* ============================
    FEATURE SECTION
    ============================ */
@@ -576,14 +549,6 @@ footer .logo-img-footer {
     grid-template-columns: 1fr;
     gap: 2rem;
   } 
-  .hero-content h1 {
-    font-size: 2.5rem;      /* 4.5rem → 2.5rem (40px)，手機啱啱好 */
-    line-height: 1.2;
-  }
-  .hero-content p {
-    font-size: 1rem;        /* subtitle 改細啲 */
-    padding: 0;
-  }
 }
  
 @media (min-width: 769px) {

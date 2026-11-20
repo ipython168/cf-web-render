@@ -29,13 +29,13 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
 
   return (
     <section
-      className="hero-section"
+      className="h-screen flex items-center justify-center text-center bg-[length:110%_110%] bg-center text-[var(--hero-text-color)] relative overflow-hidden transition-[background-image] duration-500 ease-in-out"
       style={{ backgroundImage: heroBg, backgroundPosition: `calc(50% + ${mousePos.x}px) calc(50% + ${mousePos.y}px)` }}
       onMouseMove={handleMouseMove}
     >
-      <div className="hero-content fade-in">
-        <h1 dangerouslySetInnerHTML={{ __html: t.hero.title }} />
-        <p>{t.hero.subtitle}</p>
+      <div className="fade-in">
+        <h1 className="text-7xl leading-tight mb-6 tracking-tighter" dangerouslySetInnerHTML={{ __html: t.hero.title }} />
+        <p className="text-base lg:text-lg xl:text-xl opacity-80 mb-12 px-4">{t.hero.subtitle}</p>
         <div className="hero-btns">
           {/* 強制實色背景，Hover 透明 */}
           <a 
