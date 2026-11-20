@@ -43,13 +43,12 @@ export default function Sidebar({ open, onClose, siteConfig, langData, currentLa
       <div id="sidebar" className={`fixed top-0 right-0 w-[320px] h-screen bg-[var(--sidebar-bg)] z-200 shadow-[-10px_0_30px_rgba(0,0,0,0.1)] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col ${open ? 'translate-x-0' : 'translate-x-full'}`}>
         <button id="close-btn" className="self-end mt-1 mr-4 text-base bg-transparent border-none text-[var(--text-color)] cursor-pointer" onClick={onClose}>✕</button>
         <div className="flex-1 px-8 pb-8 flex flex-col">
-          <div className="theme-section">
-            <h4 id="theme-title">{t.sidebar?.themeTitle || 'Theme Settings'}</h4>
-            <div className="icon-btn-group">
-              <button className={`icon-btn ${currentTheme === 'light' ? 'active' : ''}`} onClick={() => setTheme('light')}>☀️</button>
-              <button className={`icon-btn ${currentTheme === 'system' ? 'active' : ''}`} onClick={() => setTheme('system')}>💻</button>
-              <button className={`icon-btn ${currentTheme === 'dark' ? 'active' : ''}`} onClick={() => setTheme('dark')}>🌙</button>
-            </div>
+          <div className="mb-2">
+            <h4 id="theme-title" className="mt-0 mb-2 text-base opacity-70">{t.sidebar?.themeTitle || 'Theme Settings'}</h4>
+            <div className="flex gap-2.5">
+              <button className={`flex-1 py-1 px-2 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg cursor-pointer text-xl ${currentTheme === 'light' ? 'bg-[var(--primary-color)] border-[var(--primary-color)]' : ''}`} onClick={() => setTheme('light')}>☀️</button>
+              <button className={`flex-1 py-1 px-2 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg cursor-pointer text-xl ${currentTheme === 'system' ? 'bg-[var(--primary-color)] border-[var(--primary-color)]' : ''}`} onClick={() => setTheme('system')}>💻</button>
+              <button className={`flex-1 py-1 px-2 bg-[var(--bg-color)] border border-[var(--border-color)] rounded-lg cursor-pointer text-xl ${currentTheme === 'dark' ? 'bg-[var(--primary-color)] border-[var(--primary-color)]' : ''}`} onClick={() => setTheme('dark')}>🌙</button>            </div>
           </div>
           <div className="sidebar-links">
             {t.nav && (
