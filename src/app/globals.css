@@ -41,101 +41,7 @@
 
  
 
-
-/* ============================
-   RESET / BASE
-   ============================ */  
-/* ============================
-   CONTAINER
-   ============================ */ 
-
-/* ============================
-   LOGO
-   ============================ */  
-
-/* ============================
-   NAVBAR
-   ============================ */
-   
-
-/* ============================
-   MENU BUTTON (三點直排 + 正方)
-   ============================ */
- 
-/* ============================
-   HERO BUTTON
-   ============================ */
-
-/* ============================
-   HERO SECTION
-   ============================ */
- 
-/* ============================
-   FEATURE SECTION
-   ============================ */
-.feature-section {
-  padding: 5rem 0; 
-  overflow: hidden; /* 防止傾斜時超出 */
-
-}
-
-.feature-section .container { 
-  /* max-width: 1440px;*/
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4rem;
-}
-
-.feature-text {
-  flex: 1;
-  max-width: 500px;
-  margin-top: 0; /* 確保貼頂，可按視覺微調 */
-
-}
-
-.feature-text h2 {
-  font-size: 3rem;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-}
-
-.feature-text p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;     /* 減少文字同圖之間 */
-  opacity: 0.7;
-}
-
-.feature-visual {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  padding-left: 2rem;
-  perspective: 1000px; /* 增加 3D 空間感 */
-
-}
-
-.feature-img {
-  max-width: 400px;      /* 👈 9:16 直圖，闊度唔好太闊 */
-  width: 100%;
-  height: auto;              /* 9:16 自然高度 ~569px */
-  object-fit: cover;
-  border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-
-  /* 初始輕微傾斜（參考圖中效果） */
-  transform: rotate(-4deg) translateZ(0);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
-  cursor: pointer;
-}
-/* Hover 時反轉方向 + 浮起 */
-.feature-img:hover {
-  /*   transform: rotateY(15deg) rotateZ(-3deg) scale(1.05); */
-  transform: rotate(4deg) translateY(-15px) scale(1.02);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-}
-
+  
 
 
 /* ============================
@@ -512,26 +418,7 @@ footer .logo-img-footer {
   }
  
 
-  .feature-section .container { 
-    flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
-  }
 
-  .feature-visual {
-    padding-left: 0;
-    margin-top: 2rem;
-    justify-content: center;
-  }
-  .feature-img {
-    max-width: 100%;
-    max-height: 400px;     /* 限制高度，唔好太長 */
-    transform: rotate(-4deg);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .feature-img.spin-right {
-    transform: rotate(4deg);  /* scroll 到變右旋 */
-  }
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);

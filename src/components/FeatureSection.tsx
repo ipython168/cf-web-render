@@ -45,21 +45,21 @@ export default function FeatureSection({ siteConfig, t }: FeatureSectionProps) {
   }, []);
   
   return (
-    <section id="features" className="feature-section overflow-hidden">
+    <section id="features" className="py-20 overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-[5%]">
         {/* 唔加任何 flex/grid class，全部交 CSS 控制 */}
-        <div className="feature-text">
+        <div className="flex-1 max-w-[500px] mt-0">
           <h2
-            className="text-3xl md:text-4xl font-bold mb-6 fade-in"
+            className="text-5xl leading-tight mb-6 fade-in"
             dangerouslySetInnerHTML={{ __html: t.sections.featuresTitle }}
           />
-          <p className="text-lg opacity-70 leading-relaxed fade-in">
+          <p className="text-lg opacity-70 leading-relaxed mb-6 fade-in">
             {t.sections.featuresDesc}
           </p>
         </div>
-        <div className="feature-visual">
-          <div className="feature-img fade-in">
-            <img ref={imgRef} src={siteConfig.sections.featureImage} className="feature-img" />
+        <div className="flex-1 flex justify-end pl-8 perspective-[1000px]">
+          <div className="fade-in">
+            <img ref={imgRef} src={siteConfig.sections.featureImage} className="max-w-[400px] w-full h-auto object-cover rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] [transform:rotate(-4deg)_translateZ(0)] transition-transform duration-500 ease-out cursor-pointer hover:[transform:rotate(4deg)_translateY(-15px)_scale(1.02)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)]" />
           </div> 
         </div>
       </div>
