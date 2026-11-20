@@ -61,7 +61,7 @@ export default function Sidebar({ open, onClose, siteConfig, langData, currentLa
               </>
             )}
           </div>
-          <div className="sidebar-bottom">
+          <div className="sidebar-bottom pb-[env(safe-area-inset-bottom)]">
             <div className="lang-switch-container">
               <div className="lang-switch">
                 <button className={`lang-btn ${currentLang === 'zh' ? 'active' : ''}`} onClick={() => switchLang('zh')}>中文</button>
