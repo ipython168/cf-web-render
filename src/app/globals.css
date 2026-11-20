@@ -44,55 +44,6 @@
 /* ============================
    SIDEBAR / OVERLAY
    ============================ */
-.overlay {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(4px);
-  z-index: 150;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s;
-}
-
-.overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.sidebar {
-  position: fixed;
-  top: 0; right: -350px;
-  width: 320px; height: 100vh;
-  background: var(--sidebar-bg);
-  z-index: 200;
-  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar.open {
-  right: 0;
-}
-
-.close-btn {
-  align-self: flex-end;
-  margin: 0.2rem 1rem 0;      
-  font-size: 1rem;
-
-  background: none;
-  border: none;
-  color: var(--text-color);
-  cursor: pointer;
-}
-
-.sidebar-content {
-  flex: 1;
-  padding: 0 2rem 2rem;
-  display: flex;
-  flex-direction: column;
-}
 
 .theme-section {
   margin-bottom: 0.5rem;

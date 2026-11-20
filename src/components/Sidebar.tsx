@@ -39,10 +39,10 @@ export default function Sidebar({ open, onClose, siteConfig, langData, currentLa
 
   return (
     <>
-      <div id="overlay" className={`overlay ${open ? 'active' : ''}`} onClick={onClose} />
-      <div id="sidebar" className={`sidebar ${open ? 'open' : ''}`}>
-        <button id="close-btn" className="close-btn" onClick={onClose}>✕</button>
-        <div className="sidebar-content">
+      <div id="overlay" className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-150 transition-opacity duration-400 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} onClick={onClose} />
+      <div id="sidebar" className={`fixed top-0 right-0 w-[320px] h-screen bg-[var(--sidebar-bg)] z-200 shadow-[-10px_0_30px_rgba(0,0,0,0.1)] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col ${open ? 'translate-x-0' : 'translate-x-full'}`}>
+        <button id="close-btn" className="self-end mt-1 mr-4 text-base bg-transparent border-none text-[var(--text-color)] cursor-pointer" onClick={onClose}>✕</button>
+        <div className="flex-1 px-8 pb-8 flex flex-col">
           <div className="theme-section">
             <h4 id="theme-title">{t.sidebar?.themeTitle || 'Theme Settings'}</h4>
             <div className="icon-btn-group">
@@ -71,7 +71,7 @@ export default function Sidebar({ open, onClose, siteConfig, langData, currentLa
             {siteConfig.social?.facebook && (
               <a href={siteConfig.social.facebook} id="social-fb" target="_blank" rel="noopener noreferrer" className="sidebar-social-link" title="Facebook" style={{ display: 'inline-flex', alignItems: 'center', color: 'var(--text-color)', opacity: 0.7, transition: 'opacity 0.2s' }}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 2418.062 24 12.073z"/>
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 12.073z"/>
                 </svg>
               </a>
             )}
