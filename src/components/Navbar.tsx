@@ -28,8 +28,8 @@ export default function Navbar({ siteConfig, langData, currentLang: propLang, on
     <>
       <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-inner">
-          <a href={"/"+currentLang} className="logo">
-            <img src={siteConfig.logoImage} alt="Logo" className="logo-img" />
+          <a href={"/"+currentLang} className="flex items-center gap-3 no-underline">
+            <img src={siteConfig.logoImage} alt="Logo" className="h-14 w-auto max-w-[60vw]" />
           </a>
           {/* 強制三小點 + 透明底 + Hover 效果 */}
           <button 

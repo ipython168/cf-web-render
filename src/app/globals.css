@@ -51,20 +51,7 @@
 
 /* ============================
    LOGO
-   ============================ */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-
-/* Navbar logo — 用 header .logo-img 提高特異性，唔使 !important */
-header .logo-img {
-  height: 56px;
-  width: auto;
-  max-width: 60vw;
-}
+   ============================ */  
 
 /* ============================
    NAVBAR
