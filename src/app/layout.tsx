@@ -13,8 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const configPath = path.join(process.cwd(), 'public/site-config.json');
   const langPath = path.join(process.cwd(), 'public/lang.json');
 
-  let title = 'QuantBase';
-  let description = "用數據透視市場，用紀律執行交易";
+  let title = '';
+  let description = "";
 
   try {
     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-HK" data-theme="light" suppressHydrationWarning>
+    <html lang="zh-HK" data-theme="light" suppressHydrationWarning className="scroll-smooth">
       <body className="min-h-screen antialiased">
         <ThemeProvider>
           {children}
