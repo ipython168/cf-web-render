@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+
 
 type Post = {
   id: string;
@@ -33,6 +34,7 @@ function makeSlug(post: Post): string {
 }
 
 export default function ArticleClient({ initialPosts, locale }: { initialPosts: Post[]; locale: Locale }) {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
   const initialSort = (searchParams.get('sort') as 'newest' | 'oldest') || 'newest';
@@ -59,6 +61,13 @@ export default function ArticleClient({ initialPosts, locale }: { initialPosts: 
 
     setPosts(filtered);
   }, [search, sort, category, initialPosts, locale]);
+
+
+  useEffect(() => {
+    const query = new URLSearchParams({ search, sort, category }).toString();
+    const newUrl = `/${locale}/article?${query}`;
+    router.replace(newUrl, { scroll: false });
+  }, [search, sort, category, locale, router]);
 
   const filterCategories = ['All', 'Backtest', 'Insights', 'Tutorial'];
   const currentQuery = new URLSearchParams({ search, sort, category }).toString();

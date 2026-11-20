@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useLang } from '@/hooks/useLang';
 import Sidebar from './Sidebar';
+import Image from 'next/image';
 
 interface NavbarProps {
   siteConfig: any;
