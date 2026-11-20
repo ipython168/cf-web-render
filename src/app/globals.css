@@ -56,38 +56,7 @@
 /* ============================
    NAVBAR
    ============================ */
-
-.navbar { 
-  display: flex; justify-content: center; padding: 0.8rem 0; 
-  background-color: transparent;
-}
-
-header.navbar {
-  padding: 0.8rem 0; 
-  position: fixed; 
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  background: transparent;
-  transition: background 0.3s ease, backdrop-filter 0.3s, border-bottom 0.3s;
-}
-
-/* 全程透明 — scrolled 都唔變 */
-header.navbar.scrolled {
-  background: transparent;
-  border-bottom: none;
-}
-
-.nav-inner {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  height: 45px;              
-  padding: 0 1.5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem; 
-}
+   
 
 /* ============================
    MENU BUTTON (三點直排 + 正方)
