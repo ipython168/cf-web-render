@@ -1,8 +1,8 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import fs from 'fs';
 import path from 'path';
 import ThemeProvider from '../components/ThemeProvider';
-import "./globals.css";
 
 export const viewport = {
   width: 'device-width',

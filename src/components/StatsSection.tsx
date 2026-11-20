@@ -25,12 +25,12 @@ export default function StatsSection({ t, stats }: StatsSectionProps) {
   useStatsAnimation(statItems);
 
   return (
-    <section id="stats-section" className="stats-section fade-in">
+    <section id="stats-section" className="py-20 overflow-hidden fade-in">
       <div className="max-w-[1280px] mx-auto px-[5%]">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 fade-in">
+        <h2 className="text-[2.5rem] leading-tight font-bold text-center mb-16 fade-in">
           {t.stats?.title || '實戰數據'}
         </h2>
-        <div className="stats-grid">
+        <div className="grid grid-cols-4 gap-8 text-center">
           <StatCard id="stat-win" target={statItems[0].target} suffix={statItems[0].suffix} label={t.stats?.winRate || '勝率'} />
           <StatCard id="stat-trades" target={statItems[1].target} suffix={statItems[1].suffix} label={t.stats?.totalTrades || '總交易次數'} />
           <StatCard id="stat-dd" target={statItems[2].target} suffix={statItems[2].suffix} label={t.stats?.maxDrawdown || '最大回撤'} />
@@ -43,9 +43,9 @@ export default function StatsSection({ t, stats }: StatsSectionProps) {
 }
 function StatCard({ id, target, suffix, label }: { id: string; target: number; suffix: string; label: string }) {
   return (
-    <div className="stat-card fade-in">
-      <div className="stat-number fade-in" id={id}>0{suffix}</div>
-      <p>{label}</p>
+    <div className="p-8 px-4 rounded-2xl transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)] fade-in">
+      <div className="text-6xl font-extrabold text-[var(--primary-color)] mb-2 font-mono fade-in" id={id}>0{suffix}</div>
+      <p className="mt-2 text-lg opacity-70">{label}</p>
     </div>
   );
 }
