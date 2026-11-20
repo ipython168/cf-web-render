@@ -33,7 +33,7 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
 
   return (
     <footer className="site-footer footer-final">
-      <div className="container">
+      <div className="max-w-[1280px] mx-auto px-[5%]">
         <div className="footer-content fade-in-visible">
           <div className="footer-brand">
             <img 

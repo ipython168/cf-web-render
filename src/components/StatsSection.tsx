@@ -26,7 +26,7 @@ export default function StatsSection({ t, stats }: StatsSectionProps) {
 
   return (
     <section id="stats-section" className="stats-section fade-in">
-      <div className="container">
+      <div className="max-w-[1280px] mx-auto px-[5%]">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 fade-in">
           {t.stats?.title || '實戰數據'}
         </h2>

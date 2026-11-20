@@ -29,7 +29,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ locale
   const posts = await getPosts();
 
   return (
-    <main className="container archive-header">
+    <main className="max-w-[1280px] mx-auto px-[5%] archive-header">
       <ArticleClient initialPosts={posts} locale={locale as 'zh' | 'en'} />
     </main>
   );
