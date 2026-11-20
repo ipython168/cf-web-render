@@ -34,8 +34,13 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
       onMouseMove={handleMouseMove}
     >
       <div className="fade-in">
-        <h1 className="text-7xl leading-tight mb-6 tracking-tighter" dangerouslySetInnerHTML={{ __html: t.hero.title }} />
-        <p className="text-base lg:text-lg xl:text-xl opacity-80 mb-12 px-4">{t.hero.subtitle}</p>
+        <h1 
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-6 tracking-tighter" 
+          dangerouslySetInnerHTML={{ __html: t.hero.title }} 
+        />
+        <p className="text-base md:text-lg xl:text-xl opacity-80 mb-8 md:mb-12 px-4">
+          {t.hero.subtitle}
+        </p>
         <div className="hero-btns">
           {/* 強制實色背景，Hover 透明 */}
           <a 
