@@ -40,7 +40,7 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
           {/* 強制實色背景，Hover 透明 */}
           <a 
             href={siteConfig.hero.buttonLink} 
-            className="hero-btn-final"
+            className="inline-block bg-[var(--primary-color)] text-white border-2 border-[var(--primary-color)] py-3 px-12 text-lg font-bold rounded-full no-underline transition-all duration-300 ease-in-out hover:bg-transparent hover:text-[var(--primary-color)]"
           >
             {t.hero.buttonText}
           </a>
