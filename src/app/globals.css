@@ -44,17 +44,7 @@
 
 /* ============================
    RESET / BASE
-   ============================ */ 
-
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
-  background: var(--page-gradient);
-  background-attachment: fixed;
-  color: var(--text-color);
-  transition: background 0.5s ease, color 0.5s ease;
-  overflow-x: clip; /* 修復游標需在文字上才能滾動的問題 */ 
-}
+   ============================ */  
 /* ============================
    CONTAINER
    ============================ */
