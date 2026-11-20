@@ -30,7 +30,7 @@ export default function StatsSection({ t, stats }: StatsSectionProps) {
         <h2 className="text-[2.5rem] leading-tight font-bold text-center mb-16 fade-in">
           {t.stats?.title || '實戰數據'}
         </h2>
-        <div className="grid grid-cols-4 gap-8 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
           <StatCard id="stat-win" target={statItems[0].target} suffix={statItems[0].suffix} label={t.stats?.winRate || '勝率'} />
           <StatCard id="stat-trades" target={statItems[1].target} suffix={statItems[1].suffix} label={t.stats?.totalTrades || '總交易次數'} />
           <StatCard id="stat-dd" target={statItems[2].target} suffix={statItems[2].suffix} label={t.stats?.maxDrawdown || '最大回撤'} />
