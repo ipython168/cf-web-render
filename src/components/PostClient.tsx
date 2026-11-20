@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useLang } from '@/hooks/useLang';
 import Navbar from './Navbar';
 import { getLocalizedContent, getLocalizedCategory, formatDate } from '@/lib/utils';
+import { useSearchParams } from 'next/navigation';
 
 interface PostClientProps {
   post: any;
@@ -13,6 +14,9 @@ interface PostClientProps {
 
 export default function PostClient({ post, langData, config }: PostClientProps) {
   const { lang, mounted } = useLang();
+  const searchParams = useSearchParams();
+  const fromParams = searchParams.get('from');
+
   const [parsedContent, setParsedContent] = useState('');
 
   useEffect(() => {
@@ -22,9 +26,10 @@ export default function PostClient({ post, langData, config }: PostClientProps) 
     let html = content.content || '';
 
     html = html
-      .replace(/### (.+)/g, '<h3 class="text-xl font-bold mt-6 mb-3">$1</h3>')
-      .replace(/## (.+)/g, '<h2 class="text-2xl font-bold mt-8 mb-4">$1</h2>')
-      .replace(/# (.+)/g, '<h1 class="text-3xl font-bold mt-10 mb-5">$1</h1>')
+      .replace(/^### (.+)/gm, '<h3 class="text-xl font-bold mt-6 mb-3">$1</h3>')
+      .replace(/^## (.+)/gm, '<h2 class="text-2xl font-bold mt-8 mb-4">$1</h2>')
+      .replace(/^# (.+)/gm, '<h1 class="text-3xl font-bold mt-10 mb-5">$1</h1>')
+      .replace(/\\# /g, '# ')
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
       .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre class="bg-gray-100 dark:bg-zinc-800 p-4 rounded-lg overflow-x-auto my-4"><code>$2</code></pre>')
@@ -47,12 +52,16 @@ export default function PostClient({ post, langData, config }: PostClientProps) 
     ? 'Disclaimer: The content above is for sharing and educational purposes only and does not constitute any investment advice.'
     : '免責聲明：以上內容純屬分享與教學用途，不構成任何投資建議。';
 
+  // 構建返回連結，保留篩選狀態
+  const backQuery = fromParams ? `?${decodeURIComponent(fromParams)}` : '';
+  const backUrl = `/${lang}/article${backQuery}`;
+
   return (
     <div>
       <Navbar siteConfig={config} langData={langData} />
       <main className="pt-24 pb-16 min-h-screen">
         <div className="max-w-3xl mx-auto px-4">
-          <a href="/archive" className="text-cyan-500 hover:underline mb-6 inline-block">
+          <a href={backUrl} className="text-cyan-500 hover:underline mb-6 inline-block">          
             {backText}
           </a>
           <article>
