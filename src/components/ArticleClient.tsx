@@ -92,7 +92,7 @@ export default function ArticleClient({ initialPosts, locale }: { initialPosts: 
         </div>
       </div>
 
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 pb-12">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 pt-6 md:pt-8 pb-12">
         {posts.map(post => (
           <Link 
             key={post.id} 
