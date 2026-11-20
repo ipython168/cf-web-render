@@ -17,7 +17,7 @@ export default function LocaleLayout({
   const [langData, setLangData] = useState({});
 
   useEffect(() => {
-    Promise.all([
+    Promise.all([ 
       fetch('/site-config.json').then(r => r.json()),
       fetch('/lang.json').then(r => r.json()),
     ]).then(([cfg, lang]) => {

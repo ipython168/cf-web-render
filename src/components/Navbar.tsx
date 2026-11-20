@@ -31,8 +31,10 @@ export default function Navbar({ siteConfig, langData, currentLang: propLang, on
         <div className="w-full max-w-[1280px] mx-auto h-[45px] px-[1.5%] flex items-center justify-between gap-4">
           <a href={"/"+currentLang} className="flex items-center gap-3 no-underline shrink-0">
             <img 
-              src={siteConfig.logoImage} 
+              src={siteConfig.logoImage || '/images/branding/logo.png'} 
               alt="Logo" 
+              loading="eager" 
+              fetchPriority="high"
               className="h-8 md:h-9 w-auto object-contain" 
             />
           </a>
