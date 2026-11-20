@@ -34,12 +34,15 @@ export default function Navbar({ siteConfig, langData, currentLang: propLang, on
           {/* 強制三小點 + 透明底 + Hover 效果 */}
           <button 
             id="menu-btn" 
-            className="menu-btn-final" 
+            className="flex flex-col items-center justify-center gap-[4px] w-[35px] h-[35px] bg-transparent border border-[var(--primary-color)] rounded-xl cursor-pointer p-0 shrink-0 transition-all duration-300 ease-in-out z-[99] hover:bg-[var(--primary-color)] hover:border-[var(--primary-color)]" 
             onClick={() => setSidebarOpen(true)} 
             aria-label="選單"
           >
-            <span></span><span></span><span></span>
+            <span className="block w-[5px] h-[5px] rounded-full bg-[var(--primary-color)] transition-colors duration-300 ease-in-out group-hover:bg-white"></span>
+            <span className="block w-[5px] h-[5px] rounded-full bg-[var(--primary-color)] transition-colors duration-300 ease-in-out group-hover:bg-white"></span>
+            <span className="block w-[5px] h-[5px] rounded-full bg-[var(--primary-color)] transition-colors duration-300 ease-in-out group-hover:bg-white"></span>
           </button>
+
         </div>
       </header>
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} siteConfig={siteConfig} langData={langData} currentLang={currentLang} onLangChange={onLangChange} />

@@ -61,44 +61,7 @@
 /* ============================
    MENU BUTTON (三點直排 + 正方)
    ============================ */
-button.menu-btn-final {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;        
-  gap: 4px;
-  width: 35px;
-  height: 35px;
-  background: transparent;
-  border: 1px solid var(--primary-color);
-  border-radius: 12px; 
-  cursor: pointer;
-  padding: 0;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
-  z-index: 99;
-}
-
-button.menu-btn-final:hover {
-  background: var(--primary-color);
-  border-color: var(--primary-color);
-}
-
-button.menu-btn-final span {
-  display: block;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--primary-color);
-  transition: background 0.3s ease;
-}
-
-button.menu-btn-final:hover span {
-  background: #fff;
-}
-
-
+ 
 /* ============================
    HERO BUTTON
    ============================ */
