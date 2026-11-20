@@ -26,7 +26,7 @@ export default function Navbar({ siteConfig, langData, currentLang: propLang, on
 
   return (
     <>
-      <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <header className={`flex justify-center py-3 bg-transparent ${scrolled ? 'scrolled' : ''}`}>
         <div className="nav-inner">
           <a href={"/"+currentLang} className="flex items-center gap-3 no-underline">
             <img src={siteConfig.logoImage} alt="Logo" className="h-14 w-auto max-w-[60vw]" />
