@@ -38,11 +38,11 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
 
   const filePath = path.join(process.cwd(), 'public/posts.json');
   const configPath = path.join(process.cwd(), 'public/site-config.json');
-  const langPath = path.join(process.cwd(), 'public/lang.json');
+  const contentPath = path.join(process.cwd(), 'public/content.json');
   
   let post = null;
   let config = {};
-  let langData = {};
+  let contentData = {};
   
   try {
     const data = fs.readFileSync(filePath, 'utf8');
@@ -52,8 +52,8 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
     post = posts.find((p: any) => String(p.id) === postId) || null;
     
     config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-    const fullLang = JSON.parse(fs.readFileSync(langPath, 'utf8'));
-    langData = fullLang.zh || {};
+    const fullContent = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
+    contentData = fullContent.zh || {};
   } catch (err) {
     console.error('Failed to load data:', err);
   }
@@ -61,7 +61,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
   return (
     <main>
       <Suspense fallback={<div>Loading...</div>}>  {/* 新增 Suspense 邊界 */}
-        <PostClient post={post} config={config} langData={langData} />
+        <PostClient post={post} config={config} contentData={contentData} />
       </Suspense>
     </main>
   );

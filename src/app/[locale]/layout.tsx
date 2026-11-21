@@ -13,17 +13,17 @@ export default function LocaleLayout({
 }) {
   const { locale } = use(params);
   const [config, setConfig] = useState({});
-  const [fullLang, setFullLang] = useState({});
-  const [langData, setLangData] = useState({});
+  const [fullContent, setFullContent] = useState({});
+  const [contentData, setContentData] = useState({});
 
   useEffect(() => {
     Promise.all([ 
       fetch('/site-config.json').then(r => r.json()),
-      fetch('/lang.json').then(r => r.json()),
-    ]).then(([cfg, lang]) => {
+      fetch('/content.json').then(r => r.json()),
+    ]).then(([cfg, content]) => {
       setConfig(cfg);
-      setFullLang(lang);
-      setLangData(lang[locale] || lang.zh || {});
+      setFullContent(content);
+      setContentData(content[locale] || content.zh || {});
     }).catch(err => console.error('Failed to load config:', err));
   }, [locale]);
 
@@ -31,14 +31,14 @@ export default function LocaleLayout({
     <>
       <Navbar
         siteConfig={config}
-        langData={fullLang}
+        contentData={fullContent}
         currentLang={locale}
         onLangChange={() => {}}
       />
       <div className="flex flex-col min-h-screen">
         {children}
       </div>
-      <Footer siteConfig={config} langData={langData} />
+      <Footer siteConfig={config} contentData={contentData} />
     </>
   );
 }

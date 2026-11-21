@@ -40,10 +40,10 @@
       "maxDrawdown": "最大回撤",
       "totalReturn": "總回報"
     },
-    "archive": {
+    "posts": {
       "pageTitle": "所有文章",
       "backToHome": "返回首頁",
-      "backToArchive": "返回文章",
+      "backToPosts": "返回文章",
       "searchPlaceholder": "搜尋文章...",
       "sortNewest": "最新發佈",
       "sortOldest": "最舊發佈",
@@ -91,10 +91,10 @@
       "maxDrawdown": "Max Drawdown",
       "totalReturn": "Total Return"
     },
-    "archive": {
+    "posts": {
       "pageTitle": "All Articles",
       "backToHome": "Back to Home",
-      "backToArchive": "Back to Articles",
+      "backToPosts": "Back to Articles",
       "searchPlaceholder": "Search...",
       "sortNewest": "Newest",
       "sortOldest": "Oldest",

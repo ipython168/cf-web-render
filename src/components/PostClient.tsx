@@ -8,11 +8,11 @@ import { useSearchParams } from 'next/navigation';
 
 interface PostClientProps {
   post: any;
-  langData: any;
+  contentData: any;
   config: any;
 }
 
-export default function PostClient({ post, langData, config }: PostClientProps) {
+export default function PostClient({ post, contentData, config }: PostClientProps) {
   const { lang, mounted } = useLang();
   const searchParams = useSearchParams();
   const fromParams = searchParams.get('from');
@@ -44,7 +44,7 @@ export default function PostClient({ post, langData, config }: PostClientProps) 
 
   if (!mounted) return null;
 
-  const t = langData[lang];
+  const t = contentData[lang];
   const content = getLocalizedContent(post, lang);
   const catName = getLocalizedCategory(post, lang);
   const backText = lang === 'en' ? '← All Articles' : '← 所有文章';
@@ -58,7 +58,7 @@ export default function PostClient({ post, langData, config }: PostClientProps) 
 
   return (
     <div>
-      <Navbar siteConfig={config} langData={langData} />
+      <Navbar siteConfig={config} contentData={contentData} />
       <main className="pt-24 pb-16 min-h-screen">
         <div className="max-w-3xl mx-auto px-4">
           <a href={backUrl} className="text-cyan-500 hover:underline mb-6 inline-block">          

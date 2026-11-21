@@ -11,7 +11,7 @@ export const viewport = {
 
 export async function generateMetadata(): Promise<Metadata> {
   const configPath = path.join(process.cwd(), 'public/site-config.json');
-  const langPath = path.join(process.cwd(), 'public/lang.json');
+  const contentPath = path.join(process.cwd(), 'public/content.json');
 
   let title = '';
   let description = "";
@@ -19,8 +19,8 @@ export async function generateMetadata(): Promise<Metadata> {
   try {
     const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     title = config.siteTitle || title;
-    const langData = JSON.parse(fs.readFileSync(langPath, 'utf8'));
-    const zhData = langData.zh || {};
+    const contentData = JSON.parse(fs.readFileSync(contentPath, 'utf8'));
+    const zhData = contentData.zh || {};
     description = zhData.hero?.subtitle || description;
   } catch {}
   return { title, description };

@@ -6,12 +6,12 @@ import Image from 'next/image';
 
 interface NavbarProps {
   siteConfig: any;
-  langData: any;
+  contentData: any;
   currentLang?: string;
   onLangChange?: (lang: 'zh' | 'en') => void;
 }
 
-export default function Navbar({ siteConfig, langData, currentLang: propLang, onLangChange: propOnChange }: NavbarProps) {
+export default function Navbar({ siteConfig, contentData, currentLang: propLang, onLangChange: propOnChange }: NavbarProps) {
   const { lang, changeLang, mounted } = useLang();
   const [scrolled, setScrolled] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -52,7 +52,7 @@ export default function Navbar({ siteConfig, langData, currentLang: propLang, on
 
         </div>
       </header>
-      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} siteConfig={siteConfig} langData={langData} currentLang={currentLang} onLangChange={onLangChange} />
+      <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} siteConfig={siteConfig} contentData={contentData} currentLang={currentLang} onLangChange={onLangChange} />
     </>
   );
 }

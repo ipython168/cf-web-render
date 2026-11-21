@@ -8,14 +8,14 @@ import PostGrid from '@/components/PostGrid';
 
 interface HomeClientProps {
   config: any;
-  langData: any;
+  contentData: any;
   posts: any[];
   stats: any;
   locale: string;
 }
 
-export default function HomeClient({ config, langData, posts, stats, locale }: HomeClientProps) {
-  const t = langData[locale] || langData.zh || {};
+export default function HomeClient({ config, contentData, posts, stats, locale }: HomeClientProps) {
+  const t = contentData[locale] || contentData.zh || {};
 
   useScrollFade();
 

@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const config = readJson('site-config.json');
-  const langData = readJson('lang.json');
+  const contentData = readJson('content.json');
   const stats = readJson('stats.json');
   const postsData = readJson('posts.json');
   const posts = postsData.posts || postsData || [];
@@ -29,7 +29,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   return (
     <HomeClient
       config={config}
-      langData={langData}
+      contentData={contentData}
       posts={posts}
       stats={stats}
       locale={locale}

@@ -9,12 +9,12 @@ interface SidebarProps {
   open: boolean;
   onClose: () => void;
   siteConfig: any;
-  langData: any;
+  contentData: any;
   currentLang: string;
   onLangChange: (lang: 'zh' | 'en') => void;
 }
 
-export default function Sidebar({ open, onClose, siteConfig, langData, currentLang, onLangChange }: SidebarProps) {
+export default function Sidebar({ open, onClose, siteConfig, contentData, currentLang, onLangChange }: SidebarProps) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function Sidebar({ open, onClose, siteConfig, langData, currentLa
   }, [open]);
 
   const currentTheme = mounted ? theme : undefined;
-  const t = langData[currentLang] || langData.zh || {};
+  const t = contentData[currentLang] || contentData.zh || {};
 
   const switchLang = (newLang: 'zh' | 'en') => {
     localStorage.setItem('lang', newLang);

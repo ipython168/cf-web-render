@@ -3,10 +3,10 @@
 import { useLang } from '@/hooks/useLang';
 
 interface LangSwitcherProps {
-  langData: any;
+  contentData: any;
 }
 
-export default function LangSwitcher({ langData }: LangSwitcherProps) {
+export default function LangSwitcher({ contentData }: LangSwitcherProps) {
   const { lang, changeLang, mounted } = useLang();
 
   if (!mounted) return null;
@@ -23,7 +23,7 @@ export default function LangSwitcher({ langData }: LangSwitcherProps) {
             : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
         }`}
       >
-        {langData?.zh?.languageName || '中文'}
+        {contentData?.zh?.languageName || '中文'}
       </button>
       <button
         id="lang-btn-en"
@@ -35,7 +35,7 @@ export default function LangSwitcher({ langData }: LangSwitcherProps) {
             : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
         }`}
       >
-        {langData?.en?.languageName || 'EN'}
+        {contentData?.en?.languageName || 'EN'}
       </button>
     </div>
   );

@@ -3,13 +3,13 @@ import Link from 'next/link';
 
 interface FooterProps {
   siteConfig: any;
-  langData: any;
+  contentData: any;
 }
 
-export default function Footer({ siteConfig, langData }: FooterProps) {
+export default function Footer({ siteConfig, contentData }: FooterProps) {
   const t = (key: string) => {
     const keys = key.split('.');
-    let obj: any = langData;
+    let obj: any = contentData;
     for (const k of keys) {
       if (obj && typeof obj === 'object') {
         obj = obj[k];
