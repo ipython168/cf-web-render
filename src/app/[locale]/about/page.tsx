@@ -15,7 +15,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const content = aboutData[locale as keyof typeof aboutData];
 
   return (
-    <main className="bg-white text-[#1a1a1a] font-sans overflow-hidden">
+    <main className="text-[var(--text-color)] font-sans overflow-hidden">
       {/* Section 1: Hero */}
       <section className="relative max-w-[1280px] mx-auto px-[5%] py-20 md:py-32 flex flex-col md:flex-row items-center gap-12">
         <div className="flex-1 z-10">
@@ -66,7 +66,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       </section>
 
       {/* Section 3: Contact */}
-      <section className="max-w-[1280px] mx-auto px-[5%] py-20 bg-[#F9FFFD] rounded-3xl my-12">
+      <section className="max-w-[1180px] mx-auto px-[5%] py-20 bg-[var(--card-bg)] rounded-3xl my-12">
         <div className="flex flex-col md:flex-row gap-12">
           <div className="md:w-1/2">
             <div className="text-[#00A896] text-sm font-bold tracking-widest mb-4 uppercase">
@@ -88,12 +88,12 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       </section>
 
       {/* Section 4: Footer Banner */}
-      <section className="bg-[#1a2b2a] text-white py-24 text-center px-[5%]">
-        <div className="text-xs tracking-widest text-gray-400 mb-6 uppercase">
+      <section className="bg-[var(--bg-color)] text-[var(--text-color)] py-24 text-center px-[5%]">
+        <div className="text-xs tracking-widest text-[var(--text-color)]/50 mb-6 uppercase">
           {content.footerBadge}
         </div>
         <h2 className="text-4xl md:text-6xl font-bold mb-6">{content.footerTitle}</h2>
-        <p className="text-gray-300 mb-12">{content.footerDesc}</p>
+        <p className="text-[var(--text-color)]/70 mb-12">{content.footerDesc}</p>
         <div className="text-2xl md:text-3xl text-[#00A896] font-bold">{content.footerSlogan}</div>
       </section>
     </main>

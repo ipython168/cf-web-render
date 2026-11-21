@@ -72,11 +72,10 @@ export default function Sidebar({ open, onClose, siteConfig, contentData, curren
           <div className="flex flex-col gap-6 my-4 mb-8">
             {t.nav && (
               <>
-                <Link href={`/${currentLang}/about`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.about}</Link>
-                <Link href={`/${currentLang}/article`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.news}</Link>
-                <Link href={`/${currentLang}`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.help}</Link>
-                <Link href={`/${currentLang}`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.support}</Link>
-              </>
+                <Link href={`/${currentLang}/about`} onClick={onClose} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.about}</Link>
+                <Link href={`/${currentLang}/posts`} onClick={onClose} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.news}</Link>
+                <Link href={`/${currentLang}`} onClick={onClose} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.help}</Link>
+                <Link href={`/${currentLang}`} onClick={onClose} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.support}</Link>              </>
             )}
           </div>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, use } from 'react';
+import { useEffect, useState, use, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -27,6 +27,22 @@ export default function LocaleLayout({
     }).catch(err => console.error('Failed to load config:', err));
   }, [locale]);
 
+  // Backspace = 返回上一頁（排除 input/textarea）
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === 'Backspace' &&
+        !['INPUT', 'TEXTAREA', 'SELECT'].includes((e.target as HTMLElement).tagName) &&
+        !(e.target as HTMLElement).isContentEditable
+      ) {
+        e.preventDefault();
+        window.history.back();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+  
   return (
     <>
       <Navbar

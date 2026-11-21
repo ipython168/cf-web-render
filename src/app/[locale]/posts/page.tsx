@@ -30,7 +30,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ locale
   const posts = await getPosts();
 
   return (
-    <main className="max-w-[1280px] mx-auto px-[5%] flex flex-col gap-4">
+    <main className="w-full max-w-[1280px] mx-auto px-[5%] flex flex-col gap-4">
       <Suspense fallback={<div>Loading articles...</div>}>
         <PostsClient initialPosts={posts} locale={locale as 'zh' | 'en'} />
       </Suspense>

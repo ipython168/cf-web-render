@@ -54,11 +54,11 @@ export default function OnePostClient({ post, contentData, config }: OnePostClie
 
   // 構建返回連結，保留篩選狀態
   const backQuery = fromParams ? `?${decodeURIComponent(fromParams)}` : '';
-  const backUrl = `/${lang}/article${backQuery}`;
+  const backUrl = `/${lang}/posts${backQuery}`;
 
   return (
     <div>
-      <Navbar siteConfig={config} contentData={contentData} />
+      <Navbar siteConfig={config} contentData={contentData} />  
       <main className="pt-24 pb-16 min-h-screen">
         <div className="max-w-3xl mx-auto px-4">
           <a href={backUrl} className="text-cyan-500 hover:underline mb-6 inline-block">          
