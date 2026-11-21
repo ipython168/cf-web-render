@@ -3,6 +3,7 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import Link from 'next/link';  
 
 interface SidebarProps {
   open: boolean;
@@ -71,10 +72,10 @@ export default function Sidebar({ open, onClose, siteConfig, langData, currentLa
           <div className="flex flex-col gap-6 my-4 mb-8">
             {t.nav && (
               <>
-                <a href={`/${currentLang}`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.about}</a>
-                <a href={`/${currentLang}/article`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.news}</a>
-                <a href={`/${currentLang}`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.help}</a>
-                <a href={`/${currentLang}`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.support}</a>
+                <Link href={`/${currentLang}/about`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.about}</Link>
+                <Link href={`/${currentLang}/article`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.news}</Link>
+                <Link href={`/${currentLang}`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.help}</Link>
+                <Link href={`/${currentLang}`} className="text-lg text-[var(--text-color)] hover:text-[var(--primary-color)] transition-colors no-underline font-bold">{t.nav.support}</Link>
               </>
             )}
           </div>

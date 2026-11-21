@@ -1,0 +1,60 @@
+{
+  "zh": {
+    "heroBadge": "ABOUT QUANTBASE · 用 AI 學量化",
+    "heroTitle": "一個人，一個用 AI 打破量化門檻嘅念頭。",
+    "heroDesc": "QuantBase 是一個由個人開發者建立的 AI 量化學習平台。我哋相信，量化交易唔應該只屬於華爾街嘅專業團隊——透過 AI 同自動化，任何人都可以用數據同策略去投資。",
+    "tags": ["個人開發", "AI 驅動", "量化學習"],
+    "heroCardTag": "STRATEGY BUILDER",
+    "heroCardText": "用自然語言寫策略",
+    "heroCardIcon": "AI",
+    "whySectionLabel": "WHY QUANTBASE",
+    "whyTitle": "點解要做 QuantBase？",
+    "whyParagraph1": "傳統量化交易門檻極高：要識寫程式、要理解金融模型、要買昂貴嘅數據源。好多有心學投資嘅人，連第一步都踏唔出去。我哋發現，AI 可以大幅降低呢個門檻——自然語言就可以描述策略，機器學習可以自動最佳化參數。",
+    "whyParagraph2": "QuantBase 就係為咗呢個願景而生：一個畀普通人用 AI 學量化、寫策略、回測同執行嘅平台。唔需要 PhD，唔需要十年經驗，只需要一個好奇嘅心同學習嘅熱情。",
+    "quote": "AI 唔係取代你，<br/>係放大你嘅決策能力。",
+    "contactLabel": "LET'S TALK",
+    "contactTitle": "有問題、建議，<br/>或者想交流量化策略？",
+    "contactDesc": "我哋好歡迎任何意見。無論你係初學者定老手，每一個交流都可能係新策略嘅起點。",
+    "contacts": [
+      { "label": "電郵", "value": "hello@quantbase.ai", "href": "mailto:hello@quantbase.ai" },
+      { "label": "Discord 社群", "value": "discord.gg/quantbase", "href": "https://discord.gg/quantbase" },
+      { "label": "Twitter / X", "value": "@quantbase_ai", "href": "https://twitter.com/quantbase_ai" },
+      { "label": "GitHub", "value": "github.com/quantbase", "href": "https://github.com/quantbase" },
+      { "label": "微信公眾號", "value": "QuantBase AI", "href": "#" },
+      { "label": "YouTube", "value": "QuantBase 頻道", "href": "#" }
+    ],
+    "footerBadge": "BUILD SMARTER, NOT HARDER",
+    "footerTitle": "感謝每一位願意學習嘅你。",
+    "footerDesc": "有你哋嘅支持，我哋先可以繼續完善 QuantBase，幫更多人用 AI 做好投資決策。",
+    "footerSlogan": "用 AI 學量化，從此唔使再靠運氣炒股。"
+  },
+  "en": {
+    "heroBadge": "ABOUT QUANTBASE · Learn Quant with AI",
+    "heroTitle": "One person, one idea to democratize quantitative trading with AI.",
+    "heroDesc": "QuantBase is an AI-powered quantitative learning platform built by an indie developer. We believe quant trading shouldn't be exclusive to Wall Street — with AI and automation, anyone can invest using data-driven strategies.",
+    "tags": ["Indie Dev", "AI-Driven", "Quant Learning"],
+    "heroCardTag": "STRATEGY BUILDER",
+    "heroCardText": "Write strategies in plain English",
+    "heroCardIcon": "AI",
+    "whySectionLabel": "WHY QUANTBASE",
+    "whyTitle": "Why QuantBase?",
+    "whyParagraph1": "Traditional quant trading has high barriers: you need coding skills, financial modeling knowledge, and expensive data feeds. Many aspiring investors never take the first step. We realized AI can dramatically lower these barriers — describe a strategy in plain English, and machine learning optimizes parameters automatically.",
+    "whyParagraph2": "QuantBase was born from this vision: a platform where ordinary people can learn quant, write strategies, backtest, and execute — all with the help of AI. No PhD required, no decade of experience needed — just curiosity and passion to learn.",
+    "quote": "AI doesn't replace you, <br/>it amplifies your decision-making.",
+    "contactLabel": "LET'S TALK",
+    "contactTitle": "Questions, ideas, <br/>or want to discuss quant strategies?",
+    "contactDesc": "We welcome any feedback. Whether you're a beginner or a pro, every conversation could spark the next great strategy.",
+    "contacts": [
+      { "label": "Email", "value": "hello@quantbase.ai", "href": "mailto:hello@quantbase.ai" },
+      { "label": "Discord Community", "value": "discord.gg/quantbase", "href": "https://discord.gg/quantbase" },
+      { "label": "Twitter / X", "value": "@quantbase_ai", "href": "https://twitter.com/quantbase_ai" },
+      { "label": "GitHub", "value": "github.com/quantbase", "href": "https://github.com/quantbase" },
+      { "label": "WeChat Official", "value": "QuantBase AI", "href": "#" },
+      { "label": "YouTube", "value": "QuantBase Channel", "href": "#" }
+    ],
+    "footerBadge": "BUILD SMARTER, NOT HARDER",
+    "footerTitle": "Thank you to everyone willing to learn.",
+    "footerDesc": "With your support, we can keep improving QuantBase and help more people make better investment decisions with AI.",
+    "footerSlogan": "Learn quant with AI — no more gambling on stocks."
+  }
+}

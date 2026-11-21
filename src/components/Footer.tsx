@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link'; 
 
 interface FooterProps {
   siteConfig: any;
@@ -51,7 +52,7 @@ export default function Footer({ siteConfig, langData }: FooterProps) {
               Object.entries(links)
                 .filter(([key]) => key !== 'support')
                 .map(([key, label]) => (
-                <a key={key} href={linkMap[key] || '#'} className="block font-bold no-underline mb-3 text-[var(--text-color)] transition-all duration-300 hover:text-[var(--primary-color)]">{label as string}</a>
+                <Link key={key} href={linkMap[key] || '#'} className="block font-bold no-underline mb-3 text-[var(--text-color)] transition-all duration-300 hover:text-[var(--primary-color)]">{label as string}</Link>
               ))
             ) : null}
           </div>

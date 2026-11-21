@@ -1,0 +1,54 @@
+{
+  "zh": {
+    "heroBadge": "ABOUT DATATUNE · SINCE 2020",
+    "heroTitle": "兩個人，一個令香港人出行簡單啲嘅想法。",
+    "heroDesc": "Datatune 是由 2 位創辦人組成的小型開發團隊。我們由設計、開發、行銷到客戶支援都親自參與，只為打造真正切合香港人需要的交通應用。",
+    "tags": ["2 位創辦人", "2020 年成立", "香港製作"],
+    "whySectionLabel": "WHY WE STARTED",
+    "whyTitle": "點解創立 Datatune？",
+    "whyParagraph1": "故事其實好簡單。當時每日返工都要轉幾程車——巴士轉地鐵，再考慮轉東涌線抑或直接搭落中環。最困擾係每次都去到葵芳先諗起要 check 下荔景幾時有車，要開幾個 App 又要逐個等佢 load。",
+    "whyParagraph2": "忽發奇想：點解冇一個 App 可以整合香港所有交通工具的到站時間，重點係 load 得要夠快！於是，我哋決定自己整合一個 App 完全涵蓋各種交通工具，直至今天，港九新界巴士、小巴、港鐵、輕鐵、渡輪，全都有齊。",
+    "quote": "技術應該服務生活，<br/>而不是打擾生活。",
+    "contactLabel": "LET'S TALK",
+    "contactTitle": "有問題、建議，<br/>或者純粹想傾兩句？",
+    "contactDesc": "我們很樂意聽到你的想法。每一個意見，都可能成為下一個改善。",
+    "contacts": [
+      { "label": "電郵", "value": "info@datatune.hk", "href": "mailto:info@datatune.hk" },
+      { "label": "WhatsApp 技術支援", "value": "+852 9814 6238", "href": "https://wa.me/85298146238" },
+      { "label": "Telegram 社群", "value": "@datatune", "href": "https://t.me/datatune" },
+      { "label": "Instagram", "value": "@datatunehk", "href": "https://instagram.com/datatunehk" },
+      { "label": "Facebook", "value": "@datatunehk", "href": "https://facebook.com/datatunehk" },
+      { "label": "YouTube", "value": "Datatune 數據通", "href": "#" }
+    ],
+    "footerBadge": "THANK YOU, HONG KONG PEOPLE",
+    "footerTitle": "感謝使用 Datatune 嘅每一位。",
+    "footerDesc": "有你們嘅支持，我哋先可以持續進步同堅持做落去。",
+    "footerSlogan": "趕巴士，從此唔使再被迫睇廣告。"
+  },
+  "en": {
+    "heroBadge": "ABOUT DATATUNE · SINCE 2020",
+    "heroTitle": "Two people, one idea to make commuting easier for Hongkongers.",
+    "heroDesc": "Datatune is a small dev team of 2 founders. We handle design, development, marketing, and support ourselves, just to build a transit app that truly fits Hong Kong people.",
+    "tags": ["2 Founders", "Founded 2020", "Made in Hong Kong"],
+    "whySectionLabel": "WHY WE STARTED",
+    "whyTitle": "Why Datatune?",
+    "whyParagraph1": "The story is simple. Commuting used to be a hassle, switching between buses and MTR. The worst part was remembering to check bus times at Kwai Fong, having to open multiple apps and wait for them to load.",
+    "whyParagraph2": "We wondered: why isn't there one app integrating all HK transit times, that loads fast? So we built it. Today, we cover buses, minibuses, MTR, light rail, and ferries.",
+    "quote": "Tech should serve life, <br/>not disturb it.",
+    "contactLabel": "LET'S TALK",
+    "contactTitle": "Questions, suggestions, <br/>or just want to chat?",
+    "contactDesc": "We love hearing your ideas. Every feedback could be our next improvement.",
+    "contacts": [
+      { "label": "Email", "value": "info@datatune.hk", "href": "mailto:info@datatune.hk" },
+      { "label": "WhatsApp Support", "value": "+852 9814 6238", "href": "https://wa.me/85298146238" },
+      { "label": "Telegram Group", "value": "@datatune", "href": "https://t.me/datatune" },
+      { "label": "Instagram", "value": "@datatunehk", "href": "https://instagram.com/datatunehk" },
+      { "label": "Facebook", "value": "@datatunehk", "href": "https://facebook.com/datatunehk" },
+      { "label": "YouTube", "value": "Datatune", "href": "#" }
+    ],
+    "footerBadge": "THANK YOU, HONG KONG PEOPLE",
+    "footerTitle": "Thanks to everyone using Datatune.",
+    "footerDesc": "With your support, we can keep improving.",
+    "footerSlogan": "No more forced ads when catching a bus."
+  }
+}

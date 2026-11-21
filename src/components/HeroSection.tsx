@@ -15,9 +15,10 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
   useEffect(() => { setMounted(true); }, []);
   if (!mounted) return null;
 
-  const heroBg = resolvedTheme === 'dark'
-    ? `linear-gradient(${siteConfig.theme.dark.heroBgOverlay}, ${siteConfig.theme.dark.heroBgOverlay}), url('/images/hero/hero-bg-dark.jpg')`
-    : `linear-gradient(${siteConfig.theme.light.heroBgOverlay}, ${siteConfig.theme.light.heroBgOverlay}), url('/images/hero/hero-bg-light.jpg')`;
+  // 只根據主題決定背景圖片 URL
+  const heroBgImage = resolvedTheme === 'dark'
+    ? "url('/images/hero/hero-bg-dark.jpg')"
+    : "url('/images/hero/hero-bg-light.jpg')";
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (window.innerWidth > 768) {
@@ -29,8 +30,13 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
 
   return (
     <section
-      className="h-screen flex items-center justify-center text-center bg-[length:110%_110%] bg-center text-[var(--hero-text-color)] relative overflow-hidden transition-[background-image] duration-500 ease-in-out"
-      style={{ backgroundImage: heroBg, backgroundPosition: `calc(50% + ${mousePos.x}px) calc(50% + ${mousePos.y}px)` }}
+      className="h-screen flex items-center justify-center text-center text-[var(--hero-text-color)] relative overflow-hidden transition-[background-image] duration-500 ease-in-out"
+      style={{
+        backgroundImage: `linear-gradient(var(--hero-bg-overlay), var(--hero-bg-overlay)), ${heroBgImage}`,
+        backgroundSize: '110% 110%',
+        backgroundPosition: `calc(50% + ${mousePos.x}px) calc(50% + ${mousePos.y}px)`,
+        backgroundRepeat: 'no-repeat',
+      }}
       onMouseMove={handleMouseMove}
     >
       <div className="fade-in">
@@ -42,7 +48,6 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
           {t.hero.subtitle}
         </p>
         <div className="hero-btns">
-          {/* 強制實色背景，Hover 透明 */}
           <a 
             href={siteConfig.hero.buttonLink} 
             className="inline-block bg-[var(--primary-color)] text-white border-2 border-[var(--primary-color)] py-3 px-12 text-lg font-bold rounded-full no-underline transition-all duration-300 ease-in-out hover:bg-transparent hover:text-[var(--primary-color)]"
