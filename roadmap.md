@@ -16,7 +16,7 @@
 - 確認 Next.js 專案結構正常，`npm run dev` 跑到。
 
 ### ✅ Step 1.3：建立 JSON 驅動架構
-- 建立 `sites/quantbase/` 資料夾，放入你現有嘅 `site-config.json`、`posts.json`、`lang.json`、`stats.json`。
+- 建立 `sites/quantbase/` 資料夾，放入你現有嘅 `site-config.json`、`posts.json`、`content.json`、`stats.json`。
 - 喺 `next.config.js` 設定 `publicDir` 指向對應嘅網站資料夾（同你之前 Vite 做法一樣）。
 - 喺 Next.js App Router 入面，用 `fs.readFile` 讀取 JSON（因為 SSG 係喺 Build 時讀取，冇 CORS 問題）。
 
@@ -35,8 +35,8 @@
 - 將 `homeView.ts` 入面嘅 HTML 改寫成 React Component（JSX）。
 - 用 Next.js 嘅 `getStaticProps` 讀取 JSON，喺 Build 時生成靜態 HTML。
 
-### ✅ Step 2.2：搬遷文章系統（Archive + Post）
-- 將 `archive.ts` 同 `post.ts` 嘅邏輯改寫成 Next.js 動態路由（`/posts/[id]`）。
+### ✅ Step 2.2：搬遷文章系統（Posts）
+- 將 `quant-web` 的 `archive.ts` 同 `post.ts` 嘅邏輯改寫成 Next.js 動態路由（`/posts/[id]`）。
 - 用 `generateStaticParams` 喺 Build 時生成所有文章頁面。
 
 ### ✅ Step 2.3：加入 SEO Meta Tag
@@ -45,7 +45,7 @@
 
 ### ✅ Step 2.4：加入故事包裝
 - 喺首頁加入「關於我哋」區塊，用故事包裝產品（例如「我哋係香港小型開發團隊，用數據幫你解決交易痛點」）。
-- 呢個區塊嘅文字放入 `lang.json`，方便將來換皮。
+- 呢個區塊嘅文字放入 `content.json`，方便將來換皮。
 
 ---
 
