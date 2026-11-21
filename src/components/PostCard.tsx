@@ -1,44 +1,50 @@
 'use client';
-
 import Link from 'next/link';
-import { getLocalizedContent, getLocalizedCategory, formatDate } from '@/lib/utils';
+import { makeSlug } from '@/lib/utils';
 
-interface PostCardProps {
-  post: any;
-  lang: string;
-}
+type Post = {
+  id: string;
+  date: string;
+  image?: string;
+  category: { zh: string; en: string };
+  zh: { title: string; excerpt: string };
+  en?: { title: string; excerpt: string };
+};
 
-export default function PostCard({ post, lang }: PostCardProps) {
-  const content = getLocalizedContent(post, lang);
-  const catName = getLocalizedCategory(post, lang);
-  const readMore = lang === 'en' ? 'Read more' : '閱讀更多';
+type Props = {
+  post: Post;
+  locale: 'zh' | 'en';
+  currentQuery: string;
+};
+
+export default function PostCard({ post, locale, currentQuery }: Props) {
+  const slug = makeSlug(post);
+  const content = (locale === 'en' && post.en?.title ? post.en : post.zh);
+  const catLabel = post.category[locale];
+  const detailHref = `/${locale}/posts/${slug}?from=${encodeURIComponent(currentQuery)}`;
 
   return (
-    <Link href={`/post/${post.id}`} className="block group">
-      <article className="rounded-xl overflow-hidden bg-white dark:bg-zinc-800/50 border border-gray-200 dark:border-zinc-700 hover:shadow-lg transition-all duration-300 fade-in">
-        {post.image && (
-          <div className="overflow-hidden">
-            <img
-              src={post.image}
-              alt={content.title}
-              className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-        )}
-        <div className="p-5">
-          <div className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 mb-3">
-            {catName}
-          </div>
-          <h3 className="text-lg font-bold mb-2 group-hover:text-cyan-500 transition-colors">
-            {content.title}
-          </h3>
-          <p className="text-sm opacity-50 mb-3">{formatDate(post.date)}</p>
-          <p className="text-sm opacity-70 line-clamp-2 mb-4">{content.excerpt}</p>
-          <span className="text-cyan-500 font-medium text-sm group-hover:underline">
-            {readMore} →
-          </span>
-        </div>
-      </article>
-    </Link>
+    <div className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-xl p-5 flex flex-col transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg no-underline text-inherit">
+      {post.image && (
+        <Link href={detailHref} className="block no-underline">
+          <img src={post.image} alt="" className="w-full h-[180px] object-cover rounded-lg mb-4" />
+        </Link>
+      )}
+      <Link
+        href={`/${locale}/posts?category=${encodeURIComponent(catLabel)}`}
+        className="inline-block px-2 py-1 bg-[rgba(0,229,255,0.1)] text-[var(--primary-color)] rounded text-xs self-start no-underline transition-all duration-200 hover:bg-[var(--primary-color)] hover:text-[#111] mb-2"
+      >
+        {catLabel}
+      </Link>
+      <h3 className="text-xl font-bold mb-1 text-[var(--text-color)]">{content.title}</h3>
+      <span className="text-sm text-gray-500 mb-3">{post.date}</span>
+      <p className="text-sm text-gray-400 leading-relaxed mb-4 flex-grow line-clamp-3">{content.excerpt}</p>
+      <Link
+        href={detailHref}
+        className="text-[var(--primary-color)] text-sm font-bold mt-auto no-underline hover:underline"
+      >
+        {locale === 'zh' ? '閱讀更多 →' : 'Read more →'}
+      </Link>
+    </div>
   );
 }

@@ -34,3 +34,14 @@ export function getUniqueCategories(posts: any[], lang: string): { name: string;
   
   return cats;
 }
+
+// 從 post 生成 slug
+export function makeSlug(post: { id: string; en?: { title?: string } }): string {
+  const enTitle = post.en?.title || '';
+  const cleanTitle = enTitle
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+  const idPart = String(post.id);
+  return cleanTitle ? `${cleanTitle}-${idPart}` : idPart;
+}

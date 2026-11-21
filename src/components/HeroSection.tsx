@@ -47,14 +47,14 @@ export default function HeroSection({ siteConfig, t }: HeroSectionProps) {
         <p className="text-base md:text-lg xl:text-xl opacity-80 mb-8 md:mb-12 px-4">
           {t.hero.subtitle}
         </p>
-        <div className="hero-btns">
+          {/* Hero CTA Button */}
           <a 
             href={siteConfig.hero.buttonLink} 
             className="inline-block bg-[var(--primary-color)] text-white border-2 border-[var(--primary-color)] py-3 px-12 text-lg font-bold rounded-full no-underline transition-all duration-300 ease-in-out hover:bg-transparent hover:text-[var(--primary-color)]"
           >
             {t.hero.buttonText}
           </a>
-        </div>
+
       </div>
     </section>
   );
