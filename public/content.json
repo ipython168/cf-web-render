@@ -25,7 +25,7 @@
       "contactTitle": "聯絡我們",
       "links": [
         { "label": "關於我們", "href": "/about" }, 
-        { "label": "交易心得", "href": "/insights" },
+        { "label": "交易心得", "href": "/posts" },
         { "label": "私隱條例", "href": "/privacy" }
       ] 
     },    
@@ -72,7 +72,7 @@
       "contactTitle": "Contact Us",
       "links": [
         { "label": "About Us", "href": "/about" }, 
-        { "label": "Insights", "href": "/insights" },
+        { "label": "Posts", "href": "/posts" },
         { "label": "Privacy Policy", "href": "/privacy" }
       ]
     },

@@ -16,12 +16,11 @@
     "contactTitle": "有問題、建議，<br/>或者想交流量化策略？",
     "contactDesc": "我哋好歡迎任何意見。無論你係初學者定老手，每一個交流都可能係新策略嘅起點。",
     "contacts": [
-      { "label": "電郵", "value": "hello@quantbase.ai", "href": "mailto:hello@quantbase.ai" },
-      { "label": "Discord 社群", "value": "discord.gg/quantbase", "href": "https://discord.gg/quantbase" },
-      { "label": "Twitter / X", "value": "@quantbase_ai", "href": "https://twitter.com/quantbase_ai" },
-      { "label": "GitHub", "value": "github.com/quantbase", "href": "https://github.com/quantbase" },
-      { "label": "微信公眾號", "value": "QuantBase AI", "href": "#" },
-      { "label": "YouTube", "value": "QuantBase 頻道", "href": "#" }
+      { "label": "電郵", "value": "info@quantbase.hk", "href": "mailto:info@quantbase.hk" },   
+      { "label": "YouTube", "value": "QuantBase 頻道", "href": "https://www.youtube.com/@quantbase" },
+      { "label": "facebook", "value": "quantbase.hero", "href": "https://www.facebook.com/quantbase.hero" },
+      { "label": "instagram", "value": "quantbase_hero", "href": "https://www.instagram.com/quantbase_hero/" },
+      { "label": "threads", "value": "quantbase_hero", "href": "https://www.threads.net/@quantbase_hero" }
     ],
     "footerBadge": "BUILD SMARTER, NOT HARDER",
     "footerTitle": "感謝每一位願意學習嘅你。",
@@ -45,12 +44,11 @@
     "contactTitle": "Questions, ideas, <br/>or want to discuss quant strategies?",
     "contactDesc": "We welcome any feedback. Whether you're a beginner or a pro, every conversation could spark the next great strategy.",
     "contacts": [
-      { "label": "Email", "value": "hello@quantbase.ai", "href": "mailto:hello@quantbase.ai" },
-      { "label": "Discord Community", "value": "discord.gg/quantbase", "href": "https://discord.gg/quantbase" },
-      { "label": "Twitter / X", "value": "@quantbase_ai", "href": "https://twitter.com/quantbase_ai" },
-      { "label": "GitHub", "value": "github.com/quantbase", "href": "https://github.com/quantbase" },
-      { "label": "WeChat Official", "value": "QuantBase AI", "href": "#" },
-      { "label": "YouTube", "value": "QuantBase Channel", "href": "#" }
+      { "label": "Email", "value": "info@quantbase.hk", "href": "mailto:info@quantbase.hk" },  
+      { "label": "YouTube", "value": "QuantBase Channel", "href": "https://www.youtube.com/@quantbase" },
+      { "label": "facebook", "value": "quantbase.hero", "href": "https://www.facebook.com/quantbase.hero" },
+      { "label": "instagram", "value": "quantbase_hero", "href": "https://www.instagram.com/quantbase_hero/" },
+      { "label": "threads", "value": "quantbase_hero", "href": "https://www.threads.net/@quantbase_hero" }
     ],
     "footerBadge": "BUILD SMARTER, NOT HARDER",
     "footerTitle": "Thank you to everyone willing to learn.",
