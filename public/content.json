@@ -1,12 +1,10 @@
 {
   "zh": {
     "languageName": "中文",
-    "nav": {
-      "about": "關於我們",
-      "news": "交易心得",
-      "help": "幫助中心",
-      "support": "支持我們"
-    },
+    "nav": [
+      { "label": "關於我們", "href": "/about" },
+      { "label": "交易心得", "href": "/posts" }
+    ],
     "hero": {
       "title": "用數據透視市場<br>用紀律執行交易",
       "subtitle": "歡迎來到我的量化交易基地。這裡紀錄了我的回測結果與交易心得。",
@@ -25,13 +23,11 @@
       "brandDesc": "我哋係香港小型開發團隊...",
       "quickLinksTitle": "快速連結",
       "contactTitle": "聯絡我們",
-      "links": {
-        "about": "關於我們",
-        "backtest": "回測結果",
-        "insights": "交易心得",
-        "privacy": "私隱條例",
-        "support": "WhatsApp 技術支援"
-      }
+      "links": [
+        { "label": "關於我們", "href": "/about" }, 
+        { "label": "交易心得", "href": "/insights" },
+        { "label": "私隱條例", "href": "/privacy" }
+      ] 
     },    
     "stats": {
       "title": "實戰數據",
@@ -52,12 +48,10 @@
   },
   "en": {
     "languageName": "EN",
-    "nav": {
-      "about": "About Us",
-      "news": "Trading Tips",
-      "help": "Help Center",
-      "support": "Support Us"
-    },
+    "nav": [
+      { "label": "About Us", "href": "/about" },
+      { "label": "Trading Tips", "href": "/posts" }
+    ],
     "hero": {
       "title": "Data Driven Trading<br>Disciplined Execution",
       "subtitle": "Welcome to my quantitative trading base. Here I record my backtest results and trading insights.",
@@ -76,13 +70,11 @@
       "brandDesc": "We are a small dev team based in Hong Kong...",
       "quickLinksTitle": "Quick Links",
       "contactTitle": "Contact Us",
-      "links": {
-        "about": "About Us",
-        "backtest": "Backtest",
-        "insights": "Insights",
-        "privacy": "Privacy Policy",
-        "support": "WhatsApp support"
-      }
+      "links": [
+        { "label": "About Us", "href": "/about" }, 
+        { "label": "Insights", "href": "/insights" },
+        { "label": "Privacy Policy", "href": "/privacy" }
+      ]
     },
     "stats": {
       "title": "Live Stats",

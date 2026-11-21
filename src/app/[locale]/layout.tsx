@@ -54,7 +54,7 @@ export default function LocaleLayout({
       <div className="flex flex-col min-h-screen">
         {children}
       </div>
-      <Footer siteConfig={config} contentData={contentData} />
+      <Footer siteConfig={config} contentData={contentData} currentLang={locale} />
     </>
   );
 }

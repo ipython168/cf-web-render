@@ -3,8 +3,7 @@
 import { useScrollFade } from '@/hooks/useScrollFade';
 import HeroSection from '@/components/HeroSection';
 import FeatureSection from '@/components/FeatureSection';
-import StatsSection from '@/components/StatsSection';
-import PostGrid from '@/components/PostGrid';
+import StatsSection from '@/components/StatsSection'; 
 
 interface HomeClientProps {
   config: any;

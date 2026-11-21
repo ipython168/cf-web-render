@@ -1,0 +1,82 @@
+{
+  "zh": {
+    "metaTitle": "私隱政策 | QuantBase",
+    "title": "私隱政策",
+    "lastUpdated": "最後更新：2026年11月",
+    "sections": [
+      {
+        "heading": "1. 資料收集與使用",
+        "content": "我們僅收集您主動提供的個人資料（如姓名、電郵地址），用於提供金融數據查詢服務、改善用戶體驗及發送重要通知。我們不會出售您的個人資料予第三方。"
+      },
+      {
+        "heading": "2. AI 模型免責聲明",
+        "content": "QuantBase 採用人工智能模型輔助生成市場分析、摘要及預測。AI 模型可能存在偏差、錯誤或遺漏，不應作為唯一投資決策依據。所有 AI 生成內容僅供參考，使用者須自行承擔風險。"
+      },
+      {
+        "heading": "3. 數據準確性",
+        "content": "我們致力確保金融數據的準確性，但不保證數據實時、完整或無誤。數據來源包括交易所、公開資訊及第三方供應商，可能出現延遲或錯誤。QuantBase 不對因數據錯誤導致的損失負責。"
+      },
+      {
+        "heading": "4. 第三方連結",
+        "content": "本網站可能包含第三方網站連結。我們對其內容、私隱政策或做法概不負責。建議您查閱該等網站的私隱條款。"
+      },
+      {
+        "heading": "5. Cookie 使用",
+        "content": "我們使用必要的 Cookie 維持網站運作，以及分析 Cookie 了解使用趨勢。您可以透過瀏覽器設定管理 Cookie 偏好。"
+      },
+      {
+        "heading": "6. 資料安全",
+        "content": "我們採取合理技術措施保護您的個人資料，惟互聯網傳輸無法保證絕對安全。如發現資料外洩，我們將依法通知受影響用戶。"
+      },
+      {
+        "heading": "7. 您的權利",
+        "content": "您有權查閱、更正或刪除我們持有的個人資料。如需行使權利，請透過下方聯絡方式與我們聯繫。"
+      },
+      {
+        "heading": "8. 政策更新",
+        "content": "我們可能不時更新本政策。重大變更將於網站公告。繼續使用本網站即代表您同意更新後的條款。"
+      }
+    ],
+    "contactNote": "如有疑問，請聯絡我們："
+  },
+  "en": {
+    "metaTitle": "Privacy Policy | QuantBase",
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: November 2026",
+    "sections": [
+      {
+        "heading": "1. Data Collection and Use",
+        "content": "We only collect personal data you voluntarily provide (such as name, email address) to deliver financial data query services, improve user experience, and send important notices. We do not sell your personal data to third parties."
+      },
+      {
+        "heading": "2. AI Model Disclaimer",
+        "content": "QuantBase uses artificial intelligence models to assist in generating market analysis, summaries, and forecasts. AI models may contain biases, errors, or omissions and should not be used as the sole basis for investment decisions. All AI-generated content is for reference only; users assume all risks."
+      },
+      {
+        "heading": "3. Data Accuracy",
+        "content": "We strive to ensure the accuracy of financial data but do not guarantee that data is real-time, complete, or error-free. Data sources include exchanges, public information, and third-party providers, which may experience delays or errors. QuantBase is not liable for losses resulting from data inaccuracies."
+      },
+      {
+        "heading": "4. Third-Party Links",
+        "content": "This website may contain links to third-party sites. We are not responsible for their content, privacy policies, or practices. We recommend reviewing their privacy terms."
+      },
+      {
+        "heading": "5. Cookie Usage",
+        "content": "We use necessary cookies to maintain website functionality and analytics cookies to understand usage trends. You can manage cookie preferences through your browser settings."
+      },
+      {
+        "heading": "6. Data Security",
+        "content": "We implement reasonable technical measures to protect your personal data; however, internet transmission cannot guarantee absolute security. In the event of a data breach, we will notify affected users as required by law."
+      },
+      {
+        "heading": "7. Your Rights",
+        "content": "You have the right to access, correct, or delete the personal data we hold. To exercise these rights, please contact us using the details below."
+      },
+      {
+        "heading": "8. Policy Updates",
+        "content": "We may update this policy from time to time. Material changes will be announced on the website. Continued use of this website constitutes acceptance of the updated terms."
+      }
+    ],
+    "contactNote": "If you have any questions, please contact us:"
+  }
+}
