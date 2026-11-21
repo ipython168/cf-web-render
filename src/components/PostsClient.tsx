@@ -33,7 +33,7 @@ function makeSlug(post: Post): string {
   return cleanTitle ? `${cleanTitle}-${idPart}` : idPart;
 }
 
-export default function ArticleClient({ initialPosts, locale }: { initialPosts: Post[]; locale: Locale }) {
+export default function PostsClient({ initialPosts, locale }: { initialPosts: Post[]; locale: Locale }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialSearch = searchParams.get('search') || '';

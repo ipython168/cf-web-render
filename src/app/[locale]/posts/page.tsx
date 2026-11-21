@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { Suspense } from 'react'; 
-import ArticleClient from '@/components/ArticleClient';
+import PostsClient from '@/components/PostsClient';
 
 type Post = {
   id: string;
@@ -32,7 +32,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ locale
   return (
     <main className="max-w-[1280px] mx-auto px-[5%] flex flex-col gap-4">
       <Suspense fallback={<div>Loading articles...</div>}>
-        <ArticleClient initialPosts={posts} locale={locale as 'zh' | 'en'} />
+        <PostsClient initialPosts={posts} locale={locale as 'zh' | 'en'} />
       </Suspense>
     </main>
   );

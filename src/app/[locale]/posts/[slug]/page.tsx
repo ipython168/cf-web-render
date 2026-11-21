@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import PostClient from '@/components/PostClient';
+import OnePostClient from '@/components/OnePostClient';
 import { Suspense } from 'react'; 
 
 function makeSlug(post: any): string {
@@ -61,7 +61,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
   return (
     <main>
       <Suspense fallback={<div>Loading...</div>}>  {/* 新增 Suspense 邊界 */}
-        <PostClient post={post} config={config} contentData={contentData} />
+        <OnePostClient post={post} config={config} contentData={contentData} />
       </Suspense>
     </main>
   );

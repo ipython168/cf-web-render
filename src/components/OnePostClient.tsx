@@ -6,13 +6,13 @@ import Navbar from './Navbar';
 import { getLocalizedContent, getLocalizedCategory, formatDate } from '@/lib/utils';
 import { useSearchParams } from 'next/navigation';
 
-interface PostClientProps {
+interface OnePostClientProps {
   post: any;
   contentData: any;
   config: any;
 }
 
-export default function PostClient({ post, contentData, config }: PostClientProps) {
+export default function OnePostClient({ post, contentData, config }: OnePostClientProps) {
   const { lang, mounted } = useLang();
   const searchParams = useSearchParams();
   const fromParams = searchParams.get('from');
